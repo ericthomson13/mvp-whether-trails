@@ -12,8 +12,8 @@ export default function App() {
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [deviceLocation, setDeviceLocation] = useState(null);
   const defaultLocation = {
-    latitude: 40.0150,
-    longitude: 105.2705
+    latitude: '40.0150',
+    longitude: '-105.2705'
   };
 
   // below is for iOS but currently causes erros in html and android
@@ -26,16 +26,18 @@ export default function App() {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
+        setDeviceLocation(null);
         console.log('error, please restart and allow location permissions');
+      } else {
+        let location = await Location.getCurrentPositionAsync({timeout: 10000});
+        setDeviceLocation(location.coords);
       }
-      let location = await Location.getCurrentPositionAsync({timeout: 10000});
-      setDeviceLocation(location.coords);
-
     } catch {
       console.log('error in getLocation ', deviceLocation);
     }
   };
-
+  
+  // could this be refactored to useEffect?
   if (deviceLocation === null) {
     getLocation();
   }
@@ -54,7 +56,7 @@ export default function App() {
     <MapView />
   );
   const activity = (
-    <ActivityView />
+    <ActivityView location={deviceLocation !== null ? deviceLocation : defaultLocation} />
   );
   const welcome = (
     <>
