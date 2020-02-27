@@ -1,6 +1,5 @@
 import React from 'react';
 import { View, Text, StyleSheet } from 'react-native';
-import ActivityList from './ActivityList';
 
 const ActivityItem = ({ id, name, summary, difficulty, stars, location, url, length, latitude, longitude, }) => {
   return (
