@@ -8,13 +8,13 @@ const WelcomeView = (props) => {
   return (
     <View style={styles.welcomeView}>
       <Text style={styles.welcomeTitle}>
-
+        Please Select an Activity
       </Text>
       <View>
         <ScrollView style={styles.optionsList} >
           {props.children.map((option, i) => {
             return (
-              <OptionButton name={option.name} onPress={() =>  {props.setViewMode(option.name)}} />
+              <OptionButton key={i} name={option.name} setSelectedActivity={props.setSelectedActivity} />
             );
           })}
         </ScrollView>
@@ -25,7 +25,12 @@ const WelcomeView = (props) => {
 
 const styles = StyleSheet.create({
   welcomeView: {
-
+    flex: 1,
+    padding: 10,
+    margin: 5,
+    alignContent: 'center',
+    justifyContent: 'center',
+    
   },
   welcomeTitle: {
 
