@@ -5,7 +5,7 @@ const OptionButton = (props) => {
 
   return (
     <View style={styles.buttonView}>
-      <Button title={props.name} onPress={() => props.setSelectedActivity(props.name)}/>
+      <Button style={styles.button} title={props.name} onPress={() => props.setSelectedActivity(props.name)}/>
     </View>
   );
   
@@ -15,7 +15,10 @@ const styles = StyleSheet.create({
   buttonView: {
     alignContent: 'center',
     justifyContent: 'center',
-    
+  },
+  // this color isn't working yet
+  button: {
+    color: '#126659',
   }
 });
 

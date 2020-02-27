@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import OptionButton from '../utility/OptionButton';
+import OptionButton from '../components/OptionButton';
 
 const WelcomeView = (props) => {
   
@@ -30,10 +30,11 @@ const styles = StyleSheet.create({
     margin: 5,
     alignContent: 'center',
     justifyContent: 'center',
-    
+    maxHeight: '75%',
   },
   welcomeTitle: {
-
+    padding: 10,
+    
   },
 
 });

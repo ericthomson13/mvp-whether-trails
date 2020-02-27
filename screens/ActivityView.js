@@ -1,7 +1,11 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet } from 'react-native';
+import { hikingProject } from '../Keys';
 
-const TrailheadView = (props) => {
+import TrailList from '../components/TrailsList';
+
+const ActivityView = (props) => {
+  const [activityArray, setActivityArray] = useState([]);
 
   return (
     <View style={styles.trailheadView}>
@@ -17,4 +21,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default TrailheadView;
+export default ActivityView;
