@@ -12,27 +12,27 @@ const ActivityView = (props) => {
   const [activityCall, setActivityCall] = useState(0);
   console.log(activityArray);
   const { location } = props;
-
+  console.log('activityArr: ', Array.isArray(activityArray))
   // eventually allow user to set search radius
   const getList = async (location, distance = 20) => {
     const result = await fetch(`https://www.hikingproject.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${hikingProject}`)
-    // const reader = result.body.getReader();
-    // const trails = await reader.read();
     const trails = await result.json()
     console.log(trails.body);
     setActivityArray(trails);
-    // await reader.closed();
   };
   if (activityArray.length === 0 && activityCall === 0) {
     getList(location);
     setActivityCall(1);
   };
-
+  let list = null;
+  if (activityArray.length > 0) {
+    list = <ActivityList list={activityArray} />
+  }
   return (
     <View style={styles.trailheadView}>
       <Text>Trailhead View Will Be Here</Text>
       {/* <MapWindow /> */}
-      {activityArray.length === 0 ? null : <ActivityList list={activityArray}/>}
+      {list}
     </View>
   )
 };

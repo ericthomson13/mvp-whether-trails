@@ -4,20 +4,19 @@ import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView } from 'react-
 import ActivityItem from './ActivityItem';
 
 const ActivityList = (props) => {
-  const DATA = [...props.list];
+  // would like to use FlatList in long run attempted to get to work
+  console.log('props.list: ', props.list);
+  const items = props.list
   const list = (
     <View style={styles.trailList} >
-      <FlatList 
-        data={DATA} 
-        renderItem={({ item }) => (
-          <ActivityItem {...item} />
-        )} 
-        keyExtractor={item.id}
-        extraData={props.list}
-      />
+      {items.forEach((item) => {
+        return(
+          <ActivityItem key={item.id} />
+        )
+      })}
     </View>
   );
-
+  
   let render = list;
 
   if (Platform.OS === 'ios') {
