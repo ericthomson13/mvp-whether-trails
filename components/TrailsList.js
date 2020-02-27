@@ -14,7 +14,7 @@ const styles = StyleSheet.create({
   trailList: {
 
   },
-  
+
 });
 
 export default TrailList;

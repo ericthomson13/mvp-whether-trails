@@ -10,8 +10,11 @@ import ActivityView from './screens/ActivityView';
 export default function App() {
   const [viewMode, setViewMode] = useState('welcomeView');
   const [selectedActivity, setSelectedActivity] = useState(null);
-  const [selectedTrail, setSelectedTrail] = useState();
   const [deviceLocation, setDeviceLocation] = useState(null);
+  const defaultLocation = {
+    latitude: 40.0150,
+    longitude: 105.2705
+  };
 
   // below is for iOS but currently causes erros in html and android
   // geolocation.requestAuthorization();
@@ -54,7 +57,13 @@ export default function App() {
     <ActivityView />
   );
   const welcome = (
-    <WelcomeView children={activityOptions} setSelectedActivity={setSelectedActivity} />      
+    <>
+    <View style={styles.nav}>
+        <Text style={styles.navText} >Whether Trails</Text>
+        <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
+    </View>
+    <WelcomeView children={activityOptions} setSelectedActivity={setSelectedActivity} />
+    </>
   );
 
   const error = (
@@ -82,11 +91,7 @@ export default function App() {
 
   return (
     <View style={styles.container}>
-      <View style={styles.nav}>
-        <Text style={styles.navText} >Whether Trails</Text>
-        <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
-        <Text>{deviceLocation !== null ? deviceLocation.latitude : null}</Text>
-      </View>
+      
       {screen}
     </View>
   );
