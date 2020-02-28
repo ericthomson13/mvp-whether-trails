@@ -2,25 +2,28 @@ import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView, ScrollView } from 'react-native';
 
 import ActivityItem from './ActivityItem';
+import SelectedItem from './SelectedItem';
 
 const ActivityList = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
   // would like to use FlatList in long run attempted to get to work
   let list =  props.list.map((item, i) => {
+    if (selectedItem !== null && selectedItem.id === item.id) {
+      return;
+    }
     return (
       <ActivityItem 
-        key={i}
+        key={item.id}
         index={i}
         {...item}
         select={setSelectedItem}
       />
     )
   });
-
+  let selected = null;
   if (selectedItem !== null) {
-    // refactor to be in activity view and adjust array to move to top from index
-    list.shift(<ActivityItem {...selectedItem} key={selectedItem.id} select={setSelectedItem} selected={true} />)
-  }
+    selected = <SelectedItem {...selectedItem} key={selectedItem.id} select={setSelectedItem} selected={true} />
+  };
 
   if (Platform.OS = 'ios') {
     list = (
@@ -28,10 +31,12 @@ const ActivityList = (props) => {
         {list}
       </SafeAreaView>
     )
-  }
+  };
+
   return (
     <View style={styles.trailList} >
       <Text style={styles.header}>Trails Near You:</Text>
+      {selected}
       <ScrollView styles={styles.scrollList}>
         {list}
       </ScrollView>

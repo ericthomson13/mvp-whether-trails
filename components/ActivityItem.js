@@ -2,12 +2,10 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, } from 'react-native';
 import { Linking } from 'expo';
 
-import WeatherForecast from './WeatherForecast';
-
 // TODO: how to style if it is selected?
   // bigger and with weather and map space
 const ActivityItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select, selected 
+  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select,
 }) => {
   // how to update styling to change if selected????
   return (
