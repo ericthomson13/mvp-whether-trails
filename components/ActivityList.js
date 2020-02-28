@@ -8,7 +8,8 @@ const ActivityList = (props) => {
   let list =  props.list.map((item) => {
     return (
       <ActivityItem 
-        key={item.id} 
+        key={item.id}
+        {...item}
       />
     )
   });

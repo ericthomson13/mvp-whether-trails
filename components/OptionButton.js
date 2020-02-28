@@ -15,12 +15,12 @@ const styles = StyleSheet.create({
   buttonView: {
     alignContent: 'center',
     justifyContent: 'center',
-    color: '#9d3a48',
-
   },
   // this color isn't working yet
   button: {
-    color: '#126659',
+    borderColor: '#BFD1E5',
+    
+    // color: '#126659',
   }
 });
 
