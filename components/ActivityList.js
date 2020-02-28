@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView } from 'react-native';
+import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView, ScrollView } from 'react-native';
 
 import ActivityItem from './ActivityItem';
 
@@ -22,16 +22,21 @@ const ActivityList = (props) => {
   }
   return (
     <View style={styles.trailList} >
-      {list}
+      <ScrollView styles={styles.scrollList}>
+        {list}
+      </ScrollView>
     </View>
   );
 };
 
 const styles = StyleSheet.create({
   trailList: {
-
+    flex: 1,
+    maxHeight: 600,
   },
-
+  scrollList: {
+    maxHeight: '85%',
+  },
 });
 
 export default ActivityList;

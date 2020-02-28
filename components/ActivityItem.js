@@ -1,19 +1,20 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, Image, } from 'react-native';
 import { Linking } from 'expo';
 
-const ActivityItem = ({ id, name, summary, difficulty, stars, location, url, length, latitude, longitude, }) => {
+const ActivityItem = ({ name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, }) => {
   return (
     <View style={styles.card} >
       <View style={styles.header} >
         <TouchableOpacity>
           <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
         </TouchableOpacity>
-        <Text >{difficulty}</Text>
+        <Text style={styles.difficulty} >{difficulty}</Text>
+        <Text style={styles.length} >{length}</Text>
       </View>
-      
-        <Text>{summary}</Text>
-        
+      <Text>{location}</Text>
+      <Image style={styles.image} source={{uri: imgSqSmall}}/>
+      <Text>{summary}</Text>
     </View>
   )
 }
@@ -31,7 +32,7 @@ const styles = StyleSheet.create({
     margin: 5,
     fontSize: 24,
     fontWeight: 'bold',
-    
+
     // color: '#9D3A48',
   },
   difficulty: {
@@ -46,7 +47,6 @@ const styles = StyleSheet.create({
     alignContent: 'space-around',
 
   },
-
   summary: {
     margin: 24,
     fontSize: 18,
@@ -55,8 +55,9 @@ const styles = StyleSheet.create({
     maxWidth: '75%',
 
   },
-  
-  url: {
+  image: {
+    width: '20%',
+    height: '20%',
 
   },
   length: {

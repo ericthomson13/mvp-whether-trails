@@ -17,17 +17,19 @@ const ActivityView = (props) => {
   const getList = async (location) => {
     const result = await fetch(`https://www.hikingproject.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${hikingProject}`)
     const trails = await result.json()
-    console.log(trails.trails);
     setActivityArray(trails.trails);
   };
+
   if (activityArray.length === 0 && activityCall === 0) {
     getList(location);
     setActivityCall(1);
   };
+
   let list = null;
   if (activityArray.length > 0) {
     list = <ActivityList list={activityArray} />
   }
+  
   return (
     <View style={styles.activityView}>
       <Text></Text>
