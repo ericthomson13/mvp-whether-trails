@@ -6,7 +6,7 @@ import { darksky } from '../keys';
 const WeatherForecast = ({ latitude, longitude }) => {
   const [weather, setWeather] = useState();
 
-  // this might be better as a useEffect
+  // this might be better as a useEffect??
   const getWeather = (latitude, longitude) => {
 
   };

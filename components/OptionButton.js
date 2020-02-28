@@ -24,8 +24,6 @@ const styles = StyleSheet.create({
   // this color isn't working yet
   button: {
     borderColor: '#BFD1E5',
-    
-    // color: '#126659',
   }
 });
 
