@@ -22,6 +22,7 @@ const ActivityList = (props) => {
   }
   return (
     <View style={styles.trailList} >
+      <Text style={styles.header}>Trails Near You:</Text>
       <ScrollView styles={styles.scrollList}>
         {list}
       </ScrollView>
@@ -32,10 +33,15 @@ const ActivityList = (props) => {
 const styles = StyleSheet.create({
   trailList: {
     flex: 1,
-    maxHeight: 600,
+    maxHeight: '60%',
   },
   scrollList: {
-    maxHeight: '85%',
+    maxHeight: '75%',
+  },
+  header: {
+    fontWeight: 'bold',
+    fontSize: 24,
+    color: '#9D3A48',
   },
 });
 

@@ -9,10 +9,14 @@ const ActivityItem = ({ name, summary, difficulty, imgSqSmall, stars, location, 
         <TouchableOpacity>
           <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
         </TouchableOpacity>
-        <Text style={styles.difficulty} >{difficulty}</Text>
-        <Text style={styles.length} >{length}</Text>
+        <View style={styles.dlContainer} >
+          <Text style={styles.difficulty} >{difficulty}</Text>
+          <Text style={styles.length} >{length}</Text>
+        </View>
       </View>
-      <Text>{location}</Text>
+      <View style={styles.location}>
+        <Text style={styles.locationText} >{location}</Text>
+      </View>
       <Image style={styles.image} source={{uri: imgSqSmall}}/>
       <Text>{summary}</Text>
     </View>
@@ -21,6 +25,7 @@ const ActivityItem = ({ name, summary, difficulty, imgSqSmall, stars, location, 
 
 const styles = StyleSheet.create({
   card: {
+    flex: 1,
     backgroundColor: '#126659',
     padding: 10,
     margin: 5,
@@ -32,20 +37,31 @@ const styles = StyleSheet.create({
     margin: 5,
     fontSize: 24,
     fontWeight: 'bold',
-
-    // color: '#9D3A48',
+    color: '#BFD1E5',
   },
   difficulty: {
     alignItems: 'center',
     fontSize: 14,
+    paddingRight: 10,    
   },
   header: {
     flex: 1,
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    alignContent: 'space-around',
+    alignContent: 'space-between',
+    width: '100%',
+    borderBottomWidth: 2,
+    padding: 5,
+    margin: 5,
 
+  },
+  dlContainer: {
+    padding: 10,
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignContent: 'space-between',
   },
   summary: {
     margin: 24,
@@ -58,11 +74,23 @@ const styles = StyleSheet.create({
   image: {
     width: '20%',
     height: '20%',
-
   },
   length: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#BFD1E5',
+    fontWeight: 'bold',
+  },
+  location: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 2,
 
-  }
+  },
+  locationText: {
+    color: '#BFD1E5',
+    fontWeight: 'bold',
+  },
 });
 
 export default ActivityItem;
