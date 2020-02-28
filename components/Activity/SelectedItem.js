@@ -1,10 +1,12 @@
-import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, } from 'react-native';
-import { Linking } from 'expo';
+import React, { useState, useEffect } from 'react';
+import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
-const ActivityItem = ({ 
+import WeatherForecast from '../Weather/WeatherForecast';
+
+const SelectedItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select,
 }) => {
+
   return (
     <View 
       style={styles.card}
@@ -14,7 +16,7 @@ const ActivityItem = ({
       >
         <View style={styles.header} >
           <TouchableOpacity>
-           <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
+  <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
          </TouchableOpacity>
           <View style={styles.dlContainer} >
             <Text style={styles.difficulty} >{difficulty}</Text>
@@ -24,17 +26,19 @@ const ActivityItem = ({
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
         </View>
-        <Image style={styles.image} source={{uri: imgSqSmall}}/>
-        <Text>{summary}</Text>
+        {/* Image wasn't working on smaller cards so turned off */}
+        {/* <Image style={styles.image} source={{uri: imgSqSmall}}/> */}
+        <Text style={styles.summary} >{summary}</Text>
       </TouchableOpacity>
-      
+      <View>
+        <WeatherForecast latitude={latitude} longitude={longitude} />
+      </View>
     </View>
   )
-}
+};
 
 const styles = StyleSheet.create({
   card: {
-    flex: 1,
     backgroundColor: '#126659',
     padding: 10,
     margin: 5,
@@ -102,4 +106,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActivityItem;
+export default SelectedItem;

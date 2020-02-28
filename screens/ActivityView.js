@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { hikingProject } from '../keys';
 
-import ActivityList from '../components/ActivityList';
+import ActivityList from '../components/Activity/ActivityList';
 
 const ActivityView = (props) => {
   const [activityArray, setActivityArray] = useState([]);

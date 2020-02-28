@@ -3,8 +3,9 @@ import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
 import { Linking } from 'expo';
 import axios from 'axios';
 
-import { openWeather } from '../keys';
-import SampleOpenWeather from '../SampleData/openWeather';
+import { openWeather } from '../../keys';
+import WeeklyForecast from './WeeklyForecast';
+import DailyForecast from './DailyForecast';
 
 // TODO: add subcomponents and view to change allowing for different levels of forecasts to be used
 // TODO: add onPress to forecast for 3h view of that day
@@ -12,10 +13,11 @@ import SampleOpenWeather from '../SampleData/openWeather';
 
 const WeatherForecast = ({ latitude, longitude }) => {
   const [weather, setWeather] = useState(null);
+  const [weatherView, setWeatherView] = useState('weekly');
+
   const getWeather = async () => {
-    
     try {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${openWeather}`;
+      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=Imperial&appid=${openWeather}`;
       const result = await axios({
         method: 'get',
         url,
@@ -28,8 +30,6 @@ const WeatherForecast = ({ latitude, longitude }) => {
     }
   };
 
-  console.log('weather: ', weather);
-
   useEffect(() => {
     if (weather !== null) {
       return;
@@ -37,13 +37,22 @@ const WeatherForecast = ({ latitude, longitude }) => {
     getWeather();
   });
 
+  let weeklyData = [];
+  if (weather !== null) {
+    for (let i = 0; i < weather.length; i++) { 
+      if (i === 0 || i % 8 === 0) {
+        weeklyData.push(weather[i]);
+      }
+    };
+  };
+
   return (
     <View style={styles.container} >
       <Text>
-      Forecast pending....
+      Forecast:
       </Text>
       <View>
-
+        <WeeklyForecast data={weeklyData} />
       </View>
     </View>
 
