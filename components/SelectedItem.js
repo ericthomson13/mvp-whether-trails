@@ -29,7 +29,9 @@ const SelectedItem = ({
         <Image style={styles.image} source={{uri: imgSqSmall}}/>
         <Text style={styles.summary} >{summary}</Text>
       </TouchableOpacity>
-      
+      <View>
+        <WeatherForecast latitude={latitude} longitude={longitude} />
+      </View>
     </View>
   )
 };

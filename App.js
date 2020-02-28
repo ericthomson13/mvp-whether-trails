@@ -29,7 +29,7 @@ export default function App() {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
-        setDeviceLocation(null);
+        setDeviceLocation(defaultLocation);
         console.log('error, please restart and allow location permissions');
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
