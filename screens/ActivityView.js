@@ -2,7 +2,6 @@ import React, { useState } from 'react';
 import { View, Text, StyleSheet, FlatList } from 'react-native';
 import { hikingProject } from '../keys';
 
-import MapWindow from '../components/MapWindow';
 import ActivityList from '../components/ActivityList';
 
 import hikingProjectData from '../SampleData/hikingProject';

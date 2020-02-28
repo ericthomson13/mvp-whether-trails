@@ -6,7 +6,7 @@ import SelectedItem from './SelectedItem';
 
 const ActivityList = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  // would like to use FlatList in long run attempted to get to work
+  // FlatList would be better
   let list =  props.list.map((item, i) => {
     if (selectedItem !== null && selectedItem.id === item.id) {
       return;
@@ -20,6 +20,7 @@ const ActivityList = (props) => {
       />
     )
   });
+  
   let selected = null;
   if (selectedItem !== null) {
     selected = <SelectedItem {...selectedItem} key={selectedItem.id} select={setSelectedItem} selected={true} />
