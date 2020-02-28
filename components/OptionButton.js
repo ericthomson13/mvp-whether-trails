@@ -1,14 +1,19 @@
 import React from 'react';
-import { View, Button, StyleSheet } from 'react-native';
+import { Button, View, StyleSheet, TouchableOpacity } from 'react-native';
 
-const OptionButton = (props) => {
-
+// upgrade to touchableOpacity in long run
+const OptionButton = ({ name, setSelectedActivity }) => {
   return (
-    <View style={styles.buttonView}>
-      <Button style={styles.button} title={props.name} onPress={() => props.setSelectedActivity(props.name)}/>
+    <View>
+      {/* <View style={styles.buttonView}>
+        <TouchableOpacity style={styles.button} onPress={() => setSelectedActivity(name)} >
+          <Text>{name}</Text>
+        </TouchableOpacity>
+      </View> */}
+      <Button title={name} onPress={() => setSelectedActivity(name)} />
     </View>
+    
   );
-  
 };
 
 const styles = StyleSheet.create({ 
