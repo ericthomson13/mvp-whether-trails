@@ -1,33 +1,49 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
 import { Linking } from 'expo';
+import axios from 'axios';
 
-import { darksky } from '../keys';
-import sampleWeather from '../SampleData/darksky.js';
+import { openWeather } from '../keys';
+import SampleOpenWeather from '../SampleData/openWeather';
 
 // TODO: add subcomponents and view to change allowing for different levels of forecasts to be used
+// TODO: add onPress to forecast for 3h view of that day
+// TODO: allow user to set their units metric/standard
+
 const WeatherForecast = ({ latitude, longitude }) => {
   const [weather, setWeather] = useState(null);
-  // this might be better as a useEffect??
   const getWeather = async () => {
-    const foundWeather = await fetch(`https://api.darksky.net/forecast/${darksky}/${latitude},${longitude}`, {
-      mode: 'no-cors'
-    });
-    setWeather( JSON.parse(foundWeather));
+    
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&appid=${openWeather}`;
+      const result = await axios({
+        method: 'get',
+        url,
+        responseType: 'stream'
+      })
+      const forecast = JSON.parse(result.request.responseText);
+      setWeather(forecast.list);
+    } catch {
+      console.log('error in getting weather');
+    }
   };
-  // refactor to use state
-  if (weather === null) {
+
+  console.log('weather: ', weather);
+
+  useEffect(() => {
+    if (weather !== null) {
+      return;
+    }
     getWeather();
-  } 
+  });
+
   return (
     <View style={styles.container} >
       <Text>
-        Weather forecast pending
+      Forecast pending....
       </Text>
       <View>
-        <TouchableOpacity onPress={() => {Linking.openURL('https://darksky.net/poweredby/')}}>
-          <Text>Powered by Darksky</Text>
-        </TouchableOpacity>
+
       </View>
     </View>
 
@@ -38,7 +54,12 @@ const styles = StyleSheet.create({
   container: {
 
   },
+  poweredBy: {
 
+  },
+  poweredByText: {
+    fontSize: 5
+  }
 });
 
 export default WeatherForecast;

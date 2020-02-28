@@ -36,8 +36,8 @@ const ActivityList = (props) => {
 
   return (
     <View style={styles.trailList} >
-      <Text style={styles.header}>Trails Near You:</Text>
       {selected}
+      <Text style={styles.header}>Trails Near You:</Text>
       <ScrollView styles={styles.scrollList}>
         {list}
       </ScrollView>
@@ -48,7 +48,7 @@ const ActivityList = (props) => {
 const styles = StyleSheet.create({
   trailList: {
     flex: 1,
-    maxHeight: '60%',
+    maxHeight: '70%',
   },
   scrollList: {
     maxHeight: '75%',

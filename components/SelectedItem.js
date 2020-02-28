@@ -16,7 +16,7 @@ const SelectedItem = ({
       >
         <View style={styles.header} >
           <TouchableOpacity>
-           <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
+  <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
          </TouchableOpacity>
           <View style={styles.dlContainer} >
             <Text style={styles.difficulty} >{difficulty}</Text>
@@ -38,37 +38,70 @@ const SelectedItem = ({
 
 const styles = StyleSheet.create({
   card: {
-
+    backgroundColor: '#126659',
+    padding: 10,
+    margin: 5,
+    borderRadius: 10,
+  },
+  name: {
+    alignItems: 'center',
+    padding: 5,
+    margin: 5,
+    fontSize: 24,
+    fontWeight: 'bold',
+    color: '#BFD1E5',
+  },
+  difficulty: {
+    alignItems: 'center',
+    fontSize: 14,
+    paddingRight: 10,    
   },
   header: {
-
-  },
-  name: {
-
-  },
-  name: {
+    flex: 1,
+    flexDirection: 'row',
+    alignItems: 'center',
+    justifyContent: 'center',
+    alignContent: 'space-between',
+    width: '100%',
+    borderBottomWidth: 2,
+    padding: 5,
+    margin: 5,
 
   },
   dlContainer: {
-
+    padding: 10,
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'center',
+    alignContent: 'space-between',
   },
-  difficulty: {
-
-  },
-  length: {
-
-  },
-  location: {
-
-  },
-  locationText: {
+  summary: {
+    margin: 24,
+    fontSize: 18,
+    fontWeight: 'bold',
+    textAlign: 'center',
+    maxWidth: '75%',
 
   },
   image: {
+    width: '20%',
+    height: '20%',
+  },
+  length: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    color: '#BFD1E5',
+    fontWeight: 'bold',
+  },
+  location: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 2,
 
   },
-  summary: {
-
+  locationText: {
+    color: '#BFD1E5',
+    fontWeight: 'bold',
   },
 });
 

@@ -4,10 +4,7 @@ import { hikingProject } from '../keys';
 
 import ActivityList from '../components/ActivityList';
 
-import hikingProjectData from '../SampleData/hikingProject';
-
 const ActivityView = (props) => {
-  const sample = hikingProjectData.getTrails.trails;
   const [activityArray, setActivityArray] = useState([]);
   const [activityCall, setActivityCall] = useState(0);
   const { location } = props;
