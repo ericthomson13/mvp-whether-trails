@@ -34,7 +34,8 @@ const styles = StyleSheet.create({
   },
   welcomeTitle: {
     padding: 10,
-    
+    color: '#9d3a48',
+    fontSize: 18,
   },
 
 });

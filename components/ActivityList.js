@@ -5,30 +5,24 @@ import ActivityItem from './ActivityItem';
 
 const ActivityList = (props) => {
   // would like to use FlatList in long run attempted to get to work
-  console.log('props.list: ', props.list);
-  const items = props.list
-  const list = (
-    <View style={styles.trailList} >
-      {items.forEach((item) => {
-        return(
-          <ActivityItem key={item.id} />
-        )
-      })}
-    </View>
-  );
-  
-  let render = list;
-
-  if (Platform.OS === 'ios') {
-    render = (
+  let list =  props.list.map((item) => {
+    return (
+      <ActivityItem 
+        key={item.id} 
+      />
+    )
+  });
+  if (Platform.OS = 'ios') {
+    list = (
       <SafeAreaView>
         {list}
       </SafeAreaView>
-    );
-  };
-
+    )
+  }
   return (
-    {render}
+    <View style={styles.trailList} >
+      {list}
+    </View>
   );
 };
 

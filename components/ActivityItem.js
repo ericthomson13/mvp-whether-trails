@@ -3,7 +3,7 @@ import { View, Text, StyleSheet } from 'react-native';
 
 const ActivityItem = ({ id, name, summary, difficulty, stars, location, url, length, latitude, longitude, }) => {
   return (
-    <View key={id}>
+    <View>
       <Text>This will be an activity item</Text>
     </View>
   )

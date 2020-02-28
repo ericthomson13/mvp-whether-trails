@@ -114,13 +114,13 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   navText: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#9d3a48',
     alignContent: 'center',
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 20,
     color: '#9d3a48',
   },
   errorText: {

@@ -15,6 +15,8 @@ const styles = StyleSheet.create({
   buttonView: {
     alignContent: 'center',
     justifyContent: 'center',
+    color: '#9d3a48',
+
   },
   // this color isn't working yet
   button: {
