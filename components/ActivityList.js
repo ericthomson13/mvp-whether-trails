@@ -1,18 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView, ScrollView } from 'react-native';
 
 import ActivityItem from './ActivityItem';
 
 const ActivityList = (props) => {
+  const [selectedItem, setSelectedItem] = useState(null);
   // would like to use FlatList in long run attempted to get to work
-  let list =  props.list.map((item) => {
+  let list =  props.list.map((item, i) => {
     return (
       <ActivityItem 
-        key={item.id}
+        key={i}
+        index={i}
         {...item}
+        select={setSelectedItem}
       />
     )
   });
+
+  if (selectedItem !== null) {
+    // refactor to be in activity view and adjust array to move to top from index
+    list.shift(<ActivityItem {...selectedItem} key={selectedItem.id} select={setSelectedItem} selected={true} />)
+  }
+
   if (Platform.OS = 'ios') {
     list = (
       <SafeAreaView>

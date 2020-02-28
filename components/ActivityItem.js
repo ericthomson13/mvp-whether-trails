@@ -2,23 +2,37 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, Image, } from 'react-native';
 import { Linking } from 'expo';
 
-const ActivityItem = ({ name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, }) => {
+import WeatherForecast from './WeatherForecast';
+
+// TODO: how to style if it is selected?
+  // bigger and with weather and map space
+const ActivityItem = ({ 
+  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select, selected 
+}) => {
+  // how to update styling to change if selected????
   return (
-    <View style={styles.card} >
-      <View style={styles.header} >
-        <TouchableOpacity>
-          <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
-        </TouchableOpacity>
-        <View style={styles.dlContainer} >
-          <Text style={styles.difficulty} >{difficulty}</Text>
-          <Text style={styles.length} >{length}</Text>
+    <View 
+      style={styles.card}
+    >
+      <TouchableOpacity 
+        onPress={() => select({ index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude })}
+      >
+        <View style={styles.header} >
+          <TouchableOpacity>
+           <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
+         </TouchableOpacity>
+          <View style={styles.dlContainer} >
+            <Text style={styles.difficulty} >{difficulty}</Text>
+            <Text style={styles.length} >{length}</Text>
+          </View>
+       </View>
+        <View style={styles.location}>
+          <Text style={styles.locationText} >{location}</Text>
         </View>
-      </View>
-      <View style={styles.location}>
-        <Text style={styles.locationText} >{location}</Text>
-      </View>
-      <Image style={styles.image} source={{uri: imgSqSmall}}/>
-      <Text>{summary}</Text>
+        <Image style={styles.image} source={{uri: imgSqSmall}}/>
+        <Text>{summary}</Text>
+      </TouchableOpacity>
+      
     </View>
   )
 }

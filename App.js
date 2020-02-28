@@ -120,8 +120,9 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   subtitle: {
-    fontSize: 20,
+    fontSize: 18,
     color: '#9d3a48',
+    fontWeight: 'bold',
   },
   errorText: {
     alignContent: 'center',
