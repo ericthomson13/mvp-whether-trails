@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, } from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
@@ -7,13 +7,16 @@ import WelcomeView from './screens/WelcomeView';
 import MapView from './screens/MapView';
 import ActivityView from './screens/ActivityView';
 
+// TODO: look into refactoring to Redux and how to test Redux and Native
+// TODO: how to change splash icon to something else
+
 export default function App() {
   const [viewMode, setViewMode] = useState('welcomeView');
   const [selectedActivity, setSelectedActivity] = useState(null);
   const [deviceLocation, setDeviceLocation] = useState(null);
   const defaultLocation = {
-    latitude: 40.0150,
-    longitude: 105.2705
+    latitude: '40.0150',
+    longitude: '-105.2705'
   };
 
   // below is for iOS but currently causes erros in html and android
@@ -26,16 +29,18 @@ export default function App() {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
+        setDeviceLocation(defaultLocation);
         console.log('error, please restart and allow location permissions');
+      } else {
+        let location = await Location.getCurrentPositionAsync({timeout: 10000});
+        setDeviceLocation(location.coords);
       }
-      let location = await Location.getCurrentPositionAsync({timeout: 10000});
-      setDeviceLocation(location.coords);
-
     } catch {
       console.log('error in getLocation ', deviceLocation);
     }
   };
-
+  
+  // could this be refactored to useEffect?
   if (deviceLocation === null) {
     getLocation();
   }
@@ -54,7 +59,7 @@ export default function App() {
     <MapView />
   );
   const activity = (
-    <ActivityView />
+    <ActivityView location={deviceLocation !== null ? deviceLocation : defaultLocation} />
   );
   const welcome = (
     <>
@@ -112,14 +117,15 @@ const styles = StyleSheet.create({
     justifyContent: 'flex-start',
   },
   navText: {
-    fontSize: 20,
+    fontSize: 30,
     fontWeight: 'bold',
     color: '#9d3a48',
     alignContent: 'center',
   },
   subtitle: {
-    fontSize: 14,
+    fontSize: 18,
     color: '#9d3a48',
+    fontWeight: 'bold',
   },
   errorText: {
     alignContent: 'center',
