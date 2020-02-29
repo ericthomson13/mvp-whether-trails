@@ -1,22 +1,26 @@
 import React, { useState, } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 
-import WeatherIcon from './Icon/WeatherIcon';
+import WeatherIcon from './Icons/WeatherIcon';
+import WindDirection from './Icons/WindDirection';
 
 const WeatherPane = ({ main, clouds, weather, wind }) => {
   const { temp_min, temp_max } = main;
 
   const weatherIcon = WeatherIcon(weather[0]);
-  
+  const windDirection = WindDirection(wind.deg);
+
   return (
     <View style={styles.pane} >
       {weatherIcon}
       <Text style={styles.maxTemp}>{Math.floor(temp_max)} F</Text>
       <Text style={styles.minTemp}>{Math.floor(temp_min)} F</Text>
-      {/* <Text style={styles.weatherDescription}>{weather[0].description}</Text> */}
-      <Text style={styles.windSpeed}>{Math.floor(wind.speed)} MPH</Text>
+      <View style={styles.windSpec}>
+        <Text style={styles.windSpeed}>{Math.floor(wind.speed)} MPH</Text>
+        {windDirection}
+      </View>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -35,6 +39,13 @@ const styles = StyleSheet.create({
 
   },
   windSpeed: {
+    padding: 2,
+
+  },
+  windSpec: {
+    flexDirection: 'row',
+    alignContent: 'center',
+    justifyContent: 'center',
 
   }
 });
