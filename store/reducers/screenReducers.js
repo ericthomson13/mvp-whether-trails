@@ -1,5 +1,5 @@
 const initialState = {
-  screen: 'welcome',
+  screen: 'welcomeView',
 };
 
 const screenReducers = (state = initialState, { type, payload }) => {

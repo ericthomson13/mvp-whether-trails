@@ -2,7 +2,7 @@ const initialState = {
   activity: null,
   activityItems: [],
   activityOptions: [
-    'hiking',
+    {name: 'hiking'},
   ],
 };
 

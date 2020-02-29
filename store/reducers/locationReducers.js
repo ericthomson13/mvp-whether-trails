@@ -1,4 +1,9 @@
-const initialState = null;
+const initialState = {
+  location: {
+    latitude: '40.0150',
+    longitude: '-105.2705'
+  },
+}
 
 const locationReducers = (state = initialState, { type, payload }) => {
   switch (type) {

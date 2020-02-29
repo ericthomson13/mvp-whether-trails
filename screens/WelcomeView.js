@@ -1,10 +1,15 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
 import OptionButton from '../components/utility/OptionButton';
 
-const WelcomeView = (props) => {
-  
+// TODO: update store upon selection -- have to pass dispatch to button
+
+const WelcomeView = () => {
+  const children = useSelector((state) => state.activity.activityOptions);
+
+  console.log('children: ', children);
   return (
     <View style={styles.welcomeView}>
       <Text style={styles.welcomeTitle}>
@@ -12,9 +17,9 @@ const WelcomeView = (props) => {
       </Text>
       <View>
         <ScrollView style={styles.optionsList} >
-          {props.children.map((option, i) => {
+          {children.map((option, i) => {
             return (
-              <OptionButton key={i} name={option.name} setSelectedActivity={props.setSelectedActivity} />
+              <OptionButton key={i} name={option.name} />
             );
           })}
         </ScrollView>

@@ -3,22 +3,18 @@ import { StyleSheet, Text, View } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { connect } from 'react-redux';
-
+import { useSelector, useDispatch } from 'react-redux';
 import WelcomeView from './WelcomeView';
 import MapView from './MapView';
 import ActivityView from './ActivityView';
 
+// TODO: rework location setting with useDispatch, check if different from default then set
 // TODO: look into refactoring to Redux and how to test Redux and Native
-// TODO: how to change splash icon to something else
 
 const App = () => {
-  const [viewMode, setViewMode] = useState('welcomeView');
-  const [selectedActivity, setSelectedActivity] = useState(null);
-  const [deviceLocation, setDeviceLocation] = useState(null);
-  const defaultLocation = {
-    latitude: '40.0150',
-    longitude: '-105.2705'
-  };
+  const viewMode = useSelector((state) => state.screen.screen);
+  const location = useSelector((state) => state.location.location);
+  const selectedActivity = useSelector((state) => state.activity.activity);
 
   // below is for iOS but currently causes erros in html and android
   // geolocation.requestAuthorization();
@@ -30,26 +26,22 @@ const App = () => {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
-        setDeviceLocation(defaultLocation);
+        // setDeviceLocation(defaultLocation);
         console.log('error, please restart and allow location permissions');
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
-        setDeviceLocation(location.coords);
+        // setDeviceLocation(location.coords);
       }
     } catch {
-      console.log('error in getLocation ', deviceLocation);
+      console.log('error in getLocation ');
     }
   };
   
   // could this be refactored to useEffect?
-  if (deviceLocation === null) {
+  if (location === null) {
     getLocation();
   }
-  const activityOptions = [
-    {    
-      name:'Hiking'
-    },  
-  ];
+
 
   // once more added might refactor to switch
   if (selectedActivity !== null && viewMode === 'welcomeView') {
@@ -60,7 +52,7 @@ const App = () => {
     <MapView />
   );
   const activity = (
-    <ActivityView location={deviceLocation !== null ? deviceLocation : defaultLocation} />
+    <ActivityView location={location} />
   );
   const welcome = (
     <>
@@ -68,7 +60,7 @@ const App = () => {
         <Text style={styles.navText} >Whether Trails</Text>
         <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
     </View>
-    <WelcomeView children={activityOptions} setSelectedActivity={setSelectedActivity} />
+    <WelcomeView />
     </>
   );
 
