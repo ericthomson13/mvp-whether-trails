@@ -16,8 +16,8 @@ const SelectedItem = ({
       >
         <View style={styles.header} >
           <TouchableOpacity>
-  <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
-         </TouchableOpacity>
+            <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
+          </TouchableOpacity>
           <View style={styles.dlContainer} >
             <Text style={styles.difficulty} >{difficulty}</Text>
             <Text style={styles.length} >{length}</Text>
@@ -39,13 +39,15 @@ const SelectedItem = ({
 
 const styles = StyleSheet.create({
   card: {
+    // flex: 1,
     backgroundColor: '#126659',
     padding: 10,
     margin: 5,
     borderRadius: 10,
+    justifyContent: 'space-evenly',
   },
   name: {
-    alignItems: 'center',
+    alignContent: 'center',
     padding: 5,
     margin: 5,
     fontSize: 24,

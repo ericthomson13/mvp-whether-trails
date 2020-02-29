@@ -48,10 +48,11 @@ const ActivityList = (props) => {
 const styles = StyleSheet.create({
   trailList: {
     flex: 1,
-    maxHeight: '70%',
+    maxHeight: '85%',
+    maxWidth: '100%'
   },
   scrollList: {
-    maxHeight: '75%',
+    maxHeight: '80%',
   },
   header: {
     fontWeight: 'bold',

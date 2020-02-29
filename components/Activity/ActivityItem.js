@@ -13,14 +13,14 @@ const ActivityItem = ({
         onPress={() => select({ index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude })}
       >
         <View style={styles.header} >
-          <TouchableOpacity>
-           <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
+          <TouchableOpacity onPress={()=> Linking.openURL(url)}>
+           <Text style={styles.name}> {name} </Text>
          </TouchableOpacity>
-          <View style={styles.dlContainer} >
-            <Text style={styles.difficulty} >{difficulty}</Text>
-            <Text style={styles.length} >{length}</Text>
-          </View>
        </View>
+       <View style={styles.dlContainer} >
+          <Text style={styles.difficulty} >{difficulty}</Text>
+          <Text style={styles.length} >{length}</Text>
+        </View>
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
         </View>
@@ -40,9 +40,11 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     borderRadius: 10,
+    justifyContent:'space-evenly',
   },
   name: {
-    alignItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
     padding: 5,
     margin: 5,
     fontSize: 24,
@@ -56,10 +58,10 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    alignContent: 'space-between',
+    // alignContent: '',
     width: '100%',
     borderBottomWidth: 2,
     padding: 5,
@@ -92,6 +94,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   location: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 2,
