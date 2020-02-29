@@ -22,7 +22,7 @@ const WindDirection = (props) => {
     default:
       direction =  'minus';
   }
-  return <MaterialCommunityIcons name={direction} size={12} color="white" style={styles.arrow} />
+  return <MaterialCommunityIcons name={direction} size={12} color="#BFD1E5" style={styles.arrow} />
 };
 
 const styles = StyleSheet.create({
@@ -30,6 +30,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     paddingTop: 3,
+    
   }
 });
 

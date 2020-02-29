@@ -47,10 +47,13 @@ const WeatherForecast = ({ latitude, longitude }) => {
 
   return (
     <View style={styles.container} >
-      <Text>
-      Forecast:
-      </Text>
-      <View>
+      <View style={styles.title}>
+        <Text>
+          Forecast
+        </Text>
+      </View>
+      
+      <View style={styles.weekly} >
         <WeeklyForecast data={weeklyData} />
       </View>
     </View>
@@ -60,11 +63,21 @@ const WeatherForecast = ({ latitude, longitude }) => {
 
 const styles = StyleSheet.create({
   container: {
-    justifyContent: 'center',
-    alignItems: 'center',
     alignContent: 'space-between',
   },
-
+  title: {
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 2,
+    margin: 2,
+    borderBottomWidth: 1,
+    borderBottomColor: '#542344',
+  },
+  weekly: {
+    alignContent: 'space-between',
+    justifyContent: 'center',
+    alignItems: 'center',
+  }
 });
 
 export default WeatherForecast;

@@ -27,7 +27,9 @@ const SelectedItem = ({
           <Text style={styles.locationText} >{location}</Text>
         </View>
         {/* Image wasn't working on smaller cards so turned off */}
-        {/* <Image style={styles.image} source={{uri: imgSqSmall}}/> */}
+        {/* <View>
+          <Image style={styles.image} source={{uri: imgSqSmall}}/>
+        </View> */}
         <Text style={styles.summary} >{summary}</Text>
       </TouchableOpacity>
       <View>
@@ -67,6 +69,7 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
     width: '100%',
     borderBottomWidth: 2,
+    borderBottomColor: '#542344',
     padding: 5,
     margin: 5,
 
@@ -84,7 +87,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     maxWidth: '75%',
-    
+
   },
   image: {
     width: '20%',

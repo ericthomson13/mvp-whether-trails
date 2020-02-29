@@ -4,13 +4,16 @@ import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView, ScrollView } 
 import ActivityItem from './ActivityItem';
 import SelectedItem from './SelectedItem';
 
+// TODO: refactor to not render selected in list
+
 const ActivityList = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
   // FlatList would be better
   let list =  props.list.map((item, i) => {
     if (selectedItem !== null && selectedItem.id === item.id) {
       return;
-    }
+    };
+
     return (
       <ActivityItem 
         key={item.id}

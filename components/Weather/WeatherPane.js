@@ -13,10 +13,12 @@ const WeatherPane = ({ main, clouds, weather, wind }) => {
   return (
     <View style={styles.pane} >
       {weatherIcon}
-      <Text style={styles.maxTemp}>{Math.floor(temp_max)} F</Text>
-      <Text style={styles.minTemp}>{Math.floor(temp_min)} F</Text>
+      <View style={styles.temp}>
+        <Text style={styles.maxTemp}>High {Math.floor(temp_max)} F</Text>
+        <Text style={styles.minTemp}>Low {Math.floor(temp_min)} F</Text>
+      </View>
       <View style={styles.windSpec}>
-        <Text style={styles.windSpeed}>{Math.floor(wind.speed)} MPH</Text>
+        <Text style={styles.windSpeed}>{Math.floor(wind.speed)} mph</Text>
         {windDirection}
       </View>
     </View>
@@ -29,18 +31,21 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
   },
-  maxTemp: {
+  temp: {
 
   },
+  maxTemp: {
+    color: '#BFD1E5'
+  },
   minTemp: {
-
+    color: '#BFD1E5'
   },
   weatherDescription: {
 
   },
   windSpeed: {
     padding: 2,
-
+    color: '#BFD1E5',
   },
   windSpec: {
     flexDirection: 'row',
