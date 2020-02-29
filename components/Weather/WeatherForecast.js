@@ -1,6 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
-import { Linking } from 'expo';
 import axios from 'axios';
 
 import { openWeather } from '../../keys';
@@ -61,14 +60,11 @@ const WeatherForecast = ({ latitude, longitude }) => {
 
 const styles = StyleSheet.create({
   container: {
-
+    justifyContent: 'center',
+    alignItems: 'center',
+    alignContent: 'space-between',
   },
-  poweredBy: {
 
-  },
-  poweredByText: {
-    fontSize: 5
-  }
 });
 
 export default WeatherForecast;

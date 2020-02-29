@@ -79,12 +79,12 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
   },
   summary: {
-    margin: 24,
+    margin: 2,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
     maxWidth: '75%',
-
+    
   },
   image: {
     width: '20%',

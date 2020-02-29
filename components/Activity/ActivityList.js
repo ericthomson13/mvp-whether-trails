@@ -49,7 +49,7 @@ const styles = StyleSheet.create({
   trailList: {
     flex: 1,
     maxHeight: '85%',
-    maxWidth: '100%'
+    maxWidth: '100%',
   },
   scrollList: {
     maxHeight: '80%',
