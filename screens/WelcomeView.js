@@ -1,7 +1,7 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 
-import OptionButton from '../components/OptionButton';
+import OptionButton from '../components/utility/OptionButton';
 
 const WelcomeView = (props) => {
   
