@@ -4,11 +4,13 @@ import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { useSelector, useDispatch } from 'react-redux';
 
+import { setLocation } from '../store/actions/locationActions';
+
 import WelcomeView from './WelcomeView';
 import MapView from './MapView';
 import ActivityView from './ActivityView';
 
-// TODO: rework location setting with useDispatch, check if different from default then set
+// TODO: rework setLocation into async action in locationActions
 // TODO: rework to use native screens like router to work through screens rather than switch statement
 
 const App = () => {
@@ -26,7 +28,7 @@ const App = () => {
         console.log('error, please restart and allow location permissions');
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
-        dispatch({ type: 'SET_LOCATION', payload: location });
+        dispatch(setLocation(location));
       }
     } catch {
       console.log('error in getLocation ');

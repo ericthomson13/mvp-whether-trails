@@ -13,7 +13,7 @@ const locationReducers = (state = initialState, { type, payload }) => {
       return (
         {
           ...state,
-          location: payload,
+          location: { ...payload },
         }
       );
     default:
