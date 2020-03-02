@@ -8,7 +8,7 @@ import { setLocation } from '../store/actions/locationActions';
 import { setScreen } from '../store/actions/screenActions';
 
 import WelcomeView from './WelcomeView';
-import MapView from './MapView';
+import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
 
@@ -37,20 +37,18 @@ const Main = () => {
     }
   };
   
-  // could this be refactored to useEffect?
   useEffect(() => {
     if (location === null) {
       getLocation();
     }
   })
 
-  // once more added might refactor to switch
   if (selectedActivity !== null && viewMode === 'welcomeView') {
-    dispatch({ type: 'SET_SCREEN', payload: 'activityView' });
+    dispatch(setScreen('activityView'));
   };
 
   const map = (
-    <MapView />
+    <MapViewScreen />
   );
   const activity = (
     <ActivityView location={location} />

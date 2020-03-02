@@ -5,6 +5,7 @@ import { useDispatch } from 'react-redux';
 
 import WeatherForecast from '../weather/WeatherForecast';
 import { setMapItem } from '../../store/actions/activityActions';
+import { setScreen } from '../../store/actions/screenActions';
 
 // TODO: update to show image
 
@@ -29,7 +30,9 @@ const ExpandedItem = ({
             <Text style={styles.length} >{length} mi</Text>
           </View>
           <View style={styles.goToMap} >
-            <TouchableOpacity onPress={() => dispatch(setMapItem(index))}>
+            <TouchableOpacity 
+              onPress={() => { dispatch(setMapItem(index)); dispatch(setScreen('mapView'));}}
+            >
               <Text>
                 GO TO MAP
               </Text>

@@ -1,17 +1,14 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity } from 'react-native';
-import { useSelector, useDispatch ,} from 'react-redux';
+import { useDispatch, } from 'react-redux';
 
 import MapWindow from '../components/maps/MapWindow';
 import { setScreen, } from '../store/actions/screenActions';
 
 // TODO: get all trailhead locations rendering pin on map
 
-const MapView = () => {
+const MapViewScreen = () => {
   const dispatch = useDispatch();
-  const trails = useSelector((state) => state.activity.activityItems);
-  const selectedIndex = useSelector((state) => state.activity.mapView);
-  const selected = trails[selectedIndex];
   
   return (
     <View>
@@ -34,4 +31,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default MapView;
+export default MapViewScreen;
