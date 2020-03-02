@@ -24,6 +24,7 @@ const ActivityItem = ({
         length={length}
         latitude={latitude}
         longitude={longitude}
+        select={() => setWeatherDisplay(false)}
       />
     )
   } else {
@@ -48,7 +49,6 @@ const ActivityItem = ({
           </View>
           <Text>{summary}</Text>
         </TouchableOpacity>
-        
       </View>
     )
   }
