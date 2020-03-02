@@ -7,12 +7,10 @@ const initialState = {
 const weatherReducers = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_WEATHER:
-      return (
-        {
-          ...state,
-          weather: payload,
-        }
-      );
+      return ({
+        ...state,
+        weather: payload,
+      });
     default:
       return state;
   }

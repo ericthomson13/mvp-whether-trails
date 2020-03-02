@@ -13,7 +13,6 @@ const WelcomeView = () => {
 
   const setActivity = (activity) => dispatch(setSelectedActivity(activity));
 
-  console.log('children: ', children);
   return (
     <View style={styles.welcomeView}>
       <Text style={styles.welcomeTitle}>
