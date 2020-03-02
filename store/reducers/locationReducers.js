@@ -1,3 +1,5 @@
+import { SET_LOCATION } from '../actions/locationActions';
+
 const initialState = {
   location: {
     latitude: '40.0150',
@@ -7,7 +9,7 @@ const initialState = {
 
 const locationReducers = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_LOCATION':
+    case SET_LOCATION:
       return (
         {
           ...state,

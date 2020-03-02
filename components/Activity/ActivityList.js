@@ -6,6 +6,7 @@ import SelectedItem from './SelectedItem';
 
 // TODO: refactor to not render selected in list
 // TODO: refactor to flatlist
+
 const ActivityList = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
 

@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
-import { hikingProject } from '../keys';
+import { hikingProject } from '../Keys';
 
 import ActivityList from '../components/Activity/ActivityList';
 

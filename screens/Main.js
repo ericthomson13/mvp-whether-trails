@@ -16,17 +16,17 @@ const App = () => {
   const location = useSelector((state) => state.location.location);
   const selectedActivity = useSelector((state) => state.activity.activity);
 
+  const dispatch = useDispatch();
+
   const getLocation = async () => {
-    // not working on chrome because not https
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
-        // setDeviceLocation(defaultLocation);
         console.log('error, please restart and allow location permissions');
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
-        // setDeviceLocation(location.coords);
+        dispatch({ type: 'SET_LOCATION', payload: location });
       }
     } catch {
       console.log('error in getLocation ');
@@ -41,7 +41,7 @@ const App = () => {
 
   // once more added might refactor to switch
   if (selectedActivity !== null && viewMode === 'welcomeView') {
-    setViewMode('activityView');
+    dispatch({ type: 'SET_SCREEN', payload: 'activityView' });
   };
 
   const map = (
@@ -85,7 +85,6 @@ const App = () => {
 
   return (
     <View style={styles.container}>
-      
       {screen}
     </View>
   );
