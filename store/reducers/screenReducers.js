@@ -11,7 +11,6 @@ const screenReducers = (state = initialState, { type, payload }) => {
           screen: payload
         }
       );
-      break;
     default:
       return state;
   }

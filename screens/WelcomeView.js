@@ -1,13 +1,16 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import OptionButton from '../components/utility/OptionButton';
 
-// TODO: update store upon selection -- have to pass dispatch to button
+// TODO: update store upon selection -- have to pass dispatch to button?
 
 const WelcomeView = () => {
+  const dispatch = useDispatch();
   const children = useSelector((state) => state.activity.activityOptions);
+
+  const setSelectedActivity = (activity) => dispatch({ type: 'SET_ACTIVITY', payload: activity });
 
   console.log('children: ', children);
   return (
@@ -19,7 +22,7 @@ const WelcomeView = () => {
         <ScrollView style={styles.optionsList} >
           {children.map((option, i) => {
             return (
-              <OptionButton key={i} name={option.name} />
+              <OptionButton key={i} name={option.name} setSelectedActivity={setSelectedActivity} />
             );
           })}
         </ScrollView>

@@ -7,12 +7,11 @@ import WeeklyForecast from './WeeklyForecast';
 import DailyForecast from './DailyForecast';
 
 // TODO: add subcomponents and view to change allowing for different levels of forecasts to be used
-// TODO: add onPress to forecast for 3h view of that day
+// TODO: add onPress to forecast for view of that day
 // TODO: allow user to set their units metric/standard
 
 const WeatherForecast = ({ latitude, longitude }) => {
   const [weather, setWeather] = useState(null);
-  const [weatherView, setWeatherView] = useState('weekly');
 
   const getWeather = async () => {
     try {

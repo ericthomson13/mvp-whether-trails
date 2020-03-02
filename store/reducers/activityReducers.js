@@ -15,7 +15,6 @@ const activityReducers = (state = initialState, { type, payload }) => {
           activity: payload,
         }
       );
-      break;
     case 'GET_ACTIVITY_ITEMS':
       return (
         {
@@ -23,7 +22,6 @@ const activityReducers = (state = initialState, { type, payload }) => {
           activityItems: payload,
         }
       );
-      break;
     default:
       return state;
   }

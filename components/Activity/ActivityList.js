@@ -1,14 +1,14 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView, ScrollView } from 'react-native';
+import React, { useState, } from 'react';
+import { View, Text, StyleSheet, Platform, SafeAreaView, ScrollView } from 'react-native';
 
 import ActivityItem from './ActivityItem';
 import SelectedItem from './SelectedItem';
 
 // TODO: refactor to not render selected in list
-
+// TODO: refactor to flatlist
 const ActivityList = (props) => {
   const [selectedItem, setSelectedItem] = useState(null);
-  // FlatList would be better
+
   let list =  props.list.map((item, i) => {
     if (selectedItem !== null && selectedItem.id === item.id) {
       return;

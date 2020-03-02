@@ -1,24 +1,20 @@
-import React, { useState, } from 'react';
+import React from 'react';
 import { StyleSheet, Text, View } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
-import { connect } from 'react-redux';
 import { useSelector, useDispatch } from 'react-redux';
+
 import WelcomeView from './WelcomeView';
 import MapView from './MapView';
 import ActivityView from './ActivityView';
 
 // TODO: rework location setting with useDispatch, check if different from default then set
-// TODO: look into refactoring to Redux and how to test Redux and Native
+// TODO: rework to use native screens like router to work through screens rather than switch statement
 
 const App = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
   const selectedActivity = useSelector((state) => state.activity.activity);
-
-  // below is for iOS but currently causes erros in html and android
-  // geolocation.requestAuthorization();
-  // Geolocation.setRNConfiguration('whenInUse');
 
   const getLocation = async () => {
     // not working on chrome because not https
@@ -134,11 +130,4 @@ const styles = StyleSheet.create({
 
 });
 
-const mapStateToProps = (state) => ({
-
-});
-const mapDispatchToState = (dispatch) => ({
-
-});
-
-export default connect(mapStateToProps, mapDispatchToState)(App);
+export default App;
