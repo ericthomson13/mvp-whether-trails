@@ -1,3 +1,5 @@
+import { SET_ACTIVITY, GET_ACTIVITY_ITEMS} from '../actions/activityActions';
+
 const initialState = {
   activity: null,
   activityItems: [],
@@ -8,14 +10,14 @@ const initialState = {
 
 const activityReducers = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_ACTIVITY':
+    case SET_ACTIVITY:
       return (
         {
           ...state,
           activity: payload,
         }
       );
-    case 'GET_ACTIVITY_ITEMS':
+    case GET_ACTIVITY_ITEMS:
       return (
         {
           ...state,

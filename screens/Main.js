@@ -6,6 +6,7 @@ import { useSelector, useDispatch } from 'react-redux';
 
 import { setLocation } from '../store/actions/locationActions';
 
+
 import WelcomeView from './WelcomeView';
 import MapView from './MapView';
 import ActivityView from './ActivityView';
