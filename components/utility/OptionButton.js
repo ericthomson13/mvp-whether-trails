@@ -1,12 +1,14 @@
 import React from 'react';
-import { Button, View, StyleSheet, } from 'react-native';
-
-// TODO: upgrade to touchableOpacity
+import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
 
 const OptionButton = ({ name, setSelectedActivity }) => {
   return (
     <View>
-      <Button title={name} onPress={() => setSelectedActivity(name)} />
+      <TouchableOpacity onPress={() => setSelectedActivity(name)} style={styles.button} >
+        <Text>
+          {name}
+        </Text>
+      </TouchableOpacity>
     </View>
     
   );
