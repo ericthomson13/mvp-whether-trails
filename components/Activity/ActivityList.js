@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Platform, SafeAreaView, ScrollView } from 'react-native';
 import { useSelector } from 'react-redux';
 
-import ActivityItem from './ActivityItem';
+import ActivityItem from './ActivityItemView';
 
 // TODO: refactor to not render selected in list
 // TODO: refactor to flatlist

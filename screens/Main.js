@@ -14,7 +14,7 @@ import ActivityView from './ActivityView';
 // TODO: rework setLocation into async action in locationActions
 // TODO: rework to use native screens like router to work through screens rather than switch statement
 
-const App = () => {
+const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
   const selectedActivity = useSelector((state) => state.activity.activity);
@@ -132,4 +132,4 @@ const styles = StyleSheet.create({
 
 });
 
-export default App;
+export default Main;

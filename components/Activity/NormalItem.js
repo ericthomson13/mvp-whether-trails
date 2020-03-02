@@ -1,54 +1,46 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Linking } from 'expo';
 
-import WeatherForecast from '../Weather/WeatherForecast';
-
-// TODO: update to show image
-
-const ExpandedItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather
-}) => {
-
+const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location, summary }) => {
   return (
     <View 
       style={styles.card}
     >
       <TouchableOpacity 
-        onPress={() => setWeatherDisplay(false)}
+        onPress={() => setWeatherDisplay(true)}
       >
         <View style={styles.header} >
-          <TouchableOpacity>
-            <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
-          </TouchableOpacity>
-          <View style={styles.dlContainer} >
-            <Text style={styles.difficulty} >{difficulty}</Text>
-            <Text style={styles.length} >{length}</Text>
-          </View>
+          <TouchableOpacity onPress={()=> Linking.openURL(url)}>
+           <Text style={styles.name}> {name} </Text>
+         </TouchableOpacity>
        </View>
+       <View style={styles.dlContainer} >
+          <Text style={styles.difficulty} >{difficulty}</Text>
+          <Text style={styles.length} >{length}</Text>
+        </View>
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
         </View>
-        <Text style={styles.summary} >{summary}</Text>
+        <Text>{summary}</Text>
       </TouchableOpacity>
-      <View>
-        <WeatherForecast weather={weather} />
-      </View>
     </View>
-  )
+  );
 };
+
 
 const styles = StyleSheet.create({
   card: {
-    // flex: 1,
+    flex: 1,
     backgroundColor: '#126659',
     padding: 10,
     margin: 5,
     borderRadius: 10,
-    justifyContent: 'space-evenly',
+    justifyContent:'space-evenly',
   },
   name: {
     alignContent: 'center',
+    justifyContent: 'center',
     padding: 5,
     margin: 5,
     fontSize: 24,
@@ -62,13 +54,12 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    flexDirection: 'row',
+    // flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    alignContent: 'space-between',
+    // alignContent: '',
     width: '100%',
     borderBottomWidth: 2,
-    borderBottomColor: '#542344',
     padding: 5,
     margin: 5,
 
@@ -81,7 +72,7 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
   },
   summary: {
-    margin: 2,
+    margin: 24,
     fontSize: 18,
     fontWeight: 'bold',
     textAlign: 'center',
@@ -99,6 +90,7 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
   location: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
     padding: 2,
@@ -110,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ExpandedItem;
+export default NormalItem;
