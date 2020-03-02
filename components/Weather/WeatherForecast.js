@@ -1,40 +1,15 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
-import axios from 'axios';
+import React from 'react';
+import { View, Text, StyleSheet, } from 'react-native';
 
-import { openWeather } from '../../keys';
 import WeeklyForecast from './WeeklyForecast';
-import DailyForecast from './DailyForecast';
+// import DailyForecast from './DailyForecast';
 
+// TODO: update so weather is correct for each trailhead
 // TODO: add subcomponents and view to change allowing for different levels of forecasts to be used
-// TODO: add onPress to forecast for 3h view of that day
+// TODO: add onPress to forecast for view of that day
 // TODO: allow user to set their units metric/standard
 
-const WeatherForecast = ({ latitude, longitude }) => {
-  const [weather, setWeather] = useState(null);
-  const [weatherView, setWeatherView] = useState('weekly');
-
-  const getWeather = async () => {
-    try {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=Imperial&appid=${openWeather}`;
-      const result = await axios({
-        method: 'get',
-        url,
-        responseType: 'stream'
-      })
-      const forecast = JSON.parse(result.request.responseText);
-      setWeather(forecast.list);
-    } catch {
-      console.log('error in getting weather');
-    }
-  };
-
-  useEffect(() => {
-    if (weather !== null) {
-      return;
-    }
-    getWeather();
-  });
+const WeatherForecast = ({ weather }) => {
 
   let weeklyData = [];
   if (weather !== null) {

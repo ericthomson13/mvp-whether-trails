@@ -1,10 +1,10 @@
-import React, { useState, } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 
 import WeatherIcon from './Icons/WeatherIcon';
 import WindDirection from './Icons/WindDirection';
 
-const WeatherPane = ({ main, clouds, weather, wind }) => {
+const WeatherPane = ({ main, weather, wind }) => {
   const { temp_min, temp_max } = main;
 
   const weatherIcon = WeatherIcon(weather[0]);

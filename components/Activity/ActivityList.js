@@ -1,33 +1,25 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView, ScrollView } from 'react-native';
+import React from 'react';
+import { View, Text, StyleSheet, Platform, SafeAreaView, ScrollView } from 'react-native';
+import { useSelector } from 'react-redux';
 
-import ActivityItem from './ActivityItem';
-import SelectedItem from './SelectedItem';
+import ActivityItem from './ActivityItemView';
 
 // TODO: refactor to not render selected in list
+// TODO: refactor to flatlist
+// TODO: refactor so that selected expands but is still in list
 
-const ActivityList = (props) => {
-  const [selectedItem, setSelectedItem] = useState(null);
-  // FlatList would be better
-  let list =  props.list.map((item, i) => {
-    if (selectedItem !== null && selectedItem.id === item.id) {
-      return;
-    };
+const ActivityList = () => {
+  const listItems = useSelector((state) => state.activity.activityItems);
 
+  let list = listItems.map((item, i) => {
     return (
       <ActivityItem 
-        key={item.id}
+        key={i}
         index={i}
         {...item}
-        select={setSelectedItem}
       />
     )
   });
-  
-  let selected = null;
-  if (selectedItem !== null) {
-    selected = <SelectedItem {...selectedItem} key={selectedItem.id} select={setSelectedItem} selected={true} />
-  };
 
   if (Platform.OS = 'ios') {
     list = (
@@ -39,7 +31,6 @@ const ActivityList = (props) => {
 
   return (
     <View style={styles.trailList} >
-      {selected}
       <Text style={styles.header}>Trails Near You:</Text>
       <ScrollView styles={styles.scrollList}>
         {list}

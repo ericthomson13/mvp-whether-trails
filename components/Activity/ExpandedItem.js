@@ -1,10 +1,13 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { Linking } from 'expo';
 
 import WeatherForecast from '../Weather/WeatherForecast';
 
-const SelectedItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select,
+// TODO: update to show image
+
+const ExpandedItem = ({ 
+  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather
 }) => {
 
   return (
@@ -12,7 +15,7 @@ const SelectedItem = ({
       style={styles.card}
     >
       <TouchableOpacity 
-        onPress={() => select({ index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude })}
+        onPress={() => setWeatherDisplay(false)}
       >
         <View style={styles.header} >
           <TouchableOpacity>
@@ -26,14 +29,10 @@ const SelectedItem = ({
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
         </View>
-        {/* Image wasn't working on smaller cards so turned off */}
-        {/* <View>
-          <Image style={styles.image} source={{uri: imgSqSmall}}/>
-        </View> */}
         <Text style={styles.summary} >{summary}</Text>
       </TouchableOpacity>
       <View>
-        <WeatherForecast latitude={latitude} longitude={longitude} />
+        <WeatherForecast weather={weather} />
       </View>
     </View>
   )
@@ -111,4 +110,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectedItem;
+export default ExpandedItem;

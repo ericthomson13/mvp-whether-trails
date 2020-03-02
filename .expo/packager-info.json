@@ -1,10 +1,10 @@
 {
   "devToolsPort": 19002,
   "expoServerPort": 19000,
-  "packagerPort": 19001,
-  "packagerPid": 4291,
-  "expoServerNgrokUrl": "https://sz-iug.anonymous.mvp-map.exp.direct",
-  "packagerNgrokUrl": "https://packager.sz-iug.anonymous.mvp-map.exp.direct",
-  "ngrokPid": 4316,
-  "webpackServerPort": null
+  "packagerPort": 19003,
+  "packagerPid": 36888,
+  "expoServerNgrokUrl": "https://xe-vtm.anonymous.mvp-map.exp.direct",
+  "packagerNgrokUrl": "https://packager.xe-vtm.anonymous.mvp-map.exp.direct",
+  "ngrokPid": 36919,
+  "webpackServerPort": 19006
 }

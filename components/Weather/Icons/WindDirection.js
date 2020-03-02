@@ -4,6 +4,7 @@ import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // TODO: update to allow for 45 degree granularity in direction
+
 const WindDirection = (props) => {
   let direction;
   switch(true) {

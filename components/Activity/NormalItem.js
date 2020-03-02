@@ -1,16 +1,14 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, Image, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Linking } from 'expo';
 
-const ActivityItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select,
-}) => {
+const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location, summary }) => {
   return (
     <View 
       style={styles.card}
     >
       <TouchableOpacity 
-        onPress={() => select({ index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude })}
+        onPress={() => setWeatherDisplay(true)}
       >
         <View style={styles.header} >
           <TouchableOpacity onPress={()=> Linking.openURL(url)}>
@@ -24,14 +22,12 @@ const ActivityItem = ({
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
         </View>
-        {/* Image was rendering on android but not web - threw styling off on cards */}
-        {/* <Image style={styles.image} source={{uri: imgSqSmall}}/> */}
         <Text>{summary}</Text>
       </TouchableOpacity>
-      
     </View>
-  )
-}
+  );
+};
+
 
 const styles = StyleSheet.create({
   card: {
@@ -106,4 +102,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default ActivityItem;
+export default NormalItem;

@@ -1,10 +1,18 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { setSelectedActivity } from '../store/actions/activityActions';
 
 import OptionButton from '../components/utility/OptionButton';
 
-const WelcomeView = (props) => {
-  
+
+const WelcomeView = () => {
+  const dispatch = useDispatch();
+  const children = useSelector((state) => state.activity.activityOptions);
+
+  const setActivity = (activity) => dispatch(setSelectedActivity(activity));
+
   return (
     <View style={styles.welcomeView}>
       <Text style={styles.welcomeTitle}>
@@ -12,9 +20,9 @@ const WelcomeView = (props) => {
       </Text>
       <View>
         <ScrollView style={styles.optionsList} >
-          {props.children.map((option, i) => {
+          {children.map((option, i) => {
             return (
-              <OptionButton key={i} name={option.name} setSelectedActivity={props.setSelectedActivity} />
+              <OptionButton key={i} name={option.name} setSelectedActivity={setActivity} />
             );
           })}
         </ScrollView>
