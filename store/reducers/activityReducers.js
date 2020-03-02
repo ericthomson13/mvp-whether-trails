@@ -1,4 +1,4 @@
-import { SET_ACTIVITY, GET_ACTIVITY_ITEMS} from '../actions/activityActions';
+import { SET_ACTIVITY, GET_ACTIVITY_ITEMS, SET_SELECTED_ITEM, } from '../actions/activityActions';
 
 const initialState = {
   activity: null,
@@ -6,6 +6,7 @@ const initialState = {
   activityOptions: [
     {name: 'hiking'},
   ],
+  selectedItem: null,
 };
 
 const activityReducers = (state = initialState, { type, payload }) => {
@@ -24,6 +25,13 @@ const activityReducers = (state = initialState, { type, payload }) => {
           activityItems: payload,
         }
       );
+    case SET_SELECTED_ITEM:
+      return (
+        {
+          ...state,
+          selectedItem: payload,
+        }
+      )
     default:
       return state;
   }

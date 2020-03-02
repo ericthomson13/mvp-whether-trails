@@ -1,36 +1,59 @@
-import React from 'react';
+import React, { useState, } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 import { Linking } from 'expo';
 
+import SelectedItem from './SelectedItem';
+
 const ActivityItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select,
+  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude,
 }) => {
-  return (
-    <View 
-      style={styles.card}
-    >
-      <TouchableOpacity 
-        onPress={() => select({ index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude })}
+
+  const [weatherDisplay, setWeatherDisplay] = useState(false);
+
+  if (weatherDisplay) {
+    return (
+      <SelectedItem 
+        index={index} 
+        name={name} 
+        summary={summary} 
+        difficulty={difficulty} 
+        imgSqSmall={imgSqSmall}
+        stars={stars}
+        location={location}
+        url={url}
+        length={length}
+        latitude={latitude}
+        longitude={longitude}
+      />
+    )
+  } else {
+    return (
+      <View 
+        style={styles.card}
       >
-        <View style={styles.header} >
-          <TouchableOpacity onPress={()=> Linking.openURL(url)}>
-           <Text style={styles.name}> {name} </Text>
-         </TouchableOpacity>
-       </View>
-       <View style={styles.dlContainer} >
-          <Text style={styles.difficulty} >{difficulty}</Text>
-          <Text style={styles.length} >{length}</Text>
-        </View>
-        <View style={styles.location}>
-          <Text style={styles.locationText} >{location}</Text>
-        </View>
-        {/* Image was rendering on android but not web - threw styling off on cards */}
-        {/* <Image style={styles.image} source={{uri: imgSqSmall}}/> */}
-        <Text>{summary}</Text>
-      </TouchableOpacity>
-      
-    </View>
-  )
+        <TouchableOpacity 
+          onPress={() => setWeatherDisplay(true)}
+        >
+          <View style={styles.header} >
+            <TouchableOpacity onPress={()=> Linking.openURL(url)}>
+             <Text style={styles.name}> {name} </Text>
+           </TouchableOpacity>
+         </View>
+         <View style={styles.dlContainer} >
+            <Text style={styles.difficulty} >{difficulty}</Text>
+            <Text style={styles.length} >{length}</Text>
+          </View>
+          <View style={styles.location}>
+            <Text style={styles.locationText} >{location}</Text>
+          </View>
+          <Text>{summary}</Text>
+        </TouchableOpacity>
+        
+      </View>
+    )
+  }
+
+  
 }
 
 const styles = StyleSheet.create({

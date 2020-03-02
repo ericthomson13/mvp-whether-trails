@@ -1,20 +1,27 @@
 import React, { useState } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+
+import { updateActivityArr } from '../store/actions/activityActions';
 import { hikingProject } from '../Keys';
 
 import ActivityList from '../components/Activity/ActivityList';
 
 // TODO: move activityArr to list component with redux refactor
+// TODO: update fetch to axios
 
-const ActivityView = (props) => {
-  const [activityArray, setActivityArray] = useState([]);
+const ActivityView = () => {
+  const activityArray = useSelector((state) => state.activity.activityItems);
+  const location = useSelector((state) => state.location.location);
   const [activityCall, setActivityCall] = useState(0);
-  const { location } = props;
+
+
+  const dispatch = useDispatch();
 
   const getList = async (location) => {
     const result = await fetch(`https://www.hikingproject.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${hikingProject}`)
     const trails = await result.json()
-    setActivityArray(trails.trails);
+    dispatch(updateActivityArr(trails.trails));
   };
 
   if (activityArray.length === 0 && activityCall === 0) {
@@ -24,7 +31,7 @@ const ActivityView = (props) => {
 
   let list = null;
   if (activityArray.length > 0) {
-    list = <ActivityList list={activityArray} />
+    list = <ActivityList />
   }
   
   return (
@@ -40,12 +47,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     maxHeight: '90%',
-
   },
-  list: {
-
-  },
-
 });
 
 export default ActivityView;
