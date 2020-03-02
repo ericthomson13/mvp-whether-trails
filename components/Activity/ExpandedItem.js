@@ -1,14 +1,17 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Linking } from 'expo';
+import { useDispatch } from 'react-redux';
 
 import WeatherForecast from '../weather/WeatherForecast';
+import { setMapItem } from '../../store/actions/activityActions';
 
 // TODO: update to show image
 
 const ExpandedItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather
 }) => {
+  const dispatch = useDispatch();
 
   return (
     <View 
@@ -23,7 +26,14 @@ const ExpandedItem = ({
           </TouchableOpacity>
           <View style={styles.dlContainer} >
             <Text style={styles.difficulty} >{difficulty}</Text>
-            <Text style={styles.length} >{length}</Text>
+            <Text style={styles.length} >{length} mi</Text>
+          </View>
+          <View style={styles.goToMap} >
+            <TouchableOpacity onPress={() => dispatch(setMapItem(index))}>
+              <Text>
+                GO TO MAP
+              </Text>
+            </TouchableOpacity>
           </View>
        </View>
         <View style={styles.location}>
@@ -107,6 +117,9 @@ const styles = StyleSheet.create({
   locationText: {
     color: '#BFD1E5',
     fontWeight: 'bold',
+  },
+  goToMap: {
+
   },
 });
 
