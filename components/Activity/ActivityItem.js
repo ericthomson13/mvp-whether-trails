@@ -1,18 +1,43 @@
 import React, { useState, } from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import axios from 'axios';
 import { Linking } from 'expo';
 
-import SelectedItem from './SelectedItem';
+import { openWeather } from '../../Keys';
+
+import ExpandedItem from './ExpandedItem';
 
 const ActivityItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude,
 }) => {
 
   const [weatherDisplay, setWeatherDisplay] = useState(false);
+  const [weatherData, setWeatherData] = useState(null);
+
+  const getWeather = async () => {
+    try {
+      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=Imperial&appid=${openWeather}`;
+
+      const result = await axios({
+        method: 'get',
+        url,
+        responseType: 'stream',
+      });
+      const forecastObj = JSON.parse(result.request.responseText);
+      setWeatherData(forecastObj.list);
+    } catch {
+      console.error('error in getting weather');
+    }
+  };
+
+  
 
   if (weatherDisplay) {
+    if (!weatherData) {
+      getWeather();
+    }
     return (
-      <SelectedItem 
+      <ExpandedItem 
         index={index} 
         name={name} 
         summary={summary} 
@@ -25,8 +50,9 @@ const ActivityItem = ({
         latitude={latitude}
         longitude={longitude}
         select={() => setWeatherDisplay(false)}
+        weather={weatherData}
       />
-    )
+    );
   } else {
     return (
       <View 

@@ -1,11 +1,6 @@
 import React from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
-import axios from 'axios';
-import { useDispatch, useSelector } from 'react-redux';
 
-import { setWeather } from '../../store/actions/weatherActions';
-
-import { openWeather } from '../../Keys';
 import WeeklyForecast from './WeeklyForecast';
 // import DailyForecast from './DailyForecast';
 
@@ -14,39 +9,13 @@ import WeeklyForecast from './WeeklyForecast';
 // TODO: add onPress to forecast for view of that day
 // TODO: allow user to set their units metric/standard
 
-const WeatherForecast = ({ latitude, longitude }) => {
-  const weatherForecast = useSelector((state) => state.weather.weather);
-
-  const dispatch = useDispatch();
-
-  const getWeather = async () => {
-    try {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=Imperial&appid=${openWeather}`;
-
-      const result = await axios({
-        method: 'get',
-        url,
-        responseType: 'stream',
-      });
-
-      const forecastObj = JSON.parse(result.request.responseText);
-
-      console.log(forecastObj.list)
-      dispatch(setWeather(forecastObj.list));
-    } catch {
-      console.error('error in getting weather');
-    }
-  };
-
-  if (!weatherForecast) {
-    getWeather();
-  }
+const WeatherForecast = ({ weather }) => {
 
   let weeklyData = [];
-  if (weatherForecast !== null) {
-    for (let i = 0; i < weatherForecast.length; i++) { 
+  if (weather !== null) {
+    for (let i = 0; i < weather.length; i++) { 
       if (i === 0 || i % 8 === 0) {
-        weeklyData.push(weatherForecast[i]);
+        weeklyData.push(weather[i]);
       }
     };
   };

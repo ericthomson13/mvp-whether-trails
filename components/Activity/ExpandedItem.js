@@ -5,8 +5,8 @@ import WeatherForecast from '../Weather/WeatherForecast';
 
 // TODO: update to show image
 
-const SelectedItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select,
+const ExpandedItem = ({ 
+  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select, weather
 }) => {
 
   return (
@@ -31,7 +31,7 @@ const SelectedItem = ({
         <Text style={styles.summary} >{summary}</Text>
       </TouchableOpacity>
       <View>
-        <WeatherForecast latitude={latitude} longitude={longitude} />
+        <WeatherForecast weather={weather} />
       </View>
     </View>
   )
@@ -109,4 +109,4 @@ const styles = StyleSheet.create({
   },
 });
 
-export default SelectedItem;
+export default ExpandedItem;
