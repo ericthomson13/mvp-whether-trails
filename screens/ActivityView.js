@@ -5,7 +5,7 @@ import { useSelector, useDispatch } from 'react-redux';
 import { updateActivityArr } from '../store/actions/activityActions';
 import { hikingProject } from '../Keys';
 
-import ActivityList from '../components/Activity/ActivityList';
+import ActivityList from '../components/activity/ActivityList';
 
 // TODO: move activityArr to list component with redux refactor
 // TODO: update fetch to axios

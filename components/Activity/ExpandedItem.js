@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 import { Linking } from 'expo';
 
-import WeatherForecast from '../Weather/WeatherForecast';
+import WeatherForecast from '../weather/WeatherForecast';
 
 // TODO: update to show image
 

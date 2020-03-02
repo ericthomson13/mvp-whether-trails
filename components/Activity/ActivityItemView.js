@@ -1,4 +1,4 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect, } from 'react';
 import axios from 'axios';
 
 import { openWeather } from '../../Keys';
@@ -29,10 +29,13 @@ const ActivityItem = ({
     }
   };
 
-  if (weatherDisplay) {
-    if (!weatherData) {
+  useEffect(() => {
+    if (!weatherData && weatherDisplay) {
       getWeather();
     }
+  });
+
+  if (weatherDisplay) {
     return (
       <ExpandedItem 
         index={index} 
@@ -68,6 +71,6 @@ const ActivityItem = ({
       />
     );
   } 
-}
+};
 
 export default ActivityItem;

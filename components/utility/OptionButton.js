@@ -15,17 +15,14 @@ const OptionButton = ({ name, setSelectedActivity }) => {
 
 const styles = StyleSheet.create({ 
   buttonView: {
-    alignItems: 'center',
-    justifyItems: 'center',
+    alignContent: 'center',
+    justifyContent: 'center',
   },
-  // this color isn't working yet
   button: {
-    borderColor: '#BFD1E5',
     backgroundColor: '#126659',
     alignItems: 'center',
-    justifyItems: 'center',
+    justifyContent: 'center',
     borderRadius: 10,
-
   },
   text: {
     borderColor: '#BFD1E5',

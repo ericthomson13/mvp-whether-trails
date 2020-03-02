@@ -9,9 +9,13 @@ const WeatherPane = ({ main, weather, wind }) => {
 
   const weatherIcon = WeatherIcon(weather[0]);
   const windDirection = WindDirection(wind.deg);
+  const weekday = 0;
 
   return (
     <View style={styles.pane} >
+      <View>
+        <Text>Weekday</Text>
+      </View>
       {weatherIcon}
       <View style={styles.temp}>
         <Text style={styles.maxTemp}>High {Math.floor(temp_max)} F</Text>
