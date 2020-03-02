@@ -1,6 +1,9 @@
-import axios from 'axios';
+export const SET_WEATHER = 'SET_WEATHER';
 
-export const updateWeather = () => {
-
+export const setWeather = (weather) => {
+  return {
+    type: SET_WEATHER,
+    payload: { ...weather },
+  }
 };
 

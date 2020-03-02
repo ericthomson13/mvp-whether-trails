@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from 'react';
+import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
 
 import WeatherForecast from '../Weather/WeatherForecast';
+
+// TODO: update to show image
 
 const SelectedItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude, select,
@@ -26,10 +28,6 @@ const SelectedItem = ({
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
         </View>
-        {/* Image wasn't working on smaller cards so turned off */}
-        {/* <View>
-          <Image style={styles.image} source={{uri: imgSqSmall}}/>
-        </View> */}
         <Text style={styles.summary} >{summary}</Text>
       </TouchableOpacity>
       <View>

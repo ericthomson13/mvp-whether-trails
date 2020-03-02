@@ -1,8 +1,11 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
+import React, { useEffect } from 'react';
+import { View, Text, StyleSheet, } from 'react-native';
 import axios from 'axios';
+import { useDispatch, useSelector } from 'react-redux';
 
-import { openWeather } from '../../keys';
+import { setWeather } from '../../store/actions/weatherActions';
+
+import { openWeather } from '../../Keys';
 import WeeklyForecast from './WeeklyForecast';
 import DailyForecast from './DailyForecast';
 
@@ -11,7 +14,9 @@ import DailyForecast from './DailyForecast';
 // TODO: allow user to set their units metric/standard
 
 const WeatherForecast = ({ latitude, longitude }) => {
-  const [weather, setWeather] = useState(null);
+  const weatherForecast = useSelector((state) => state.weather.weather);
+
+  const dispatch = useDispatch();
 
   const getWeather = async () => {
     try {
@@ -22,22 +27,19 @@ const WeatherForecast = ({ latitude, longitude }) => {
         responseType: 'stream'
       })
       const forecast = JSON.parse(result.request.responseText);
-      setWeather(forecast.list);
+      dispatch(setWeather(forecast.list));
     } catch {
       console.log('error in getting weather');
     }
   };
 
-  useEffect(() => {
-    if (weather !== null) {
-      return;
-    }
+  if (!weatherForecast) {
     getWeather();
-  });
+  }
 
   let weeklyData = [];
-  if (weather !== null) {
-    for (let i = 0; i < weather.length; i++) { 
+  if (weatherForecast !== null) {
+    for (let i = 0; i < weatherForecast.length; i++) { 
       if (i === 0 || i % 8 === 0) {
         weeklyData.push(weather[i]);
       }

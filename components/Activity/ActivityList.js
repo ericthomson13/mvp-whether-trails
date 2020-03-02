@@ -9,7 +9,6 @@ import ActivityItem from './ActivityItem';
 // TODO: refactor so that selected expands but is still in list
 
 const ActivityList = () => {
-  const selectedItem = useSelector((state) => state.activity.selectedItem);
   const listItems = useSelector((state) => state.activity.activityItems);
 
   let list = listItems.map((item, i) => {
@@ -21,10 +20,6 @@ const ActivityList = () => {
       />
     )
   });
-  
-  // if (selectedItem !== null) {
-  //   selected = <SelectedItem {...selectedItem} key={selectedItem.index} selected={true} />
-  // };
 
   if (Platform.OS = 'ios') {
     list = (
