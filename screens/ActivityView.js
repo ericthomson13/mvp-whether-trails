@@ -3,10 +3,10 @@ import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updateActivityArr } from '../store/actions/activityActions';
-import { setScreen } from '../store/actions/screenActions';
 import { hikingProject, mountainBikeProject, trailRunProject, } from '../Keys';
 
 import ActivityList from '../components/activity/ActivityList';
+import HomeButton from '../components/utility/HomeButton';
 
 // TODO: update fetch to axios
 // TODO: update getList to be in reducer
@@ -63,9 +63,7 @@ const ActivityView = () => {
         <Text></Text>
         {list}
       </View>
-      <TouchableOpacity onPress={() => {dispatch(setScreen('welcomeView'))}}>
-        <Text>Home</Text>
-      </TouchableOpacity>
+      <HomeButton />
     </View>
     
   )
