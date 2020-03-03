@@ -7,11 +7,11 @@ import NormalItem from './NormalItem';
 import ExpandedItem from './ExpandedItem';
 
 // TODO: show weather expands with motion
+// TODO: get difficulty to render as icons
 
 const ActivityItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude,
 }) => {
-
   const [weatherDisplay, setWeatherDisplay] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
 

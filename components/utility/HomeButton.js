@@ -1,5 +1,7 @@
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
+import { View, TouchableOpacity, StyleSheet, } from 'react-native';
+import { MaterialCommunityIcons } from '@expo/vector-icons';
+
 import { useDispatch, } from 'react-redux';
 import { setScreen } from '../../store/actions/screenActions';
 import { setSelectedActivity, updateActivityArr, } from '../../store/actions/activityActions';
@@ -17,7 +19,7 @@ const HomeButton = () => {
         }}
         style={styles.button}
       >
-        <Text style={styles.text} >Home</Text>
+        <MaterialCommunityIcons name="home" size={20} color="#BFD1E5" />
       </TouchableOpacity>
     </View>
   );
@@ -36,10 +38,6 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
   },
-  text: {
-    color: '#BFD1E5',
-    fontWeight: 'bold',
-  }
 });
 
 export default HomeButton;

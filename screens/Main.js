@@ -18,7 +18,6 @@ import SettingsView from './SettingsView';
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
-  const selectedActivity = useSelector((state) => state.activity.activity);
 
   const dispatch = useDispatch();
 
@@ -43,28 +42,18 @@ const Main = () => {
     }
   });
 
-  const welcome = (
-    <>
-    <View style={styles.nav}>
-        <Text style={styles.navText} >Whether Trails</Text>
-        <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
-    </View>
-    <WelcomeView />
-    </>
-  );
-
-  const error = (
-    <View style={styles.errorView}>
-      <Text style={styles.errorText}>Sorry an Error Has Occurred</Text>
-      <Text style={styles.errorText}>Please come back later</Text>
-    </View>
-  );
-
-  let screen = error;
-
+  let screen;
   switch(viewMode) {
     case 'welcomeView':
-      screen = welcome;
+      screen = (
+        <>
+        <View style={styles.nav}>
+            <Text style={styles.navText} >Whether Trails</Text>
+            <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
+        </View>
+        <WelcomeView />
+        </>
+        );
       break;
     case 'mapView':
       screen = <MapViewScreen />;
@@ -76,7 +65,12 @@ const Main = () => {
       screen = <SettingsView />;
       break;
     default:
-      screen = error;
+      screen = (
+        <View style={styles.errorView}>
+          <Text style={styles.errorText}>Sorry an Error Has Occurred</Text>
+          <Text style={styles.errorText}>Please come back later</Text>
+        </View>
+      );
   };
 
   return (

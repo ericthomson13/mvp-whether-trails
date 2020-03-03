@@ -21,7 +21,7 @@ const ActivityView = () => {
   const dispatch = useDispatch();
 
   const getList = async (location) => {
-    let key, base
+    let key, base;
     switch(activity) {
       case 'hiking':
         key = hikingProject;

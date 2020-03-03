@@ -1,38 +1,30 @@
 import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet, Image, Platform } from 'react-native';
 import { Linking } from 'expo';
-import { useDispatch } from 'react-redux';
 
-import { setMapItem } from '../../store/actions/activityActions';
-import { setScreen } from '../../store/actions/screenActions';
+import openMap from 'react-native-open-maps';
 
 import WeatherForecast from '../weather/WeatherForecast';
 
 
 // TODO: update to show image
-// TODO: keep expanded items expanded when return from mapView
+// TODO: update to have GO be button that opens in default mapping software
 
 const ExpandedItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather
+  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather, latitude, longitude
 }) => {
-  const dispatch = useDispatch();
-  
-  // not working to change based on OS to have web be null for button
-  let mapViewButton = null;
-  if (Platform.OS === 'ios' || Platform.OS === 'android') {
-    mapViewButton = (
+    let mapViewButton = (
       <View style={styles.goToMap} >
         <TouchableOpacity 
-          onPress={() => { dispatch(setMapItem(index)); dispatch(setScreen('mapView'));}}
+          onPress={() => openMap({ latitude, longitude })}
         >
           <Text>
-            GO TO MAP
+            Get Directions
           </Text>
         </TouchableOpacity>
       </View>
     );
-  }
-
+    
   return (
     <View 
       style={styles.card}

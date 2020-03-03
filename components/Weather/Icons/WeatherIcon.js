@@ -1,12 +1,11 @@
 import React from 'react';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-
 // TODO: update for more types of weather
 
 const WeatherIcon = (props) => {
   const { description } = props;
-  let icon = null;
+  let icon;
   switch(description) {
     case 'clear sky':
       icon = {name:'weather-sunny', color:'yellow'};
@@ -27,7 +26,7 @@ const WeatherIcon = (props) => {
       icon = {name:'cloud-rain', color:'blue'};
       break;
     default:
-      icon = {name:'weather-sunny', color: 'yellow'};
+      icon = {name:'minus', color: 'white'};
   };
   return <MaterialCommunityIcons name={icon.name} size={18} color={icon.color} />;
 }
