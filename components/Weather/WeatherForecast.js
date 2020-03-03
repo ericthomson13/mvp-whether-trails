@@ -1,11 +1,11 @@
-import React from 'react';
+import React, { useState, } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 
 import ForecastList from './ForecastList';
 import { useSelector } from 'react-redux';
 
 const WeatherForecast = ({ weather }) => {
-  const view = useSelector((state) => state.weather.view);
+  const [view, setView] = useState(true);
   const weekday = useSelector((state) => state.weather.weekday);
 
   let weeklyData = [];
@@ -17,7 +17,7 @@ const WeatherForecast = ({ weather }) => {
     };
   };
 
-  let dailyData = [];
+  let dailyData;
   if (!view && weekday !== null && weather !== null) {
     dailyData = weather.filter((item) => {
       let date = new Date(item.dt * 1000)
@@ -34,7 +34,7 @@ const WeatherForecast = ({ weather }) => {
         </Text>
       </View>
       <View style={styles.weekly} >
-        <ForecastList data={view ? weeklyData : dailyData} weekday={weekday || null} />
+        <ForecastList data={view ? weeklyData : dailyData} weekday={weekday || null} setView={setView} view={view} />
       </View>
     </View>
 
