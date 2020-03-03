@@ -1,6 +1,6 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
+import { useSelector, } from 'react-redux';
 
 import WeatherPane from './WeatherPane';
 
@@ -15,14 +15,14 @@ const ForecastList = ({ data }) => {
 
   const panes = data.map((item) => {
     date = new Date(item.dt * 1000);
-    if (view === 'weekly') {
+    if (view) {
       dateIndex = date.getUTCDay();
       date = days[dateIndex];
     } else {
       date = date.toString().split(' ')[4];
     };
     return (
-      <WeatherPane {...item} key={item.dt} date={date} key={dateIndex} />
+      <WeatherPane {...item} key={item.dt} date={date} index={dateIndex} />
     );
   });
 

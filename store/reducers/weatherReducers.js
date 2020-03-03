@@ -1,7 +1,8 @@
 import { SET_WEATHER_VIEW, SET_WEEKDAY, } from '../actions/weatherActions';
 
 const initialState = {
-  view: 'weekly',
+  // true displays weekday false displays daily
+  view: true,
   weekday: null,
   days: ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'],
 };
