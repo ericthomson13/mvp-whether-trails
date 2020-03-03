@@ -9,7 +9,6 @@ const WeatherPane = ({ main, weather, wind, index, date, view, setView, setWeekd
   
   const weatherIcon = WeatherIcon(weather[0]);
   const windDirection = WindDirection(wind.deg);
-  const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
   return (
     <View style={styles.pane} >
