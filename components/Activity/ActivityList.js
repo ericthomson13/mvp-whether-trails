@@ -4,9 +4,7 @@ import { useSelector } from 'react-redux';
 
 import ActivityItem from './ActivityItemView';
 
-// TODO: refactor to not render selected in list
 // TODO: refactor to flatlist
-// TODO: refactor so that selected expands but is still in list
 
 const ActivityList = () => {
   const listItems = useSelector((state) => state.activity.activityItems);

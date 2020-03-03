@@ -1,6 +1,6 @@
 export const SET_ACTIVITY = 'SET_ACTIVITY';
 export const GET_ACTIVITY_ITEMS = 'GET_ACTIVITY_ITEMS';
-export const SET_SELECTED_ITEM = 'SET_SELECTED_ITEM';
+export const SET_MAP_ITEM = 'SET_MAP_ITEM';
 
 export const setSelectedActivity = (activity) => {
   return {
@@ -16,9 +16,9 @@ export const updateActivityArr = (list) => {
   };
 };
 
-export const setSelectedItem = (item) => {
+export const setMapItem = (item) => {
   return {
-    type: SET_SELECTED_ITEM,
-    payload: item
+    type: SET_MAP_ITEM,
+    payload: item,
   }
 }

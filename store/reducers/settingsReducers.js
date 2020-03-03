@@ -12,13 +12,11 @@ const settingsReducers = (state = initialState, { type, payload }) => {
           ...state,
           units: payload,
       });
-      break;
     case SET_RANGE:
       return ({
         ...state,
         trailheadRange: payload,
       });
-      break;
     default:
       return state;
   }

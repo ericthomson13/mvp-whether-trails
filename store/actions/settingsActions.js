@@ -13,4 +13,4 @@ export const setRange = (range) => {
     type: SET_RANGE,
     payload: range,
   })
-}
+};

@@ -1,14 +1,35 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Platform } from 'react-native';
 import { Linking } from 'expo';
+import { useDispatch } from 'react-redux';
 
 import WeatherForecast from '../weather/WeatherForecast';
+import { setMapItem } from '../../store/actions/activityActions';
+import { setScreen } from '../../store/actions/screenActions';
 
 // TODO: update to show image
+// TODO: keep expanded items expanded when return from mapView
 
 const ExpandedItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather
 }) => {
+  const dispatch = useDispatch();
+  
+  // not working to change based on OS to have web be null for button
+  let mapViewButton = null;
+  if (Platform.OS === 'ios' || Platform.OS === 'android') {
+    mapViewButton = (
+      <View style={styles.goToMap} >
+        <TouchableOpacity 
+          onPress={() => { dispatch(setMapItem(index)); dispatch(setScreen('mapView'));}}
+        >
+          <Text>
+            GO TO MAP
+          </Text>
+        </TouchableOpacity>
+      </View>
+    );
+  }
 
   return (
     <View 
@@ -23,8 +44,9 @@ const ExpandedItem = ({
           </TouchableOpacity>
           <View style={styles.dlContainer} >
             <Text style={styles.difficulty} >{difficulty}</Text>
-            <Text style={styles.length} >{length}</Text>
+            <Text style={styles.length} >{length} mi</Text>
           </View>
+          {mapViewButton}
        </View>
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
@@ -62,7 +84,6 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
     alignContent: 'space-between',
@@ -107,6 +128,9 @@ const styles = StyleSheet.create({
   locationText: {
     color: '#BFD1E5',
     fontWeight: 'bold',
+  },
+  goToMap: {
+
   },
 });
 
