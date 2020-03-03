@@ -5,11 +5,11 @@ import ForecastList from './ForecastList';
 import { useSelector } from 'react-redux';
 
 const WeatherForecast = ({ weather }) => {
-  const forecastDisplay = useSelector((state) => state.weather.view);
+  const view = useSelector((state) => state.weather.view);
   const weekday = useSelector((state) => state.weather.weekday);
 
   let weeklyData = [];
-  if (weather !== null && forecastDisplay === 'weekly') {
+  if (weather !== null && view) {
     for (let i = 0; i < weather.length; i++) { 
       if (i === 0 || i % 8 === 0) {
         weeklyData.push(weather[i]);
@@ -18,7 +18,7 @@ const WeatherForecast = ({ weather }) => {
   };
 
   let dailyData = [];
-  if (forecastDisplay === 'daily' && weekday !== null && weather !== null) {
+  if (!view && weekday !== null && weather !== null) {
     dailyData = weather.filter((item) => {
       let date = new Date(item.dt * 1000)
       return weekday === date.getUTCDay();
@@ -34,7 +34,7 @@ const WeatherForecast = ({ weather }) => {
         </Text>
       </View>
       <View style={styles.weekly} >
-        <ForecastList data={forecastDisplay === 'weekly' ? weeklyData : dailyData} weekday={weekday} />
+        <ForecastList data={view ? weeklyData : dailyData} weekday={weekday || null} />
       </View>
     </View>
 
