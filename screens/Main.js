@@ -43,12 +43,6 @@ const Main = () => {
     }
   });
 
-  const map = (
-    <MapViewScreen />
-  );
-  const activity = (
-    <ActivityView location={location} />
-  );
   const welcome = (
     <>
     <View style={styles.nav}>
@@ -58,9 +52,7 @@ const Main = () => {
     <WelcomeView />
     </>
   );
-  const settings = (
-    <SettingsView />
-  )
+
   const error = (
     <View style={styles.errorView}>
       <Text style={styles.errorText}>Sorry an Error Has Occurred</Text>
@@ -75,13 +67,13 @@ const Main = () => {
       screen = welcome;
       break;
     case 'mapView':
-      screen = map;
+      screen = <MapViewScreen />;
       break;
     case 'activityView':
-      screen = activity;
+      screen = <ActivityView location={location} />;
       break;
     case 'settingsView':
-      screen = settings;
+      screen = <SettingsView />;
       break;
     default:
       screen = error;
