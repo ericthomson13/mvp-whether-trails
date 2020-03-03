@@ -1,15 +1,16 @@
-import React from 'react';
-import { StyleSheet, Text, View } from 'react-native';
+import React, { useEffect } from 'react';
+import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { useSelector, useDispatch } from 'react-redux';
-
+import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { setLocation } from '../store/actions/locationActions';
-
+import { setScreen } from '../store/actions/screenActions';
 
 import WelcomeView from './WelcomeView';
-import MapView from './MapView';
+import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
+import SettingsView from './SettingsView';
 
 // TODO: rework setLocation into async action in locationActions
 // TODO: rework to use native screens like router to work through screens rather than switch statement
@@ -36,19 +37,18 @@ const Main = () => {
     }
   };
   
-  // could this be refactored to useEffect?
-  if (location === null) {
-    getLocation();
-  }
+  useEffect(() => {
+    if (location === null) {
+      getLocation();
+    }
+  })
 
-
-  // once more added might refactor to switch
   if (selectedActivity !== null && viewMode === 'welcomeView') {
-    dispatch({ type: 'SET_SCREEN', payload: 'activityView' });
+    dispatch(setScreen('activityView'));
   };
 
   const map = (
-    <MapView />
+    <MapViewScreen />
   );
   const activity = (
     <ActivityView location={location} />
@@ -62,7 +62,9 @@ const Main = () => {
     <WelcomeView />
     </>
   );
-
+  const settings = (
+    <SettingsView />
+  )
   const error = (
     <View style={styles.errorView}>
       <Text style={styles.errorText}>Sorry an Error Has Occurred</Text>
@@ -82,6 +84,9 @@ const Main = () => {
     case 'activityView':
       screen = activity;
       break;
+    case 'settingsView':
+      screen = settings;
+      break;
     default:
       screen = error;
   };
@@ -89,9 +94,14 @@ const Main = () => {
   return (
     <View style={styles.container}>
       {screen}
+      <View style={styles.settting} >
+        <TouchableOpacity onPress={() => dispatch(setScreen('settingsView'))} >
+          <MaterialCommunityIcons name='settings' size={12} color='black'/>
+        </TouchableOpacity>
+      </View>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   container: {
@@ -100,7 +110,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-    
   },
   nav: {
     padding: 10,
@@ -129,7 +138,10 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     maxWidth: '80%',
   },
-
+  setting: {
+    padding: 10,
+    margin: 10,
+  },
 });
 
 export default Main;

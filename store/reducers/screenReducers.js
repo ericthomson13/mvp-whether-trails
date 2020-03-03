@@ -1,10 +1,12 @@
+import { SET_SCREEN } from '../actions/screenActions';
+
 const initialState = {
   screen: 'welcomeView',
 };
 
 const screenReducers = (state = initialState, { type, payload }) => {
   switch (type) {
-    case 'SET_SCREEN':
+    case SET_SCREEN:
       return (
         {
           ...state,

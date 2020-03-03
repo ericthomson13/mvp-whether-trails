@@ -1,10 +1,12 @@
-import React, { useState, } from 'react';
+import React, { useState, useEffect, } from 'react';
 import axios from 'axios';
 
 import { openWeather } from '../../Keys';
 
 import NormalItem from './NormalItem';
 import ExpandedItem from './ExpandedItem';
+
+// TODO: show weather expands with motion
 
 const ActivityItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude,
@@ -29,10 +31,13 @@ const ActivityItem = ({
     }
   };
 
-  if (weatherDisplay) {
-    if (!weatherData) {
+  useEffect(() => {
+    if (!weatherData && weatherDisplay) {
       getWeather();
     }
+  });
+
+  if (weatherDisplay) {
     return (
       <ExpandedItem 
         index={index} 
@@ -68,6 +73,6 @@ const ActivityItem = ({
       />
     );
   } 
-}
+};
 
 export default ActivityItem;

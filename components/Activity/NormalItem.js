@@ -17,7 +17,7 @@ const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location
        </View>
        <View style={styles.dlContainer} >
           <Text style={styles.difficulty} >{difficulty}</Text>
-          <Text style={styles.length} >{length}</Text>
+          <Text style={styles.length} >{length} mi</Text>
         </View>
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
