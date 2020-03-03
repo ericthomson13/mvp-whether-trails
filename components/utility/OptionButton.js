@@ -1,10 +1,17 @@
 import React from 'react';
 import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
+import { useDispatch } from 'react-redux';
+import { setSelectedActivity } from '../../store/actions/activityActions';
+import { setScreen, } from '../../store/actions/screenActions';
 
-const OptionButton = ({ name, setSelectedActivity }) => {
+const OptionButton = ({ name,}) => {
+  const dispatch = useDispatch();
+
   return (
     <View style={styles.buttonView} >
-      <TouchableOpacity onPress={() => setSelectedActivity(name)} style={styles.button} >
+      <TouchableOpacity 
+        onPress={() => {dispatch(setSelectedActivity(name)); dispatch(setScreen('activityView'));}} 
+        style={styles.button} >
         <Text style={styles.text} >
           {name}
         </Text>

@@ -1,8 +1,9 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, } from 'react-native';
+import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updateActivityArr } from '../store/actions/activityActions';
+import { setScreen } from '../store/actions/screenActions';
 import { hikingProject, mountainBikeProject, trailRunProject, } from '../Keys';
 
 import ActivityList from '../components/activity/ActivityList';
@@ -39,7 +40,7 @@ const ActivityView = () => {
         base = 'hikingproject';
         return;
     };
-    
+
     const url = `https://www.${base}.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${key}`
     const result = await fetch(url);
     const trails = await result.json()
@@ -57,10 +58,16 @@ const ActivityView = () => {
   }
   
   return (
-    <View style={styles.activityView}>
-      <Text></Text>
-      {list}
+    <View>
+      <View style={styles.activityView}>
+        <Text></Text>
+        {list}
+      </View>
+      <TouchableOpacity onPress={() => {dispatch(setScreen('welcomeView'))}}>
+        <Text>Home</Text>
+      </TouchableOpacity>
     </View>
+    
   )
 };
 

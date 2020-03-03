@@ -41,11 +41,7 @@ const Main = () => {
     if (location === null) {
       getLocation();
     }
-  })
-
-  if (selectedActivity !== null && viewMode === 'welcomeView') {
-    dispatch(setScreen('activityView'));
-  };
+  });
 
   const map = (
     <MapViewScreen />
