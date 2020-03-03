@@ -3,12 +3,12 @@ import { View, Text, StyleSheet, } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updateActivityArr } from '../store/actions/activityActions';
-import { hikingProject, mountainBikeProject, } from '../Keys';
+import { hikingProject, mountainBikeProject, trailRunProject, } from '../Keys';
 
 import ActivityList from '../components/activity/ActivityList';
 
-// TODO: move activityArr to list component with redux refactor
 // TODO: update fetch to axios
+// TODO: update getList to be in reducer
 
 const ActivityView = () => {
   const activityArray = useSelector((state) => state.activity.activityItems);
@@ -30,11 +30,16 @@ const ActivityView = () => {
         key = mountainBikeProject;
         base = 'mtbproject';
         break;
+      case 'trail running':
+        key = trailRunProject;
+        base = 'trailrunproject';
+        break;
       default:
         key = hikingProject;
         base = 'hikingproject';
         return;
-    }
+    };
+    
     const url = `https://www.${base}.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${key}`
     const result = await fetch(url);
     const trails = await result.json()
