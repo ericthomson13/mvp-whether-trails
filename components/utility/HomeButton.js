@@ -8,15 +8,16 @@ const HomeButton = () => {
   const dispatch = useDispatch();
 
   return (
-    <View>
+    <View style={styles.container} >
       <TouchableOpacity 
         onPress={() => {
           dispatch(setScreen('welcomeView')); 
           dispatch(setSelectedActivity(null)); 
           dispatch(updateActivityArr(null));
         }}
+        style={styles.button}
       >
-        <Text>Home</Text>
+        <Text style={styles.text} >Home</Text>
       </TouchableOpacity>
     </View>
   );
@@ -24,7 +25,20 @@ const HomeButton = () => {
 
 const styles = StyleSheet.create({ 
   container: {
-
+    padding: 5,
+    margin: 5,
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  button: {
+    backgroundColor: '#126659',
+    borderRadius: 10,
+    padding: 10,
+    margin: 5,
+  },
+  text: {
+    color: '#BFD1E5',
+    fontWeight: 'bold',
   }
 });
 
