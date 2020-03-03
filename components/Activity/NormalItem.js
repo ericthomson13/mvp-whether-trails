@@ -2,6 +2,8 @@ import React from 'react';
 import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Linking } from 'expo';
 
+import DifficultyIcon from './DifficultyIcon';
+
 const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location, summary }) => {
   return (
     <View 
@@ -16,7 +18,7 @@ const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location
          </TouchableOpacity>
        </View>
        <View style={styles.dlContainer} >
-          <Text style={styles.difficulty} >{difficulty}</Text>
+          <DifficultyIcon difficulty={difficulty} />
           <Text style={styles.length} >{length} mi</Text>
         </View>
         <View style={styles.location}>

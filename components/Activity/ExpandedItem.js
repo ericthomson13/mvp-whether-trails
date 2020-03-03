@@ -5,7 +5,7 @@ import { Linking } from 'expo';
 import openMap from 'react-native-open-maps';
 
 import WeatherForecast from '../weather/WeatherForecast';
-
+import DifficultyIcon from './DifficultyIcon';
 
 // TODO: update to show image
 // TODO: update to have GO be button that opens in default mapping software
@@ -13,18 +13,26 @@ import WeatherForecast from '../weather/WeatherForecast';
 const ExpandedItem = ({ 
   index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather, latitude, longitude
 }) => {
-    let mapViewButton = (
-      <View style={styles.goToMap} >
-        <TouchableOpacity 
-          onPress={() => openMap({ latitude, longitude })}
-        >
-          <Text>
-            Get Directions
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-    
+  // update to toggle to link for web
+  let mapNav = Platform.select({
+    ios: () => openMap({ latitude, longitude, navigate_mode: 'navigate' }),
+    android: () => openMap({ latitude, longitude, navigate_mode: 'navigate' }),
+    web: () => Linking.openURL(mapLink),
+  });
+  const mapLink = `https://www.google.com/maps?q=${latitude},${longitude}`;
+
+  let mapViewButton = (
+    <View style={styles.goToMap} >
+      <TouchableOpacity 
+        onPress={mapNav}
+      >
+        <Text>
+          Get Directions
+        </Text>
+      </TouchableOpacity>
+    </View>
+  );
+
   return (
     <View 
       style={styles.card}
@@ -37,7 +45,7 @@ const ExpandedItem = ({
             <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
           </TouchableOpacity>
           <View style={styles.dlContainer} >
-            <Text style={styles.difficulty} >{difficulty}</Text>
+            <DifficultyIcon difficulty={difficulty} />
             <Text style={styles.length} >{length} mi</Text>
           </View>
           {mapViewButton}
