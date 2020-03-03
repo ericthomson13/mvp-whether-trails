@@ -2,6 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, Platform, } from 'react-native';
 import { useSelector, } from 'react-redux';
 
+// TODO: get maps rendering with pin for where selected is
 // this allows to not break in web because react-native-web-maps not working well 2MAR2020
 
 let MapView = null;

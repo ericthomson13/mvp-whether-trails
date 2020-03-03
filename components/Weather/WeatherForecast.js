@@ -1,24 +1,30 @@
 import React from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 
-import WeeklyForecast from './WeeklyForecast';
-// import DailyForecast from './DailyForecast';
-
-// TODO: update so weather is correct for each trailhead
-// TODO: add subcomponents and view to change allowing for different levels of forecasts to be used
-// TODO: add onPress to forecast for view of that day
-// TODO: allow user to set their units metric/standard
+import ForecastList from './ForecastList';
+import { useSelector } from 'react-redux';
 
 const WeatherForecast = ({ weather }) => {
+  const forecastDisplay = useSelector((state) => state.weather.view);
+  const weekday = useSelector((state) => state.weather.weekday);
 
   let weeklyData = [];
-  if (weather !== null) {
+  if (weather !== null && forecastDisplay === 'weekly') {
     for (let i = 0; i < weather.length; i++) { 
       if (i === 0 || i % 8 === 0) {
         weeklyData.push(weather[i]);
       }
     };
   };
+
+  let dailyData = [];
+  if (forecastDisplay === 'daily' && weekday !== null && weather !== null) {
+    dailyData = weather.filter((item) => {
+      let date = new Date(item.dt * 1000)
+      return weekday === date.getUTCDay();
+    });
+  }
+
 
   return (
     <View style={styles.container} >
@@ -27,9 +33,8 @@ const WeatherForecast = ({ weather }) => {
           Forecast
         </Text>
       </View>
-      
       <View style={styles.weekly} >
-        <WeeklyForecast data={weeklyData} />
+        <ForecastList data={forecastDisplay === 'weekly' ? weeklyData : dailyData} weekday={weekday} />
       </View>
     </View>
 

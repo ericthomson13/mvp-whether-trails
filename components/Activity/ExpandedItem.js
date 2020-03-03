@@ -3,9 +3,11 @@ import { View, Text, TouchableOpacity, StyleSheet, Image, Platform } from 'react
 import { Linking } from 'expo';
 import { useDispatch } from 'react-redux';
 
-import WeatherForecast from '../weather/WeatherForecast';
 import { setMapItem } from '../../store/actions/activityActions';
 import { setScreen } from '../../store/actions/screenActions';
+
+import WeatherForecast from '../weather/WeatherForecast';
+
 
 // TODO: update to show image
 // TODO: keep expanded items expanded when return from mapView
