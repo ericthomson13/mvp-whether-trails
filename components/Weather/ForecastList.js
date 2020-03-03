@@ -7,8 +7,8 @@ import WeatherPane from './WeatherPane';
 // TODO: update to show high and low for 24h window
 // TODO: have find current day and ensure that first day is current day
 
-const ForecastList = ({ data, setView, view }) => {
-  const days = useSelector((state) => state.weather.days);
+const ForecastList = ({ data, setView, view, setWeekday, }) => {
+  const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
   let date, dateIndex;
 
@@ -21,7 +21,7 @@ const ForecastList = ({ data, setView, view }) => {
       date = date.toString().split(' ')[4];
     };
     return (
-      <WeatherPane {...item} key={item.dt} date={date} index={dateIndex} setView={setView} view={view} />
+      <WeatherPane {...item} key={item.dt} date={date} index={dateIndex} setView={setView} view={view} setWeekday={setWeekday} />
     );
   });
 

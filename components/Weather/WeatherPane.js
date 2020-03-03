@@ -1,24 +1,21 @@
 import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
-import { useDispatch, } from 'react-redux';
-
-import { setWeekday } from '../../store/actions/weatherActions';
 
 import WeatherIcon from './Icons/WeatherIcon';
 import WindDirection from './Icons/WindDirection';
 
-const WeatherPane = ({ main, weather, wind, index, date, view, setView, }) => {
+const WeatherPane = ({ main, weather, wind, index, date, view, setView, setWeekday }) => {
   const { temp_min, temp_max } = main;
-  const dispatch = useDispatch();
   
   const weatherIcon = WeatherIcon(weather[0]);
   const windDirection = WindDirection(wind.deg);
+  const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
   return (
     <View style={styles.pane} >
       <TouchableOpacity 
         onPress={() => {
-          view ? dispatch(setWeekday(index)) : null;
+          view ? setWeekday(index) : null;
           setView(!view);
         }}
       >
