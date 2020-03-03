@@ -3,7 +3,7 @@ import { TouchableOpacity, View, StyleSheet, Text } from 'react-native';
 
 const OptionButton = ({ name, setSelectedActivity }) => {
   return (
-    <View>
+    <View style={styles.buttonView} >
       <TouchableOpacity onPress={() => setSelectedActivity(name)} style={styles.button} >
         <Text style={styles.text} >
           {name}
@@ -17,6 +17,8 @@ const styles = StyleSheet.create({
   buttonView: {
     alignContent: 'center',
     justifyContent: 'center',
+    padding: 5,
+    margin: 10,
   },
   button: {
     backgroundColor: '#126659',
