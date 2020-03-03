@@ -5,7 +5,7 @@ import { useSelector, } from 'react-redux';
 import WeatherPane from './WeatherPane';
 
 // TODO: update to show high and low for 24h window
-// TODO: update to use DailyForecast on click of Pane
+// TODO: have find current day and ensure that first day is current day
 
 const ForecastList = ({ data }) => {
   const view = useSelector((state) => state.weather.view);

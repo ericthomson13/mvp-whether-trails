@@ -2,7 +2,7 @@ import React from 'react';
 import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 import { useDispatch, useSelector, } from 'react-redux';
 
-import { setWeekday, setView } from '../../store/actions/weatherActions';
+import { setWeekday, setView, } from '../../store/actions/weatherActions';
 
 import WeatherIcon from './Icons/WeatherIcon';
 import WindDirection from './Icons/WindDirection';
