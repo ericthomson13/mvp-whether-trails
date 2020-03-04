@@ -3,7 +3,7 @@ import { StyleSheet, Text, View, } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLocation } from '../store/actions/locationActions';
+import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
 
 import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
@@ -19,6 +19,7 @@ const Main = () => {
 
   const dispatch = useDispatch();
 
+  // REVIEW
   const getLocation = async () => {
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -28,6 +29,7 @@ const Main = () => {
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
         dispatch(setLocation(location));
+        dispatch(setCurrentLocation(location));
       }
     } catch {
       console.log('error in getLocation ');

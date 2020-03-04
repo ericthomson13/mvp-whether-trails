@@ -1,11 +1,11 @@
-import { SET_LOCATION, SET_SEARCH_LOCATION, } from '../actions/locationActions';
+import { SET_LOCATION, SET_CURRENT_LOCATION, } from '../actions/locationActions';
 
 const initialState = {
   location: {
     latitude: '40.0150',
     longitude: '-105.2705'
   },
-  search: null,
+  current: null,
 };
 
 const locationReducers = (state = initialState, { type, payload }) => {
@@ -15,10 +15,10 @@ const locationReducers = (state = initialState, { type, payload }) => {
           ...state,
           location: { ...payload },
       });
-    case SET_SEARCH_LOCATION:
+    case SET_CURRENT_LOCATION:
       return ({
         ...state,
-        search: { ...payload },
+        current: { ...payload },
       })
     default:
       return state;

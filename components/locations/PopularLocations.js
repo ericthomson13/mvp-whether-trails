@@ -2,9 +2,11 @@ import React, { useState, } from 'react';
 import { View, ScrollView, StyleSheet, Text, } from 'react-native';
 
 import { locations, } from '../../Constants/locations';
+import { colors } from '../../Constants/Colors';
+
+import CurrentLocation from './CurrentLocation';
 import LocationItem from './LocationItem';
 import LocationListButton from './LocationListButton';
-import { colors } from '../../Constants/Colors';
 
 const PopularLocations = () => {
   const [showList, setShowList] = useState(false);
@@ -21,12 +23,14 @@ const PopularLocations = () => {
       </ScrollView>
     </View>
   );
-  const button = <LocationListButton setShowList={setShowList} showList={showList} />;
+  const toggleButton = <LocationListButton setShowList={setShowList} showList={showList} />;
+  const currentLocButton = showList ? <CurrentLocation setShowList={setShowList} showList={showList} /> : null;
 
   return (
     <View style={styles.container} >
       {showList ? list : null}
-      {button}
+      {toggleButton}
+      {currentLocButton}
     </View> 
   )
 };
