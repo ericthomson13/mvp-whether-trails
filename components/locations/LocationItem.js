@@ -3,6 +3,7 @@ import { View, StyleSheet, Text, TouchableOpacity, Platform, SafeAreaView, } fro
 import { useDispatch, } from 'react-redux';
 
 import { setLocation, } from '../../store/actions/locationActions';
+import { setScreen, } from '../../store/actions/screenActions';
 
 const LocationItem = ({ name, latitude, longitude, }) => {
   const dispatch = useDispatch();

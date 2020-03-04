@@ -1,5 +1,5 @@
 import React, { useState, } from 'react';
-import { View, Text, ScrollView, StyleSheet, SafeAreaView, Platform, } from 'react-native';
+import { View, ScrollView, StyleSheet, } from 'react-native';
 
 import { locations, } from '../../Constants/locations';
 import LocationItem from './LocationItem';
