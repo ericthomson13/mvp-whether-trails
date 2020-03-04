@@ -18,7 +18,7 @@ const WelcomeView = () => {
         <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
       </View>
       <View style={styles.currentLocation} >
-        <Text style={styles.latLongText} >Latitude: {location.latitude} Longitude: {location.longitude}</Text>
+        <Text style={styles.latLongText} >Latitude:  {location.latitude}  Longitude:  {location.longitude}</Text>
       </View>
       <View style={styles.welcomeView}>
         <View>

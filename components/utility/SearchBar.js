@@ -6,6 +6,10 @@ import { MaterialCommunityIcons } from '@expo/vector-icons';
 import { colors, } from '../../Constants/Colors';
 import { setSearchLocation, } from '../../store/actions/locationActions';
 
+
+// TODO: figure out to convert city, state to latlong for get activities
+// TODO: implement searchbar option in WelcomeView
+ 
 const SearchBar = () => {
   const [latInput, setLatInput] = useState('');
   const [longInput, setLongInput] = useState('');
