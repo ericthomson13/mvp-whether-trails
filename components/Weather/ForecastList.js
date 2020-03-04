@@ -1,11 +1,12 @@
 import React from 'react';
 import { View, StyleSheet, ScrollView, } from 'react-native';
-import { useSelector, } from 'react-redux';
 
 import WeatherPane from './WeatherPane';
 
 // TODO: update to show high and low for 24h window
 // TODO: have find current day and ensure that first day is current day
+// TODO: update timestamp on daily to just have HH:MM
+// TODO: convert timestamp to local from UTC time
 
 const ForecastList = ({ data, setView, view, setWeekday, }) => {
   const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];

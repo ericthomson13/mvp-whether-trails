@@ -6,6 +6,8 @@ import { useDispatch, } from 'react-redux';
 import { setScreen } from '../../store/actions/screenActions';
 import { setSelectedActivity, updateActivityArr, } from '../../store/actions/activityActions';
 
+import { colors } from '../../Constants/Colors';
+
 const HomeButton = () => {
   const dispatch = useDispatch();
 
@@ -33,7 +35,7 @@ const styles = StyleSheet.create({
     alignItems: 'center',
   },
   button: {
-    backgroundColor: '#126659',
+    backgroundColor: colors.buttonBackground,
     borderRadius: 10,
     padding: 10,
     margin: 5,

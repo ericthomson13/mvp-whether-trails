@@ -1,17 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Button, } from 'react-native';
 import { Linking } from 'expo';
 
 import WeatherForecast from '../weather/WeatherForecast';
 import DifficultyIcon from './DifficultyIcon';
 import MapViewButton from '../maps/mapViewButton';
-
-// TODO: update to show image
+import { colors } from '../../Constants/Colors';
 
 const ExpandedItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather, latitude, longitude
+  name, summary, difficulty, imgSmallMed, location, url, length, setWeatherDisplay, weather, latitude, longitude,
 }) => {
-  
 
   return (
     <View 
@@ -27,6 +25,9 @@ const ExpandedItem = ({
           <View style={styles.dlContainer} >
             <DifficultyIcon difficulty={difficulty} />
             <Text style={styles.length} >{length} mi</Text>
+          </View>
+          <View>
+            <Image source={{uri: imgSmallMed}} style={{width: 200, height: 200}}/>
           </View>
           <MapViewButton latitude={latitude} longitude={longitude} />
        </View>
@@ -44,12 +45,12 @@ const ExpandedItem = ({
 
 const styles = StyleSheet.create({
   card: {
-    // flex: 1,
-    backgroundColor: '#126659',
+    backgroundColor: colors.buttonBackground,
     padding: 10,
     margin: 5,
     borderRadius: 10,
     justifyContent: 'space-evenly',
+    maxHeight: '100%',
   },
   name: {
     alignContent: 'center',
@@ -71,7 +72,7 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
     width: '100%',
     borderBottomWidth: 2,
-    borderBottomColor: '#542344',
+    borderBottomColor: colors.other,
     padding: 5,
     margin: 5,
 
@@ -98,7 +99,7 @@ const styles = StyleSheet.create({
   length: {
     alignItems: 'center',
     justifyContent: 'center',
-    color: '#BFD1E5',
+    color: colors.other,
     fontWeight: 'bold',
   },
   location: {
@@ -108,7 +109,7 @@ const styles = StyleSheet.create({
 
   },
   locationText: {
-    color: '#BFD1E5',
+    color: colors.other,
     fontWeight: 'bold',
   },
 });

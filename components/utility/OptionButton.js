@@ -36,7 +36,7 @@ const styles = StyleSheet.create({
     borderRadius: 10,
   },
   text: {
-    borderColor: '#BFD1E5',
+    borderColor: colors.normalItem,
     color: colors.buttonTextColor,
     fontSize: 18,
     padding: 5,

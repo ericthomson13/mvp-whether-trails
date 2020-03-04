@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import { View, Text, TouchableOpacity, } from 'react-native';
 import { useDispatch, } from 'react-redux';
 
 import MapWindow from '../components/maps/MapWindow';
@@ -21,14 +21,5 @@ const MapViewScreen = () => {
     </View>
   );
 };
-
-const styles = StyleSheet.create({
-  return: {
-
-  },
-  returnText: {
-
-  },
-});
 
 export default MapViewScreen;

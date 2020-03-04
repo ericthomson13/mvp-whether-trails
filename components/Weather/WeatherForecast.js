@@ -2,6 +2,7 @@ import React, { useState, } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 
 import ForecastList from './ForecastList';
+import { colors } from '../../Constants/Colors';
 
 const WeatherForecast = ({ weather }) => {
   const [view, setView] = useState(true);
@@ -22,9 +23,8 @@ const WeatherForecast = ({ weather }) => {
       let date = new Date(item.dt * 1000)
       return weekday === date.getUTCDay();
     });
-  }
-
-
+  };
+  
   return (
     <View style={styles.container} >
       <View style={styles.title}>
@@ -56,7 +56,7 @@ const styles = StyleSheet.create({
     padding: 2,
     margin: 2,
     borderBottomWidth: 1,
-    borderBottomColor: '#542344',
+    borderBottomColor: colors.other,
   },
   weekly: {
     alignContent: 'space-between',

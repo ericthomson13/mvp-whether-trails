@@ -3,6 +3,7 @@ import { View, Text, StyleSheet, Platform, SafeAreaView, ScrollView } from 'reac
 import { useSelector } from 'react-redux';
 
 import ActivityItem from './ActivityItemView';
+import { colors } from '../../Constants/Colors';
 
 // TODO: refactor to flatlist
 
@@ -49,7 +50,7 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: 'bold',
     fontSize: 24,
-    color: '#9D3A48',
+    color: colors.titleFont,
   },
 });
 

@@ -11,6 +11,7 @@ import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
+import { colors } from '../Constants/Colors';
 
 // TODO: rework setLocation into async action in locationActions
 // TODO: rework to use native screens like router to work through screens rather than switch statement
@@ -80,7 +81,7 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#d3cfb7',
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',

@@ -9,7 +9,7 @@ import ExpandedItem from './ExpandedItem';
 // TODO: show weather expands with motion
 
 const ActivityItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, latitude, longitude,
+  index, name, summary, difficulty, imgSmallMed, stars, location, url, length, latitude, longitude,
 }) => {
   const [weatherDisplay, setWeatherDisplay] = useState(false);
   const [weatherData, setWeatherData] = useState(null);
@@ -43,7 +43,7 @@ const ActivityItem = ({
         name={name} 
         summary={summary} 
         difficulty={difficulty} 
-        imgSqSmall={imgSqSmall}
+        imgSmallMed={imgSmallMed}
         stars={stars}
         location={location}
         url={url}
@@ -61,7 +61,7 @@ const ActivityItem = ({
         name={name} 
         summary={summary} 
         difficulty={difficulty} 
-        imgSqSmall={imgSqSmall}
+        imgSmallMed={imgSmallMed}
         stars={stars}
         location={location}
         url={url}

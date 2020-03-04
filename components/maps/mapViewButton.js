@@ -3,6 +3,8 @@ import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native
 import openMap from 'react-native-open-maps';
 import { Linking } from 'expo';
 
+import { colors } from '../../Constants/Colors';
+
 const MapViewButton = ({ latitude, longitude }) => {
   const mapNav = Platform.select({
     ios: () => openMap({ latitude, longitude, navigate_mode: 'navigate' }),
@@ -25,10 +27,10 @@ const MapViewButton = ({ latitude, longitude }) => {
 
 const styles = StyleSheet.create({
   goToMap: {
-    backgroundColor: '#126659',
+    backgroundColor: colors.buttonBackground,
   },
   text: {
-    color: '#9D3A48',
+    color: colors.titleFont,
   }
 })
 

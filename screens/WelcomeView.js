@@ -4,7 +4,8 @@ import { useSelector, } from 'react-redux';
 
 
 import OptionButton from '../components/utility/OptionButton';
-import SearchBar from '../components/utility/SearchBar';
+// import SearchBar from '../components/utility/SearchBar';
+import { colors } from '../Constants/Colors';
 
 const WelcomeView = () => {
   const children = useSelector((state) => state.activity.activityOptions);
@@ -52,7 +53,7 @@ const styles = StyleSheet.create({
   },
   welcomeTitle: {
     padding: 10,
-    color: '#9d3a48',
+    color: colors.titleFont,
     fontSize: 16,
     fontWeight: 'bold',
     alignContent: 'center',
@@ -66,12 +67,12 @@ const styles = StyleSheet.create({
   navText: {
     fontSize: 30,
     fontWeight: 'bold',
-    color: '#9d3a48',
+    color: colors.titleFont,
     alignContent: 'center',
   },
   subtitle: {
     fontSize: 18,
-    color: '#9d3a48',
+    color: colors.titleFont,
     fontWeight: 'bold',
   },
   currentLocation: {
@@ -82,7 +83,7 @@ const styles = StyleSheet.create({
   },
   latLongText: {
     fontSize: 18,
-    color: '#9d3a48',
+    color: colors.titleFont,
     fontWeight: 'bold',
   },
 });

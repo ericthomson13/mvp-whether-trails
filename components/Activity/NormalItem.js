@@ -3,6 +3,7 @@ import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
 import { Linking } from 'expo';
 
 import DifficultyIcon from './DifficultyIcon';
+import { colors } from '../../Constants/Colors';
 
 const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location, summary }) => {
   return (
@@ -34,7 +35,7 @@ const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location
 const styles = StyleSheet.create({
   card: {
     flex: 1,
-    backgroundColor: '#126659',
+    backgroundColor: colors.buttonBackground,
     padding: 10,
     margin: 5,
     borderRadius: 10,
@@ -47,7 +48,7 @@ const styles = StyleSheet.create({
     margin: 5,
     fontSize: 24,
     fontWeight: 'bold',
-    color: '#BFD1E5',
+    color: colors.normalItem,
   },
   difficulty: {
     alignItems: 'center',
@@ -56,10 +57,8 @@ const styles = StyleSheet.create({
   },
   header: {
     flex: 1,
-    // flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'center',
-    // alignContent: '',
     width: '100%',
     borderBottomWidth: 2,
     padding: 5,
@@ -88,7 +87,7 @@ const styles = StyleSheet.create({
   length: {
     alignItems: 'center',
     justifyContent: 'center',
-    color: '#BFD1E5',
+    color: colors.normalItem,
     fontWeight: 'bold',
   },
   location: {
@@ -99,7 +98,7 @@ const styles = StyleSheet.create({
 
   },
   locationText: {
-    color: '#BFD1E5',
+    color: colors.normalItem,
     fontWeight: 'bold',
   },
 });
