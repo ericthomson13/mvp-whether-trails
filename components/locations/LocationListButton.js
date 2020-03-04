@@ -18,13 +18,20 @@ const LocationListButton = ({ setShowList, showList, }) => {
 
 const styles = StyleSheet.create({ 
   buttonView: {
-
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
   },
   button: {
-
+    backgroundColor: colors.other,
+    padding: 3,
+    borderRadius: 10,
   },
   text: {
-
+    color: colors.buttonTextColor,
+    fontSize: 14,
+    padding: 5,
+    margin: 2,
   },
 });
 

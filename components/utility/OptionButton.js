@@ -28,6 +28,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
     padding: 5,
     margin: 10,
+    maxWidth: 200,
   },
   button: {
     backgroundColor: colors.buttonBackground,

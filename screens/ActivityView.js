@@ -9,9 +9,7 @@ import { hikingProject, mountainBikeProject, trailRunProject, } from '../Keys';
 import ActivityList from '../components/activity/ActivityList';
 import HomeButton from '../components/utility/HomeButton';
 
-// TODO: update fetch to axios
 // TODO: update getList to be in reducer
-// TODO: fix bug that occurs if switch to home and then pick different activity - useEffect for unmount and clear activity store?
 
 const ActivityView = () => {
   const activityArray = useSelector((state) => state.activity.activityItems);
@@ -47,7 +45,7 @@ const ActivityView = () => {
       url,
       responseType: 'stream',
     });
-    
+
     dispatch(updateActivityArr(result.data.trails));
   };
 

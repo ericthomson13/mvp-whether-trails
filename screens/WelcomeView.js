@@ -12,7 +12,7 @@ const WelcomeView = () => {
   const location = useSelector((state) => state.location.location);
 
   return (
-    <View>
+    <View style={styles.container} >
       <View style={styles.nav}>
         <Text style={styles.navText} >Whether Trails</Text>
         <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
@@ -27,17 +27,17 @@ const WelcomeView = () => {
         <Text style={styles.welcomeTitle}>
           Select an Activity
         </Text>
-        <View>
-          <ScrollView style={styles.optionsList} >
+        <View style={styles.optionsList}>
+          <ScrollView  >
             {children.map((option, i) => {
               return (
                 <OptionButton key={i} name={option.name} />
               );
             })}
           </ScrollView>
-        </View>
-        <View style={styles.popularLocations}>
-          <PopularLocations />
+          <View style={styles.popularLocations}>
+            <PopularLocations />
+          </View>
         </View>
       </View>
     </View>
@@ -46,8 +46,13 @@ const WelcomeView = () => {
 };
 
 const styles = StyleSheet.create({
+  container: {
+    maxHeight: '95%',
+    maxWidth: '80%',
+    alignItems: 'center',
+    justifyContent: 'center',
+  },  
   welcomeView: {
-    flex: 1,
     padding: 10,
     margin: 5,
     alignItems: 'center',
@@ -66,14 +71,15 @@ const styles = StyleSheet.create({
   },
   nav: {
     padding: 10,
-    alignContent: 'center',
-    justifyContent: 'flex-start',
+    alignItems: 'center',
+    justifyContent: 'center',
     borderColor: colors.buttonBackground,
     borderBottomWidth: 3,
     borderRadius: 5,
     borderLeftWidth: 2,
     borderRightWidth: 2,
     borderTopWidth: 2,
+    maxWidth: 350,
   },
   navText: {
     fontSize: 30,
@@ -112,6 +118,10 @@ const styles = StyleSheet.create({
     padding: 2,
     margin: 4,
   },
+  optionsList: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
 
 export default WelcomeView;

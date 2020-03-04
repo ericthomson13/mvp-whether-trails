@@ -2,7 +2,7 @@ export const locations =[
   {
     name: 'San Fransisco',
     latitude: 37.7749,
-    longitude: 122.4194,
+    longitude: -122.4194,
   },
   {
     name: 'Denver',
@@ -27,17 +27,12 @@ export const locations =[
   {
     name: 'Los Angeles',
     latitude: 34.0522,
-    longitude: 118.2437,
+    longitude: -118.2437,
   },
   {
     name: 'Burlington',
     latitude: 44.4759,
-    longitude: 73.2121,
-  },
-  {
-    name: 'Miami',
-    latitude: 25.7617,
-    longitude: 80.1918,
+    longitude: -73.2121,
   },
   {
     name: 'Bozeman',
@@ -70,23 +65,13 @@ export const locations =[
     longitude: -105.3745,
   },
   {
-    name: 'Granby',
-    latitude: 40.0861,
-    longitude: -105.9395,
-  },
-  {
     name: 'Taos',
     latitude: 36.4072,
     longitude: -105.5731,
   },
   {
-    name: 'Truth or Consequences',
-    latitude: 33.1284,
-    longitude: -107.2528,
-  },
-  {
     name: 'Phoenix',
     latitude: 33.4484,
-    longitude: 12.0740,
+    longitude: -112.0740,
   },
 ];
