@@ -16,6 +16,7 @@ import { colors } from '../Constants/Colors';
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
+  const current = useSelector((state) => state.location.current);
 
   const dispatch = useDispatch();
 
@@ -37,10 +38,10 @@ const Main = () => {
   };
   
   useEffect(() => {
-    if (location === null) {
+    if (current === null) {
       getLocation();
     }
-  }, [location]);
+  });
 
   let screen;
   switch(viewMode) {

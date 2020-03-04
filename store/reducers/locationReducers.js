@@ -6,6 +6,10 @@ const initialState = {
     longitude: '-105.2705'
   },
   current: null,
+  default: {
+    latitude: '40.0150',
+    longitude: '-105.2705'
+  },
 };
 
 const locationReducers = (state = initialState, { type, payload }) => {
