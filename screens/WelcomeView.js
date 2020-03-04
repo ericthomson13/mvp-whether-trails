@@ -5,6 +5,7 @@ import { useSelector, } from 'react-redux';
 
 import OptionButton from '../components/utility/OptionButton';
 // import SearchBar from '../components/utility/SearchBar';
+import PopularLocations from '../components/locations/PopularLocations';
 import { colors } from '../Constants/Colors';
 
 const WelcomeView = () => {
@@ -35,6 +36,9 @@ const WelcomeView = () => {
               );
             })}
           </ScrollView>
+        </View>
+        <View style={styles.popularLocations}>
+          <PopularLocations />
         </View>
       </View>
     </View>

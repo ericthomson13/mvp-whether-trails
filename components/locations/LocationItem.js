@@ -1,5 +1,5 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, Platform, SafeAreaView, } from 'react-native';
 import { useDispatch, } from 'react-redux';
 
 import { setLocation, } from '../../store/actions/locationActions';

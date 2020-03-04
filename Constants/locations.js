@@ -1,4 +1,4 @@
-export const location =[
+export const locations =[
   {
     name: 'San Fransisco',
     latitude: 37.7749,
