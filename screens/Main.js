@@ -45,15 +45,7 @@ const Main = () => {
   let screen;
   switch(viewMode) {
     case 'welcomeView':
-      screen = (
-        <>
-        <View style={styles.nav}>
-            <Text style={styles.navText} >Whether Trails</Text>
-            <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
-        </View>
-        <WelcomeView />
-        </>
-        );
+      screen = <WelcomeView />;
       break;
     case 'mapView':
       screen = <MapViewScreen />;
@@ -92,22 +84,6 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-  },
-  nav: {
-    padding: 10,
-    alignContent: 'center',
-    justifyContent: 'flex-start',
-  },
-  navText: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#9d3a48',
-    alignContent: 'center',
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#9d3a48',
-    fontWeight: 'bold',
   },
   errorText: {
     alignContent: 'center',

@@ -4,6 +4,8 @@ import { useDispatch } from 'react-redux';
 import { setSelectedActivity } from '../../store/actions/activityActions';
 import { setScreen, } from '../../store/actions/screenActions';
 
+import { colors, } from '../../Constants/Colors';
+
 const OptionButton = ({ name,}) => {
   const dispatch = useDispatch();
 
@@ -28,14 +30,14 @@ const styles = StyleSheet.create({
     margin: 10,
   },
   button: {
-    backgroundColor: '#126659',
+    backgroundColor: colors.buttonBackground,
     alignItems: 'center',
     justifyContent: 'center',
     borderRadius: 10,
   },
   text: {
     borderColor: '#BFD1E5',
-    color: '#FFF275',
+    color: colors.buttonTextColor,
     fontSize: 18,
     padding: 5,
     margin: 5,

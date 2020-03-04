@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import { View, Text, StyleSheet, } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { updateActivityArr } from '../store/actions/activityActions';
