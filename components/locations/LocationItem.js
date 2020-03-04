@@ -5,13 +5,13 @@ import { useDispatch, } from 'react-redux';
 import { setLocation, } from '../../store/actions/locationActions';
 import { setScreen, } from '../../store/actions/screenActions';
 
-const LocationItem = ({ name, latitude, longitude, }) => {
+const LocationItem = ({ name, latitude, longitude, setShowList }) => {
   const dispatch = useDispatch();
-
+  const location = { latitude, longitude}
   return (
     <View>
       <TouchableOpacity 
-        onPress={() => {dispatch(setLocation({ latitude, longitude })); dispatch(setScreen('welcomeView'));}}
+        onPress={() => {dispatch(setLocation(location)); setShowList(false);}}
       >
         <Text>
           {name}

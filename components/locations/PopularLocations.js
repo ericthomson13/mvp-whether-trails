@@ -10,7 +10,7 @@ const PopularLocations = () => {
 
   const list = (
     <ScrollView style={styles.locationsList} >
-      {locations.map((location, i) => <LocationItem key={i} { ...location } />)}
+      {locations.map((location, i) => <LocationItem key={i} { ...location } setShowList={setShowList} />)}
     </ScrollView>
   );
   const button = <LocationListButton setShowList={setShowList} showList={showList} />;

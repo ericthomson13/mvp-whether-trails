@@ -22,9 +22,6 @@ const WelcomeView = () => {
         <Text style={styles.latLongText} >Latitude:  {location.latitude}  Longitude:  {location.longitude}</Text>
       </View>
       <View style={styles.welcomeView}>
-        <View>
-          {/* <SearchBar /> */}
-        </View>
         <Text style={styles.welcomeTitle}>
           Select an Activity
         </Text>
@@ -90,6 +87,10 @@ const styles = StyleSheet.create({
     color: colors.titleFont,
     fontWeight: 'bold',
   },
+  popularLocations: {
+    alignItems: 'center',
+    justifyContent: 'center',
+  }
 });
 
 export default WelcomeView;

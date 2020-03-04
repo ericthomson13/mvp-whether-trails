@@ -3,8 +3,6 @@ import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
 
 import { colors, } from '../../Constants/Colors';
 
-import LocationItem from './LocationItem';
-
 const LocationListButton = ({ setShowList, showList, }) => {
   const text = showList ? 'Close List' : 'See Popular Destinations';
   return (
