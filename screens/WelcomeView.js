@@ -8,6 +8,7 @@ import SearchBar from '../components/utility/SearchBar';
 
 const WelcomeView = () => {
   const children = useSelector((state) => state.activity.activityOptions);
+  const location = useSelector((state) => state.location.location);
 
   return (
     <View>
@@ -15,9 +16,12 @@ const WelcomeView = () => {
         <Text style={styles.navText} >Whether Trails</Text>
         <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
       </View>
+      <View style={styles.currentLocation} >
+        <Text style={styles.latLongText} >Latitude: {location.latitude} Longitude: {location.longitude}</Text>
+      </View>
       <View style={styles.welcomeView}>
         <View>
-          <SearchBar />
+          {/* <SearchBar /> */}
         </View>
         <Text style={styles.welcomeTitle}>
           Select an Activity
@@ -66,6 +70,17 @@ const styles = StyleSheet.create({
     alignContent: 'center',
   },
   subtitle: {
+    fontSize: 18,
+    color: '#9d3a48',
+    fontWeight: 'bold',
+  },
+  currentLocation: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 2,
+    margin: 5,
+  },
+  latLongText: {
     fontSize: 18,
     color: '#9d3a48',
     fontWeight: 'bold',
