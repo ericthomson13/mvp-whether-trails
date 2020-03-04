@@ -1,6 +1,7 @@
-import React, { useState, useEffect } from 'react';
+import React, { useEffect, } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
 
 import { updateActivityArr } from '../store/actions/activityActions';
 import { hikingProject, mountainBikeProject, trailRunProject, } from '../Keys';
@@ -16,7 +17,7 @@ const ActivityView = () => {
   const activityArray = useSelector((state) => state.activity.activityItems);
   const location = useSelector((state) => state.location.location);
   const activity = useSelector((state) => state.activity.activity);
-  
+
   const dispatch = useDispatch();
 
   const getList = async (location) => {
@@ -41,9 +42,13 @@ const ActivityView = () => {
     };
 
     const url = `https://www.${base}.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${key}`
-    const result = await fetch(url);
-    const trails = await result.json()
-    dispatch(updateActivityArr(trails.trails));
+    const result = await axios({
+      method: 'get',
+      url,
+      responseType: 'stream',
+    });
+    
+    dispatch(updateActivityArr(result.data.trails));
   };
 
   useEffect(() => {
