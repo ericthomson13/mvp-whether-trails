@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
 import { useSelector, useDispatch } from 'react-redux';
 
@@ -16,9 +16,7 @@ const ActivityView = () => {
   const activityArray = useSelector((state) => state.activity.activityItems);
   const location = useSelector((state) => state.location.location);
   const activity = useSelector((state) => state.activity.activity);
-  const [activityCall, setActivityCall] = useState(0);
-
-
+  
   const dispatch = useDispatch();
 
   const getList = async (location) => {
@@ -48,10 +46,9 @@ const ActivityView = () => {
     dispatch(updateActivityArr(trails.trails));
   };
 
-  if (activityArray.length === 0 && activityCall === 0) {
+  useEffect(() => {
     getList(location);
-    setActivityCall(1);
-  };
+  }, [activity]);
 
   let list = null;
   if (activityArray.length > 0) {

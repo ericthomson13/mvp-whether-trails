@@ -17,7 +17,7 @@ const HomeButton = () => {
         onPress={() => {
           dispatch(setScreen('welcomeView')); 
           dispatch(setSelectedActivity(null)); 
-          dispatch(updateActivityArr(null));
+          dispatch(updateActivityArr([]));
         }}
         style={styles.button}
       >
