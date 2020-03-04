@@ -75,7 +75,6 @@ const styles = StyleSheet.create({
     borderBottomColor: colors.other,
     padding: 5,
     margin: 5,
-
   },
   dlContainer: {
     padding: 10,
@@ -90,7 +89,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     maxWidth: '75%',
-
   },
   image: {
     width: '20%',
@@ -99,7 +97,7 @@ const styles = StyleSheet.create({
   length: {
     alignItems: 'center',
     justifyContent: 'center',
-    color: colors.other,
+    color: colors.normalItem,
     fontWeight: 'bold',
   },
   location: {
@@ -109,7 +107,7 @@ const styles = StyleSheet.create({
 
   },
   locationText: {
-    color: colors.other,
+    color: colors.normalItem,
     fontWeight: 'bold',
   },
 });

@@ -4,7 +4,6 @@ import { useSelector, } from 'react-redux';
 
 
 import OptionButton from '../components/utility/OptionButton';
-// import SearchBar from '../components/utility/SearchBar';
 import PopularLocations from '../components/locations/PopularLocations';
 import { colors } from '../Constants/Colors';
 
@@ -19,7 +18,10 @@ const WelcomeView = () => {
         <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
       </View>
       <View style={styles.currentLocation} >
-        <Text style={styles.latLongText} >Latitude:  {location.latitude}  Longitude:  {location.longitude}</Text>
+        <Text style={styles.currentTitle}>Current Location</Text>
+        <View style={styles.latLongView}>
+          <Text style={styles.latLongText} >Latitude:  {location.latitude}  Longitude:  {location.longitude}</Text>
+        </View>
       </View>
       <View style={styles.welcomeView}>
         <Text style={styles.welcomeTitle}>
@@ -48,7 +50,7 @@ const styles = StyleSheet.create({
     flex: 1,
     padding: 10,
     margin: 5,
-    alignContent: 'center',
+    alignItems: 'center',
     justifyContent: 'center',
     maxHeight: '75%',
   },
@@ -58,12 +60,20 @@ const styles = StyleSheet.create({
     fontSize: 16,
     fontWeight: 'bold',
     alignContent: 'center',
-    justifyContent: 'center'
+    justifyContent: 'center',
+    borderBottomWidth: 2,
+    borderBottomColor: colors.titleFont,
   },
   nav: {
     padding: 10,
     alignContent: 'center',
     justifyContent: 'flex-start',
+    borderColor: colors.buttonBackground,
+    borderBottomWidth: 3,
+    borderRadius: 5,
+    borderLeftWidth: 2,
+    borderRightWidth: 2,
+    borderTopWidth: 2,
   },
   navText: {
     fontSize: 30,
@@ -79,8 +89,8 @@ const styles = StyleSheet.create({
   currentLocation: {
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 2,
-    margin: 5,
+    padding: 3,
+    margin: 3,
   },
   latLongText: {
     fontSize: 18,
@@ -90,7 +100,18 @@ const styles = StyleSheet.create({
   popularLocations: {
     alignItems: 'center',
     justifyContent: 'center',
-  }
+  },
+  currentTitle: {
+    color: colors.titleFont,
+    fontSize: 20,
+    fontWeight: 'bold',
+    borderBottomColor: colors.titleFont,
+    borderBottomWidth: 2,
+  },
+  latLongView: {
+    padding: 2,
+    margin: 4,
+  },
 });
 
 export default WelcomeView;

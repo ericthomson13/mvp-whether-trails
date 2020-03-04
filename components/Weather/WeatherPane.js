@@ -23,7 +23,7 @@ const WeatherPane = ({ main, weather, wind, index, date, view, setView, setWeekd
           <Text>{date}</Text>
         </View>
         {weatherIcon}
-        <View style={styles.temp}>
+        <View>
           <Text style={styles.temp}>High {Math.floor(temp_max)} F</Text>
           <Text style={styles.temp}>Low {Math.floor(temp_min)} F</Text>
         </View>
@@ -43,10 +43,7 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   temp: {
-
-  },
-  temp: {
-    color: colors.normalItem
+    color: colors.normalItem,
   },
   windSpeed: {
     padding: 2,

@@ -1,9 +1,8 @@
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, Platform, SafeAreaView, } from 'react-native';
+import { View, StyleSheet, Text, TouchableOpacity, } from 'react-native';
 import { useDispatch, } from 'react-redux';
 
 import { setLocation, } from '../../store/actions/locationActions';
-import { setScreen, } from '../../store/actions/screenActions';
 
 const LocationItem = ({ name, latitude, longitude, setShowList }) => {
   const dispatch = useDispatch();
