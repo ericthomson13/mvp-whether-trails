@@ -1,27 +1,26 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native';
+import { StyleSheet, Text, View, } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { useSelector, useDispatch } from 'react-redux';
-import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { setLocation } from '../store/actions/locationActions';
-import { setScreen } from '../store/actions/screenActions';
+import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
 
 import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
+import { colors } from '../Constants/Colors';
 
 // TODO: rework setLocation into async action in locationActions
-// TODO: rework to use native screens like router to work through screens rather than switch statement
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
-  const selectedActivity = useSelector((state) => state.activity.activity);
+  const current = useSelector((state) => state.location.current);
 
   const dispatch = useDispatch();
 
+  // REVIEW
   const getLocation = async () => {
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -31,6 +30,7 @@ const Main = () => {
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
         dispatch(setLocation(location));
+        dispatch(setCurrentLocation(location));
       }
     } catch {
       console.log('error in getLocation ');
@@ -38,67 +38,37 @@ const Main = () => {
   };
   
   useEffect(() => {
-    if (location === null) {
+    if (current === null) {
       getLocation();
     }
-  })
+  });
 
-  if (selectedActivity !== null && viewMode === 'welcomeView') {
-    dispatch(setScreen('activityView'));
-  };
-
-  const map = (
-    <MapViewScreen />
-  );
-  const activity = (
-    <ActivityView location={location} />
-  );
-  const welcome = (
-    <>
-    <View style={styles.nav}>
-        <Text style={styles.navText} >Whether Trails</Text>
-        <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
-    </View>
-    <WelcomeView />
-    </>
-  );
-  const settings = (
-    <SettingsView />
-  )
-  const error = (
-    <View style={styles.errorView}>
-      <Text style={styles.errorText}>Sorry an Error Has Occurred</Text>
-      <Text style={styles.errorText}>Please come back later</Text>
-    </View>
-  );
-
-  let screen = error;
-
+  let screen;
   switch(viewMode) {
     case 'welcomeView':
-      screen = welcome;
+      screen = <WelcomeView />;
       break;
     case 'mapView':
-      screen = map;
+      screen = <MapViewScreen />;
       break;
     case 'activityView':
-      screen = activity;
+      screen = <ActivityView location={location} />;
       break;
     case 'settingsView':
-      screen = settings;
+      screen = <SettingsView />;
       break;
     default:
-      screen = error;
+      screen = (
+        <View style={styles.errorView}>
+          <Text style={styles.errorText}>Sorry an Error Has Occurred</Text>
+          <Text style={styles.errorText}>Please come back later</Text>
+        </View>
+      );
   };
 
   return (
     <View style={styles.container}>
       {screen}
-      <View style={styles.settting} >
-        <TouchableOpacity onPress={() => dispatch(setScreen('settingsView'))} >
-          <MaterialCommunityIcons name='settings' size={12} color='black'/>
-        </TouchableOpacity>
-      </View>
     </View>
   );
 };
@@ -106,26 +76,10 @@ const Main = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    backgroundColor: '#d3cfb7',
+    backgroundColor: colors.background,
     alignItems: 'center',
     justifyContent: 'center',
     height: '100%',
-  },
-  nav: {
-    padding: 10,
-    alignContent: 'center',
-    justifyContent: 'flex-start',
-  },
-  navText: {
-    fontSize: 30,
-    fontWeight: 'bold',
-    color: '#9d3a48',
-    alignContent: 'center',
-  },
-  subtitle: {
-    fontSize: 18,
-    color: '#9d3a48',
-    fontWeight: 'bold',
   },
   errorText: {
     alignContent: 'center',
@@ -137,10 +91,6 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     maxWidth: '80%',
-  },
-  setting: {
-    padding: 10,
-    margin: 10,
   },
 });
 

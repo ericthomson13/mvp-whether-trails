@@ -1,37 +1,15 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Platform } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Button, } from 'react-native';
 import { Linking } from 'expo';
-import { useDispatch } from 'react-redux';
-
-import { setMapItem } from '../../store/actions/activityActions';
-import { setScreen } from '../../store/actions/screenActions';
 
 import WeatherForecast from '../weather/WeatherForecast';
-
-
-// TODO: update to show image
-// TODO: keep expanded items expanded when return from mapView
+import DifficultyIcon from './DifficultyIcon';
+import MapViewButton from '../maps/mapViewButton';
+import { colors } from '../../Constants/Colors';
 
 const ExpandedItem = ({ 
-  index, name, summary, difficulty, imgSqSmall, stars, location, url, length, setWeatherDisplay, weather
+  name, summary, difficulty, imgSmallMed, location, url, length, setWeatherDisplay, weather, latitude, longitude,
 }) => {
-  const dispatch = useDispatch();
-  
-  // not working to change based on OS to have web be null for button
-  let mapViewButton = null;
-  if (Platform.OS === 'ios' || Platform.OS === 'android') {
-    mapViewButton = (
-      <View style={styles.goToMap} >
-        <TouchableOpacity 
-          onPress={() => { dispatch(setMapItem(index)); dispatch(setScreen('mapView'));}}
-        >
-          <Text>
-            GO TO MAP
-          </Text>
-        </TouchableOpacity>
-      </View>
-    );
-  }
 
   return (
     <View 
@@ -45,10 +23,13 @@ const ExpandedItem = ({
             <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
           </TouchableOpacity>
           <View style={styles.dlContainer} >
-            <Text style={styles.difficulty} >{difficulty}</Text>
+            <DifficultyIcon difficulty={difficulty} />
             <Text style={styles.length} >{length} mi</Text>
           </View>
-          {mapViewButton}
+          <View>
+            <Image source={{uri: imgSmallMed}} style={{width: 200, height: 200}}/>
+          </View>
+          <MapViewButton latitude={latitude} longitude={longitude} />
        </View>
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
@@ -64,12 +45,12 @@ const ExpandedItem = ({
 
 const styles = StyleSheet.create({
   card: {
-    // flex: 1,
-    backgroundColor: '#126659',
+    backgroundColor: colors.buttonBackground,
     padding: 10,
     margin: 5,
     borderRadius: 10,
     justifyContent: 'space-evenly',
+    maxHeight: '100%',
   },
   name: {
     alignContent: 'center',
@@ -91,10 +72,9 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
     width: '100%',
     borderBottomWidth: 2,
-    borderBottomColor: '#542344',
+    borderBottomColor: colors.other,
     padding: 5,
     margin: 5,
-
   },
   dlContainer: {
     padding: 10,
@@ -109,7 +89,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     maxWidth: '75%',
-
   },
   image: {
     width: '20%',
@@ -118,7 +97,7 @@ const styles = StyleSheet.create({
   length: {
     alignItems: 'center',
     justifyContent: 'center',
-    color: '#BFD1E5',
+    color: colors.normalItem,
     fontWeight: 'bold',
   },
   location: {
@@ -128,11 +107,8 @@ const styles = StyleSheet.create({
 
   },
   locationText: {
-    color: '#BFD1E5',
+    color: colors.normalItem,
     fontWeight: 'bold',
-  },
-  goToMap: {
-
   },
 });
 

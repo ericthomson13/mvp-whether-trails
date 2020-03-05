@@ -3,13 +3,13 @@ import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
 
 import WeatherIcon from './Icons/WeatherIcon';
 import WindDirection from './Icons/WindDirection';
+import { colors } from '../../Constants/Colors';
 
 const WeatherPane = ({ main, weather, wind, index, date, view, setView, setWeekday }) => {
   const { temp_min, temp_max } = main;
   
   const weatherIcon = WeatherIcon(weather[0]);
   const windDirection = WindDirection(wind.deg);
-  const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
 
   return (
     <View style={styles.pane} >
@@ -23,9 +23,9 @@ const WeatherPane = ({ main, weather, wind, index, date, view, setView, setWeekd
           <Text>{date}</Text>
         </View>
         {weatherIcon}
-        <View style={styles.temp}>
-          <Text style={styles.maxTemp}>High {Math.floor(temp_max)} F</Text>
-          <Text style={styles.minTemp}>Low {Math.floor(temp_min)} F</Text>
+        <View>
+          <Text style={styles.temp}>High {Math.floor(temp_max)} F</Text>
+          <Text style={styles.temp}>Low {Math.floor(temp_min)} F</Text>
         </View>
         <View style={styles.windSpec}>
           <Text style={styles.windSpeed}>{Math.floor(wind.speed)} mph</Text>
@@ -43,20 +43,11 @@ const styles = StyleSheet.create({
     justifyContent: 'center',
   },
   temp: {
-
-  },
-  maxTemp: {
-    color: '#BFD1E5'
-  },
-  minTemp: {
-    color: '#BFD1E5'
-  },
-  weatherDescription: {
-
+    color: colors.normalItem,
   },
   windSpeed: {
     padding: 2,
-    color: '#BFD1E5',
+    color: colors.normalItem,
   },
   windSpec: {
     flexDirection: 'row',

@@ -5,6 +5,8 @@ const initialState = {
   activityItems: [],
   activityOptions: [
     {name: 'hiking'},
+    {name: 'mountain biking'},
+    {name: 'trail running'},
   ],
   mapView: null,
 };
