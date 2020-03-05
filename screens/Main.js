@@ -9,9 +9,9 @@ import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
-import { colors } from '../Constants/Colors';
+import SettingsButton from '../components/utility/SettingsButton';
 
-// TODO: rework setLocation into async action in locationActions
+import { colors } from '../Constants/Colors';
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
@@ -26,7 +26,6 @@ const Main = () => {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
-        console.log('error, please restart and allow location permissions');
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
         dispatch(setLocation(location));
@@ -38,10 +37,9 @@ const Main = () => {
   };
   
   useEffect(() => {
-    if (current === null) {
       getLocation();
-    }
-  });
+  }, [current]);
+
 
   let screen;
   switch(viewMode) {
@@ -69,6 +67,7 @@ const Main = () => {
   return (
     <View style={styles.container}>
       {screen}
+      <SettingsButton />
     </View>
   );
 };
