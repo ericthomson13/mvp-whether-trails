@@ -12,13 +12,14 @@ import SettingsView from './SettingsView';
 import SettingsButton from '../components/utility/SettingsButton';
 
 import { colors } from '../Constants/Colors';
+import { setAllSettings, } from '../store/actions/settingsActions';
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
   const current = useSelector((state) => state.location.current);
-  const settings = useSelector((state) => state.settings);
-  
+  // const units = useSelector((state) => state.settings.units);
+
   const dispatch = useDispatch();
 
   // REVIEW
@@ -37,25 +38,25 @@ const Main = () => {
     }
   };
   
-  // REVIEW
-  const _retrieveSettings = async () => {
-    const units = await AsyncStorage.getItem('@whether_trails_units');
-    const trailHeadRange = await AsyncStorage.getItem('@whether_trails_trailhead_range');
-    const numTrails = await AsyncStorage.getItem('@whether_trails_num_trails');
-    const payload = {
-      units,
-      trailHeadRange,
-      numTrails,
-    }
-    dispatch(setAllSettings(payload));
-  };
+  // // REVIEW
+  // const _retrieveSettings = async () => {
+  //   const units = await AsyncStorage.getItem('@whether_trails_units');
+  //   const trailHeadRange = await AsyncStorage.getItem('@whether_trails_trailhead_range');
+  //   const numTrails = await AsyncStorage.getItem('@whether_trails_num_trails');
+  //   const payload = {
+  //     units,
+  //     trailHeadRange,
+  //     numTrails,
+  //   }
+  //   dispatch(setAllSettings(payload));
+  // };
   
   useEffect(() => {
       getLocation();
   }, [current]);
-  useEffect(() => {
-    _retrieveSettings();
-  }, [settings]);
+  // useEffect(() => {
+  //   _retrieveSettings();
+  // }, [units]);
 
   let screen;
   switch(viewMode) {
