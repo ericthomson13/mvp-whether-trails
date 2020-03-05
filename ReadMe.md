@@ -3,6 +3,8 @@
 Whether Trails is a React-Native Application designed to help you decide whether or not to go to a trail based on the weather.
 This was built over the course of a 6 day period and will remain as is.
 
+![Web Screenshot](/assets/WebWelcome.png)
+![WeatherView](/assets/ExpandedCard.png)
 ## Installation
 
 If you don't have the [Expo CLI](https://expo.io/learn) use the package manager to install it
@@ -33,3 +35,4 @@ For iOS on Mac, use XCode emulator built in to [XCode](https://developer.apple.c
 
 For Android download and use the AVD through [Android Studio](https://developer.android.com/studio)
 
+Once installed use MetroBundler to run on iOS or open Android Studio and run an AVD and then click run on android.
