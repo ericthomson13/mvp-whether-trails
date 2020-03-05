@@ -17,7 +17,7 @@ npm install expo-cli --global
 npm install
 ```
 
-Use the Keys.example.js to set up the necessary API keys.
+Use the example.js to set up the necessary API keys.
 
 Open and run:
 ```bash
