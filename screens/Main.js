@@ -8,7 +8,6 @@ import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
-import SettingsButton from '../components/utility/SettingsButton';
 
 import { colors } from '../Constants/Colors';
 import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
@@ -66,7 +65,6 @@ const Main = () => {
   return (
     <View style={styles.container}>
       {screen}
-      <SettingsButton />
     </View>
   );
 };
