@@ -1,9 +1,8 @@
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, AsyncStorage, } from 'react-native';
+import { StyleSheet, Text, View, } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
 
 import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
@@ -12,13 +11,12 @@ import SettingsView from './SettingsView';
 import SettingsButton from '../components/utility/SettingsButton';
 
 import { colors } from '../Constants/Colors';
-import { setAllSettings, } from '../store/actions/settingsActions';
+import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
   const current = useSelector((state) => state.location.current);
-  // const units = useSelector((state) => state.settings.units);
 
   const dispatch = useDispatch();
 
@@ -38,25 +36,9 @@ const Main = () => {
     }
   };
   
-  // // REVIEW
-  // const _retrieveSettings = async () => {
-  //   const units = await AsyncStorage.getItem('@whether_trails_units');
-  //   const trailHeadRange = await AsyncStorage.getItem('@whether_trails_trailhead_range');
-  //   const numTrails = await AsyncStorage.getItem('@whether_trails_num_trails');
-  //   const payload = {
-  //     units,
-  //     trailHeadRange,
-  //     numTrails,
-  //   }
-  //   dispatch(setAllSettings(payload));
-  // };
-  
   useEffect(() => {
       getLocation();
   }, [current]);
-  // useEffect(() => {
-  //   _retrieveSettings();
-  // }, [units]);
 
   let screen;
   switch(viewMode) {
