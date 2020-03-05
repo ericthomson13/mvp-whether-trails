@@ -13,13 +13,13 @@ If you don't have the [Expo CLI](https://expo.io/learn) use the package manager 
 npm install expo-cli --global
 ```
 
+Use the example.js to set up the necessary API keys.
+
+Open and run:
 ```bash
 npm install
 ```
 
-Use the example.js to set up the necessary API keys.
-
-Open and run:
 ```bash
 expo start
 ```
