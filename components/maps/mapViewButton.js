@@ -1,14 +1,16 @@
 import React from 'react';
 import { View, TouchableOpacity, Text, StyleSheet, Platform } from 'react-native';
-import openMap from 'react-native-open-maps';
 import { Linking } from 'expo';
 
 import { colors } from '../../Constants/Colors';
+import { useSelector } from 'react-redux';
 
 const MapViewButton = ({ latitude, longitude }) => {
+  const location = useSelector((state) => state.location.location);
+
   const mapNav = Platform.select({
-    ios: () => openMap({ latitude, longitude, navigate_mode: 'navigate' }),
-    android: () => openMap({ latitude, longitude, navigate_mode: 'navigate' }),
+    ios: () => Linking.openURL(`maps://app?saddr=${location.latitude}+${location.longitude}&daddr=${latitude}+${longitude}`),
+    android: () => Linking.openURL(`google.navigation:q=${latitude}+${longitude}`),
     web: () => Linking.openURL(`https://www.google.com/maps?q=${latitude},${longitude}`),
   });
 

@@ -25,6 +25,7 @@ const Main = () => {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
+        dispatch(setLocation(current))
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
         dispatch(setLocation(location));
@@ -36,8 +37,10 @@ const Main = () => {
   };
   
   useEffect(() => {
+    if (location === null){
       getLocation();
-  }, [current]);
+    }
+  }, [location]);
 
   let screen;
   switch(viewMode) {

@@ -1,7 +1,7 @@
 # Whether Trails 
 
 Whether Trails is a React-Native Application designed to help you decide whether or not to go to a trail based on the weather.
-This was built over the course of a 6 day period and will remain as is.
+This was built over the course of a week and will remain as is.
 
 ![Web Screenshot](/assets/WebWelcome.png)
 ![WeatherView](/assets/ExpandedCard.png)
