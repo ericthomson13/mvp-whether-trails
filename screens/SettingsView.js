@@ -5,7 +5,7 @@ import DropdownMenu from 'react-native-dropdown-menu';
 
 import { setUnits, setTrailheadRange, setNumTrails, } from '../store/actions/settingsActions';
 
-import HomeButton from '../components/utility/HomeButton';
+// import HomeButton from '../components/utility/HomeButton';
 
 const SettingsView = () => {
   const dispatch = useDispatch();
@@ -38,14 +38,14 @@ const SettingsView = () => {
             <Text style={styles.title}>Trailhead Distance</Text>
             <DropdownMenu 
               data={trailheadRange}
-              handler={(selection, row) => { _storeSettings('trailheadRange', trailheadRange[selection][row]); dispatch(setTrailheadRange(trailheadRange[selection][row]))}}
+              handler={(selection, row) => { _storeSettings('trailhead_range', trailheadRange[selection][row]); dispatch(setTrailheadRange(trailheadRange[selection][row]))}}
             />
           </View>
           <View style={styles.dropView} >
             <Text style={styles.title}>Max Number Trails</Text>
             <DropdownMenu 
               data={numTrails}
-              handler={(selection, row) => { _storeSettings('numTrails', numTrails[selection][row]); dispatch(setNumTrails(numTrails[selection][row]))}}
+              handler={(selection, row) => { _storeSettings('num_trails', numTrails[selection][row]); dispatch(setNumTrails(numTrails[selection][row]))}}
             />
           </View>
         </View>
