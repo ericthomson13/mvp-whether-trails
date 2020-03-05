@@ -26,23 +26,23 @@ const SettingsView = () => {
         <Text style={styles.heading} >
           Settings:
         </Text>
-        <View>
-          <View style={styles.unitsView}>
-            <Text style={styles.unitsTitle}>Units</Text>
+        <View style={styles.dropdownList}>
+          <View style={styles.dropView}>
+            <Text style={styles.title}>Units</Text>
             <DropdownMenu 
               data={units} 
               handler={(selection, row) => { _storeSettings('units', units[selection][row]); dispatch(setUnits(units[selection][row]))}}
             />
           </View>
-          <View style={styles.trailheadRangeView}>
-            <Text style={styles.trailheadRangeTitle}>Trailhead Distance</Text>
+          <View style={styles.dropView}>
+            <Text style={styles.title}>Trailhead Distance</Text>
             <DropdownMenu 
               data={trailheadRange}
               handler={(selection, row) => { _storeSettings('trailheadRange', trailheadRange[selection][row]); dispatch(setTrailheadRange(trailheadRange[selection][row]))}}
             />
           </View>
-          <View style={styles.numTrails} >
-            <Text style={styles.numTrailsTitle}>Max Number Trails</Text>
+          <View style={styles.dropView} >
+            <Text style={styles.title}>Max Number Trails</Text>
             <DropdownMenu 
               data={numTrails}
               handler={(selection, row) => { _storeSettings('numTrails', numTrails[selection][row]); dispatch(setNumTrails(numTrails[selection][row]))}}
@@ -61,7 +61,15 @@ const styles = StyleSheet.create({
   heading: {
 
   },
-
+  dropView: {
+    padding: 5,
+    margin: 5,
+  },
+  dropdownList: {
+    flexDirection: 'row',
+    padding: 5,
+    margin: 5,
+  },
 });
 
 export default SettingsView;
