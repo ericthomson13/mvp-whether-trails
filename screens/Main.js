@@ -3,15 +3,14 @@ import { StyleSheet, Text, View, } from 'react-native';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 import { useSelector, useDispatch } from 'react-redux';
-import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
 
 import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
-import { colors } from '../Constants/Colors';
 
-// TODO: rework setLocation into async action in locationActions
+import { colors } from '../Constants/Colors';
+import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
@@ -26,7 +25,6 @@ const Main = () => {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
-        console.log('error, please restart and allow location permissions');
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
         dispatch(setLocation(location));
@@ -38,10 +36,8 @@ const Main = () => {
   };
   
   useEffect(() => {
-    if (current === null) {
       getLocation();
-    }
-  });
+  }, [current]);
 
   let screen;
   switch(viewMode) {

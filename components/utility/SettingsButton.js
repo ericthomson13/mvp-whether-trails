@@ -1,9 +1,13 @@
 import React from 'react';
 import { View, TouchableOpacity, StyleSheet, } from 'react-native';
+import { useDispatch, } from 'react-redux';
 
 import { MaterialCommunityIcons, } from '@expo/vector-icons'; 
- 
+
+import { setScreen, } from '../../store/actions/screenActions';
+
 const SettingsButton = () => {
+  const dispatch = useDispatch();
 
   return (
     <View style={styles.settting} >
