@@ -1,7 +1,9 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, } from 'react-native';
 
-import { useSelector, } from 'react-redux';
+import { useSelector, useDispatch, } from 'react-redux';
+import * as Permissions from 'expo-permissions';
+import * as Location from 'expo-location';
 
 import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
@@ -9,12 +11,30 @@ import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
 
 import { colors } from '../Constants/Colors';
-import { getLocation, } from '../Constants/APICalls';
+import { setLocation, setCurrentLocation, } from '../store/actions/locationActions';
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
+  const dispatch = useDispatch();
+
+  const getLocation = async () => {
   
+    try {
+      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      if (status !== 'granted') {
+        Location.requestPermissionsAsync();
+        dispatch(setLocation(location));
+      } else {
+        let location = await Location.getCurrentPositionAsync({timeout: 10000});
+        dispatch(setLocation(location));
+        dispatch(setCurrentLocation(location));
+      }
+    } catch {
+      console.log('error in getLocation ');
+    }
+  };
+
   useEffect(() => {
     getLocation();
   }, []);
