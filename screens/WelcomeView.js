@@ -1,16 +1,20 @@
 import React from 'react';
 import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { useSelector, } from 'react-redux';
+import { useSelector, useDispatch, } from 'react-redux';
 
+import TextButton from '../components/utility/TextButton';
 
-import OptionButton from '../components/utility/OptionButton';
 import PopularLocations from '../components/locations/PopularLocations';
 import { colors } from '../Constants/Colors';
+import { setSelectedActivity, } from '../store/actions/activityActions';
+import { setScreen, } from '../store/actions/screenActions';
 
 const WelcomeView = () => {
   const children = useSelector((state) => state.activity.activityOptions);
   const location = useSelector((state) => state.location.location);
-
+  const dispatch = useDispatch();
+  const activitySelector = (name) => {dispatch(setSelectedActivity(name)); dispatch(setScreen('activityView'));};
+  
   return (
     <View style={styles.container} >
       <View style={styles.nav}>
@@ -31,7 +35,13 @@ const WelcomeView = () => {
           <ScrollView  >
             {children.map((option, i) => {
               return (
-                <OptionButton key={i} name={option.name} />
+                <TextButton 
+                  press={() => activitySelector(option.name)} 
+                  name={option.name} 
+                  style={[null, null, null]} 
+                  key={i} 
+                  style={buttonStyle}
+                />
               );
             })}
           </ScrollView>
@@ -121,7 +131,30 @@ const styles = StyleSheet.create({
   optionsList: {
     alignItems: 'center',
     justifyContent: 'center',
+    padding: 5,
   }
 });
 
+const buttonStyle = StyleSheet.create({
+    container: {
+      alignContent: 'center',
+      justifyContent: 'center',
+      padding: 5,
+      margin: 5,
+      maxWidth: 200,
+    },
+    button: {
+      backgroundColor: colors.buttonBackground,
+      alignItems: 'center',
+      justifyContent: 'center',
+      borderRadius: 10,
+    },
+    text: {
+      borderColor: colors.normalItem,
+      color: colors.buttonTextColor,
+      fontSize: 18,
+      padding: 5,
+      margin: 5,
+    },
+})
 export default WelcomeView;

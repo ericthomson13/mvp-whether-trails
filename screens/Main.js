@@ -1,8 +1,9 @@
 import React, { useEffect } from 'react';
 import { StyleSheet, Text, View, } from 'react-native';
+
+import { useSelector, useDispatch, } from 'react-redux';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
-import { useSelector, useDispatch } from 'react-redux';
 
 import WelcomeView from './WelcomeView';
 import MapViewScreen from './MapViewScreen';
@@ -10,21 +11,19 @@ import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
 
 import { colors } from '../Constants/Colors';
-import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
+import { setLocation, setCurrentLocation, } from '../store/actions/locationActions';
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
   const location = useSelector((state) => state.location.location);
-  const current = useSelector((state) => state.location.current);
-
   const dispatch = useDispatch();
 
-  // REVIEW
   const getLocation = async () => {
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
+        dispatch(setLocation(location));
       } else {
         let location = await Location.getCurrentPositionAsync({timeout: 10000});
         dispatch(setLocation(location));
@@ -34,10 +33,10 @@ const Main = () => {
       console.log('error in getLocation ');
     }
   };
-  
+
   useEffect(() => {
-      getLocation();
-  }, [current]);
+    getLocation();
+  }, []);
 
   let screen;
   switch(viewMode) {

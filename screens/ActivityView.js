@@ -1,15 +1,16 @@
 import React, { useEffect, } from 'react';
 import { View, Text, StyleSheet, } from 'react-native';
-import { useSelector, useDispatch } from 'react-redux';
-import axios from 'axios';
-
-import { updateActivityArr } from '../store/actions/activityActions';
+import { useSelector, useDispatch, } from 'react-redux';
 import { hikingProject, mountainBikeProject, trailRunProject, } from '../Keys';
+import { updateActivityArr, } from '../store/actions/activityActions';
+import axios from 'axios';
 
 import ActivityList from '../components/activity/ActivityList';
 import HomeButton from '../components/utility/HomeButton';
 
-// TODO: update getList to be in reducer
+// TODO: update getList to be in apiCalls
+  // attempted but issues with unresolved promises and object returning not expected array
+  // create custom hook so can have dispatches and selectors inside
 
 const ActivityView = () => {
   const activityArray = useSelector((state) => state.activity.activityItems);
@@ -18,7 +19,7 @@ const ActivityView = () => {
 
   const dispatch = useDispatch();
 
-  const getList = async (location) => {
+  const getList = async () => {
     let key, base;
     switch(activity) {
       case 'hiking':
@@ -45,12 +46,11 @@ const ActivityView = () => {
       url,
       responseType: 'stream',
     });
-
     dispatch(updateActivityArr(result.data.trails));
   };
 
   useEffect(() => {
-    getList(location);
+    getList();
   }, [activity]);
 
   let list = null;
@@ -66,7 +66,6 @@ const ActivityView = () => {
       </View>
       <HomeButton />
     </View>
-    
   )
 };
 
