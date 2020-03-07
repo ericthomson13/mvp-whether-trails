@@ -18,7 +18,7 @@ const Main = () => {
   const location = useSelector((state) => state.location.location);
   const dispatch = useDispatch();
 
-  const getLocation = async () => {
+  const useGetLocation = async () => {
   
     try {
       let { status } = await Permissions.askAsync(Permissions.LOCATION);
@@ -36,7 +36,7 @@ const Main = () => {
   };
 
   useEffect(() => {
-    getLocation();
+    useGetLocation();
   }, []);
 
   let screen;
