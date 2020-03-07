@@ -1,7 +1,8 @@
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Button, } from 'react-native';
+import { View, Text, TouchableOpacity, StyleSheet, Image, Platform, } from 'react-native';
 import { Linking } from 'expo';
 
+import TextButton from '../utility/TextButton';
 import WeatherForecast from '../weather/WeatherForecast';
 import DifficultyIcon from './DifficultyIcon';
 import MapViewButton from '../maps/mapViewButton';
@@ -10,6 +11,11 @@ import { colors } from '../../Constants/Colors';
 const ExpandedItem = ({ 
   name, summary, difficulty, imgSmallMed, location, url, length, setWeatherDisplay, weather, latitude, longitude,
 }) => {
+  const mapNav = Platform.select({
+    ios: () => Linking.openURL(`maps://app?saddr=${location.latitude}+${location.longitude}&daddr=${latitude}+${longitude}`),
+    android: () => Linking.openURL(`google.navigation:q=${latitude}+${longitude}`),
+    web: () => Linking.openURL(`https://www.google.com/maps?q=${latitude},${longitude}`),
+  });
 
   return (
     <View 
@@ -29,7 +35,8 @@ const ExpandedItem = ({
           <View>
             <Image source={{uri: imgSmallMed}} style={{width: 200, height: 200}}/>
           </View>
-          <MapViewButton latitude={latitude} longitude={longitude} />
+          {/* <MapViewButton latitude={latitude} longitude={longitude} /> */}
+          <TextButton press={mapNav} name="Get Directions" style={buttonStyle} />
        </View>
         <View style={styles.location}>
           <Text style={styles.locationText} >{location}</Text>
@@ -111,5 +118,17 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
   },
 });
+
+const buttonStyle = StyleSheet.create({
+  container: {
+    // backgroundColor: colors.buttonBackground,
+  },
+  button: {
+    backgroundColor: colors.other,
+  },
+  text: {
+    color: colors.titleFont,
+  }
+})
 
 export default ExpandedItem;
