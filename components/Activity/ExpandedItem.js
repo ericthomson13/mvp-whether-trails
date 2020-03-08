@@ -5,7 +5,6 @@ import { Linking } from 'expo';
 import TextButton from '../utility/TextButton';
 import WeatherForecast from '../weather/WeatherForecast';
 import DifficultyIcon from './DifficultyIcon';
-import MapViewButton from '../maps/mapViewButton';
 import { colors } from '../../Constants/Colors';
 
 const ExpandedItem = ({ 
@@ -120,14 +119,14 @@ const styles = StyleSheet.create({
 });
 
 const buttonStyle = StyleSheet.create({
-  container: {
-    // backgroundColor: colors.buttonBackground,
-  },
+  container: {},
   button: {
     backgroundColor: colors.other,
+    padding: 5,
+    borderRadius: 10,
   },
   text: {
-    color: colors.titleFont,
+    color: colors.buttonTextColor,
   }
 })
 
