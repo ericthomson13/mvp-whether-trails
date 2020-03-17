@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  View,
-  StyleSheet,
-  Text,
-  TouchableOpacity,
+  View, StyleSheet, Text, TouchableOpacity,
 } from 'react-native';
 import { useDispatch } from 'react-redux';
 
 import { setLocation } from '../../store/actions/locationActions';
-import { colors } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
 const LocationItem = ({
   name,

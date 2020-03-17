@@ -1,10 +1,11 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 const DifficultyIcon = ({ difficulty }) => {
-  let type, color;
-  switch(difficulty) {
+  let type; let color;
+  switch (difficulty) {
     case 'green':
       type = 'circle';
       color = 'green';
@@ -23,10 +24,11 @@ const DifficultyIcon = ({ difficulty }) => {
       break;
     default:
       type = 'minus';
-  };
+  }
+
   return (
     <MaterialCommunityIcons name={type} size={22} color={color} />
-  )
+  );
 };
 
 export default DifficultyIcon;

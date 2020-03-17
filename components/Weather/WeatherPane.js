@@ -1,19 +1,29 @@
+/* eslint-disable camelcase */
+/* eslint-disable no-unused-expressions */
+/* eslint-disable react/prop-types */
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
-import { View, Text, StyleSheet, TouchableOpacity, } from 'react-native';
+import {
+  View,
+  Text,
+  StyleSheet,
+  TouchableOpacity,
+} from 'react-native';
 
 import WeatherIcon from './Icons/WeatherIcon';
 import WindDirection from './Icons/WindDirection';
-import { colors } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
-const WeatherPane = ({ main, weather, wind, index, date, view, setView, setWeekday }) => {
+const WeatherPane = ({
+  main, weather, wind, index, date, view, setView, setWeekday,
+}) => {
   const { temp_min, temp_max } = main;
-  
   const weatherIcon = WeatherIcon(weather[0]);
   const windDirection = WindDirection(wind.deg);
 
   return (
-    <View style={styles.pane} >
-      <TouchableOpacity 
+    <View style={styles.pane}>
+      <TouchableOpacity
         onPress={() => {
           view ? setWeekday(index) : null;
           setView(!view);
@@ -24,11 +34,17 @@ const WeatherPane = ({ main, weather, wind, index, date, view, setView, setWeekd
         </View>
         {weatherIcon}
         <View>
-          <Text style={styles.temp}>High {Math.floor(temp_max)} F</Text>
-          <Text style={styles.temp}>Low {Math.floor(temp_min)} F</Text>
+          <Text style={styles.temp}>
+            High {Math.floor(temp_max)} F
+          </Text>
+          <Text style={styles.temp}>
+            Low {Math.floor(temp_min)} F
+          </Text>
         </View>
         <View style={styles.windSpec}>
-          <Text style={styles.windSpeed}>{Math.floor(wind.speed)} mph</Text>
+          <Text style={styles.windSpeed}>
+            {Math.floor(wind.speed)} mph
+          </Text>
           {windDirection}
         </View>
       </TouchableOpacity>
@@ -53,8 +69,7 @@ const styles = StyleSheet.create({
     flexDirection: 'row',
     alignContent: 'center',
     justifyContent: 'center',
-
-  }
+  },
 });
 
 export default WeatherPane;

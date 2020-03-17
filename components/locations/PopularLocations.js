@@ -1,14 +1,13 @@
+/* eslint-disable max-len */
+/* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
 import React, { useState } from 'react';
 import {
-  View,
-  ScrollView,
-  StyleSheet,
-  Text,
+  View, ScrollView, StyleSheet, Text,
 } from 'react-native';
 
-import { locations } from '../../Constants/locations';
-import { colors } from '../../Constants/Colors';
+import locations from '../../Constants/locations';
+import colors from '../../Constants/Colors';
 
 import CurrentLocation from './CurrentLocation';
 import LocationItem from './LocationItem';

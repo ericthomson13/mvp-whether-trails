@@ -1,14 +1,28 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet, Image, Platform, } from 'react-native';
+import {
+  View, Text, TouchableOpacity, StyleSheet, Image, Platform,
+} from 'react-native';
 import { Linking } from 'expo';
 
 import TextButton from '../utility/TextButton';
 import WeatherForecast from '../weather/WeatherForecast';
 import DifficultyIcon from './DifficultyIcon';
-import { colors } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
-const ExpandedItem = ({ 
-  name, summary, difficulty, imgSmallMed, location, url, length, setWeatherDisplay, weather, latitude, longitude,
+const ExpandedItem = ({
+  name,
+  summary,
+  difficulty,
+  imgSmallMed,
+  location,
+  url,
+  length,
+  setWeatherDisplay,
+  weather,
+  latitude,
+  longitude,
 }) => {
   const mapNav = Platform.select({
     ios: () => Linking.openURL(`maps://app?saddr=${location.latitude}+${location.longitude}&daddr=${latitude}+${longitude}`),
@@ -17,36 +31,38 @@ const ExpandedItem = ({
   });
 
   return (
-    <View 
+    <View
       style={styles.card}
     >
-      <TouchableOpacity 
+      <TouchableOpacity
         onPress={() => setWeatherDisplay(false)}
       >
-        <View style={styles.header} >
+        <View style={styles.header}>
           <TouchableOpacity>
-            <Text style={styles.name} onPress={()=> Linking.openURL(url)}>{name}</Text>
+            <Text style={styles.name} onPress={() => Linking.openURL(url)}>{name}</Text>
           </TouchableOpacity>
-          <View style={styles.dlContainer} >
+          <View style={styles.dlContainer}>
             <DifficultyIcon difficulty={difficulty} />
-            <Text style={styles.length} >{length} mi</Text>
+            <Text style={styles.length}>
+              {length} mi
+            </Text>
           </View>
           <View>
-            <Image source={{uri: imgSmallMed}} style={{width: 200, height: 200}}/>
+            <Image source={{ uri: imgSmallMed }} style={{ width: 200, height: 200 }} />
           </View>
           {/* <MapViewButton latitude={latitude} longitude={longitude} /> */}
           <TextButton press={mapNav} name="Get Directions" style={buttonStyle} />
-       </View>
-        <View style={styles.location}>
-          <Text style={styles.locationText} >{location}</Text>
         </View>
-        <Text style={styles.summary} >{summary}</Text>
+        <View style={styles.location}>
+          <Text style={styles.locationText}>{location}</Text>
+        </View>
+        <Text style={styles.summary}>{summary}</Text>
       </TouchableOpacity>
       <View>
         <WeatherForecast weather={weather} />
       </View>
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -69,7 +85,7 @@ const styles = StyleSheet.create({
   difficulty: {
     alignItems: 'center',
     fontSize: 14,
-    paddingRight: 10,    
+    paddingRight: 10,
   },
   header: {
     flex: 1,
@@ -85,7 +101,6 @@ const styles = StyleSheet.create({
   dlContainer: {
     padding: 10,
     flexDirection: 'row',
-    alignContent: 'center',
     justifyContent: 'center',
     alignContent: 'space-between',
   },
@@ -127,7 +142,7 @@ const buttonStyle = StyleSheet.create({
   },
   text: {
     color: colors.buttonTextColor,
-  }
-})
+  },
+});
 
 export default ExpandedItem;

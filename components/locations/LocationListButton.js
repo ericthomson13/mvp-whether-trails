@@ -1,15 +1,12 @@
 /* eslint-disable react/prop-types */
 import React from 'react';
 import {
-  View,
-  TouchableOpacity,
-  Text,
-  StyleSheet,
+  View, TouchableOpacity, Text, StyleSheet,
 } from 'react-native';
 
-import { colors } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
-const LocationListButton = ({ setShowList, showList, }) => {
+const LocationListButton = ({ setShowList, showList }) => {
   const text = showList ? 'Close List' : 'See Popular Destinations';
   return (
     <View style={styles.buttonView}>
@@ -20,7 +17,7 @@ const LocationListButton = ({ setShowList, showList, }) => {
       </TouchableOpacity>
     </View>
   );
-}
+};
 
 const styles = StyleSheet.create({
   buttonView: {

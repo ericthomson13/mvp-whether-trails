@@ -1,16 +1,24 @@
-import React, { useEffect, } from 'react';
-import { View, Text, StyleSheet, } from 'react-native';
-import { useSelector, useDispatch, } from 'react-redux';
-import { hikingProject, mountainBikeProject, trailRunProject, } from '../Keys';
-import { updateActivityArr, } from '../store/actions/activityActions';
+import React, { useEffect } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 import axios from 'axios';
+import {
+  hikingProject,
+  mountainBikeProject,
+  trailRunProject,
+} from '../Keys';
+import { updateActivityArr } from '../store/actions/activityActions';
 
 import ActivityList from '../components/activity/ActivityList';
 import HomeButton from '../components/utility/HomeButton';
 
 // TODO: update getList to be in apiCalls
-  // attempted but issues with unresolved promises and object returning not expected array
-  // create custom hook so can have dispatches and selectors inside
+// attempted but issues with unresolved promises and object returning not expected array
+// create custom hook so can have dispatches and selectors inside
 
 const ActivityView = () => {
   const activityArray = useSelector((state) => state.activity.activityItems);
@@ -20,8 +28,8 @@ const ActivityView = () => {
   const dispatch = useDispatch();
 
   const getList = async () => {
-    let key, base;
-    switch(activity) {
+    let key; let base;
+    switch (activity) {
       case 'hiking':
         key = hikingProject;
         base = 'hikingproject';
@@ -38,9 +46,9 @@ const ActivityView = () => {
         key = hikingProject;
         base = 'hikingproject';
         return;
-    };
+    }
 
-    const url = `https://www.${base}.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${key}`
+    const url = `https://www.${base}.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${key}`;
     const result = await axios({
       method: 'get',
       url,
@@ -55,18 +63,18 @@ const ActivityView = () => {
 
   let list = null;
   if (activityArray.length > 0) {
-    list = <ActivityList />
+    list = <ActivityList />;
   }
-  
+
   return (
     <View>
       <View style={styles.activityView}>
-        <Text></Text>
+        <Text />
         {list}
       </View>
       <HomeButton />
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({

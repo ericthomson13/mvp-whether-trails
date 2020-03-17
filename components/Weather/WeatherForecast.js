@@ -1,49 +1,52 @@
-import React, { useState, } from 'react';
-import { View, Text, StyleSheet, } from 'react-native';
+/* eslint-disable no-plusplus */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
+import {
+  View, Text, StyleSheet,
+} from 'react-native';
 
 import ForecastList from './ForecastList';
-import { colors } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
 const WeatherForecast = ({ weather }) => {
   const [view, setView] = useState(true);
   const [weekday, setWeekday] = useState(null);
 
-  let weeklyData = [];
+  const weeklyData = [];
   if (weather !== null && view) {
-    for (let i = 0; i < weather.length; i++) { 
+    for (let i = 0; i < weather.length; i++) {
       if (i === 0 || i % 8 === 0) {
         weeklyData.push(weather[i]);
       }
-    };
-  };
+    }
+  }
 
   let dailyData;
   if (!view && weekday !== null && weather !== null) {
     dailyData = weather.filter((item) => {
-      let date = new Date(item.dt * 1000)
+      const date = new Date(item.dt * 1000);
       return weekday === date.getUTCDay();
     });
-  };
-  
+  }
+
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <View style={styles.title}>
         <Text>
           Forecast
         </Text>
       </View>
-      <View style={styles.weekly} >
-        <ForecastList 
-          data={view ? weeklyData : dailyData} 
+      <View style={styles.weekly}>
+        <ForecastList
+          data={view ? weeklyData : dailyData}
           setWeekday={setWeekday}
-          weekday={weekday || null} 
-          setView={setView} 
-          view={view} 
+          weekday={weekday || null}
+          setView={setView}
+          view={view}
         />
       </View>
     </View>
-
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -62,7 +65,7 @@ const styles = StyleSheet.create({
     alignContent: 'space-between',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 export default WeatherForecast;

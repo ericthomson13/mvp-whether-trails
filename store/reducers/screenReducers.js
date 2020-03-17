@@ -10,7 +10,7 @@ const screenReducers = (state = initialState, { type, payload }) => {
       return (
         {
           ...state,
-          screen: payload
+          screen: payload,
         }
       );
     default:

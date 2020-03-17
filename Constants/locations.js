@@ -1,4 +1,4 @@
-export const locations =[
+const locations = [
   {
     name: 'San Fransisco',
     latitude: 37.7749,
@@ -11,7 +11,7 @@ export const locations =[
   },
   {
     name: 'New York',
-    latitude:  40.7128,
+    latitude: 40.7128,
     longitude: -74.0060,
   },
   {
@@ -75,3 +75,5 @@ export const locations =[
     longitude: -112.0740,
   },
 ];
+
+export default locations;

@@ -1,7 +1,10 @@
+/* eslint-disable no-console */
 import React, { useEffect } from 'react';
-import { StyleSheet, Text, View, } from 'react-native';
+import {
+  StyleSheet, Text, View,
+} from 'react-native';
 
-import { useSelector, useDispatch, } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import * as Permissions from 'expo-permissions';
 import * as Location from 'expo-location';
 
@@ -10,8 +13,8 @@ import MapViewScreen from './MapViewScreen';
 import ActivityView from './ActivityView';
 import SettingsView from './SettingsView';
 
-import { colors } from '../Constants/Colors';
-import { setLocation, setCurrentLocation, } from '../store/actions/locationActions';
+import colors from '../Constants/Colors';
+import { setLocation, setCurrentLocation } from '../store/actions/locationActions';
 
 const Main = () => {
   const viewMode = useSelector((state) => state.screen.screen);
@@ -20,14 +23,14 @@ const Main = () => {
 
   const getLocation = async () => {
     try {
-      let { status } = await Permissions.askAsync(Permissions.LOCATION);
+      const { status } = await Permissions.askAsync(Permissions.LOCATION);
       if (status !== 'granted') {
         Location.requestPermissionsAsync();
         dispatch(setLocation(location));
       } else {
-        let location = await Location.getCurrentPositionAsync({timeout: 10000});
-        dispatch(setLocation(location));
-        dispatch(setCurrentLocation(location));
+        const foundLocation = await Location.getCurrentPositionAsync({ timeout: 10000 });
+        dispatch(setLocation(foundLocation));
+        dispatch(setCurrentLocation(foundLocation));
       }
     } catch {
       console.log('error in getLocation ');
@@ -39,7 +42,7 @@ const Main = () => {
   }, []);
 
   let screen;
-  switch(viewMode) {
+  switch (viewMode) {
     case 'welcomeView':
       screen = <WelcomeView />;
       break;
@@ -59,7 +62,7 @@ const Main = () => {
           <Text style={styles.errorText}>Please come back later</Text>
         </View>
       );
-  };
+  }
 
   return (
     <View style={styles.container}>
@@ -79,7 +82,7 @@ const styles = StyleSheet.create({
   errorText: {
     alignContent: 'center',
     justifyContent: 'center',
-    fontFamily: 'lucia grande'
+    fontFamily: 'lucia grande',
   },
   errorView: {
     flex: 1,

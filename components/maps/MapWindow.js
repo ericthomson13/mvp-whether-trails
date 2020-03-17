@@ -25,7 +25,7 @@
 //       </View>
 //     );
 //   }
-//   return null;  
+//   return null;
 // }
 
 // const styles = StyleSheet.create({
