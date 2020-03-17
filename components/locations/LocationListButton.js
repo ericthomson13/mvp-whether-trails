@@ -19,10 +19,10 @@ const LocationListButton = ({ setShowList, showList, }) => {
         </Text>
       </TouchableOpacity>
     </View>
-  )
-};
+  );
+}
 
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
   buttonView: {
     alignItems: 'center',
     justifyContent: 'center',
