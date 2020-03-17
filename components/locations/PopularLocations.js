@@ -1,7 +1,13 @@
-import React, { useState, } from 'react';
-import { View, ScrollView, StyleSheet, Text, } from 'react-native';
+/* eslint-disable react/jsx-props-no-spreading */
+import React, { useState } from 'react';
+import {
+  View,
+  ScrollView,
+  StyleSheet,
+  Text,
+} from 'react-native';
 
-import { locations, } from '../../Constants/locations';
+import { locations } from '../../Constants/locations';
 import { colors } from '../../Constants/Colors';
 
 import CurrentLocation from './CurrentLocation';
@@ -14,12 +20,12 @@ const PopularLocations = () => {
   const list = (
     <View>
       <View style={styles.popularTitle}>
-        <Text style={styles.popularTitleText} >
+        <Text style={styles.popularTitleText}>
           Popular Destinations:
         </Text>
       </View>
-      <ScrollView style={styles.locationsList} horizontal={true}>
-        {locations.map((location, i) => <LocationItem key={i} { ...location } setShowList={setShowList} />)}
+      <ScrollView style={styles.locationsList} horizontal>
+        {locations.map((location, i) => <LocationItem key={i} {...location} setShowList={setShowList} />)}
       </ScrollView>
     </View>
   );
@@ -27,12 +33,12 @@ const PopularLocations = () => {
   const currentLocButton = showList ? <CurrentLocation setShowList={setShowList} showList={showList} /> : null;
 
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       {showList ? list : null}
       {toggleButton}
       {currentLocButton}
-    </View> 
-  )
+    </View>
+  );
 };
 
 const styles = StyleSheet.create({
@@ -49,7 +55,7 @@ const styles = StyleSheet.create({
   },
   locationsList: {
     flexDirection: 'row',
-  }
+  },
 });
 
 export default PopularLocations;
