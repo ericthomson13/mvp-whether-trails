@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState, useEffect } from 'react';
+import React, { useState } from 'react';
 import {
   View, ScrollView, StyleSheet, Text,
 } from 'react-native';
@@ -12,6 +12,8 @@ import colors from '../../Constants/Colors';
 import CurrentLocation from './CurrentLocation';
 import LocationItem from './LocationItem';
 import TextButton from '../utility/TextButton';
+
+// TODO: resolve Close List text display
 
 const PopularLocations = () => {
   const [showList, setShowList] = useState(false);
@@ -28,6 +30,7 @@ const PopularLocations = () => {
       </ScrollView>
     </View>
   );
+
   const toggleButton = (
     <TextButton
       press={() => setShowList(!showList)}
