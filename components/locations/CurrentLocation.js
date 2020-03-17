@@ -8,7 +8,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { setLocation } from '../../store/actions/locationActions';
 import colors from '../../Constants/Colors';
 
-const CurrentLocation = ({ setShowList, showList, }) => {
+const CurrentLocation = ({
+  setShowList, showList,
+}) => {
   const currentLoc = useSelector((state) => state.location.current);
   const defaultLoc = useSelector((state) => state.location.default);
   const dispatch = useDispatch();

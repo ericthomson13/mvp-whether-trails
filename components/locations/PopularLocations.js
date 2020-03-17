@@ -1,7 +1,7 @@
 /* eslint-disable max-len */
 /* eslint-disable react/no-array-index-key */
 /* eslint-disable react/jsx-props-no-spreading */
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import {
   View, ScrollView, StyleSheet, Text,
 } from 'react-native';
@@ -11,7 +11,7 @@ import colors from '../../Constants/Colors';
 
 import CurrentLocation from './CurrentLocation';
 import LocationItem from './LocationItem';
-import LocationListButton from './LocationListButton';
+import TextButton from '../utility/TextButton';
 
 const PopularLocations = () => {
   const [showList, setShowList] = useState(false);
@@ -28,7 +28,14 @@ const PopularLocations = () => {
       </ScrollView>
     </View>
   );
-  const toggleButton = <LocationListButton setShowList={setShowList} showList={showList} />;
+  const toggleButton = (
+    <TextButton
+      press={() => setShowList(!showList)}
+      name={showList ? 'Close List' : 'See Popular Desinations'}
+      style={buttonStyles}
+    />
+  );
+
   const currentLocButton = showList ? <CurrentLocation setShowList={setShowList} showList={showList} /> : null;
 
   return (
@@ -54,6 +61,25 @@ const styles = StyleSheet.create({
   },
   locationsList: {
     flexDirection: 'row',
+  },
+});
+
+const buttonStyles = StyleSheet.create({
+  buttonView: {
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 5,
+  },
+  button: {
+    backgroundColor: colors.other,
+    padding: 3,
+    borderRadius: 10,
+  },
+  text: {
+    color: colors.buttonTextColor,
+    fontSize: 14,
+    padding: 5,
+    margin: 2,
   },
 });
 
