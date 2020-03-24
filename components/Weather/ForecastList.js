@@ -1,5 +1,9 @@
+/* eslint-disable react/jsx-props-no-spreading */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { View, StyleSheet, ScrollView, } from 'react-native';
+import {
+  View, StyleSheet, ScrollView,
+} from 'react-native';
 
 import WeatherPane from './WeatherPane';
 
@@ -8,10 +12,11 @@ import WeatherPane from './WeatherPane';
 // TODO: update timestamp on daily to just have HH:MM
 // TODO: convert timestamp to local from UTC time
 
-const ForecastList = ({ data, setView, view, setWeekday, }) => {
+const ForecastList = ({
+  data, setView, view, setWeekday,
+}) => {
   const days = ['Sun', 'Mon', 'Tues', 'Wed', 'Thurs', 'Fri', 'Sat'];
-
-  let date, dateIndex;
+  let date; let dateIndex;
 
   const panes = data.map((item) => {
     date = new Date(item.dt * 1000);
@@ -19,16 +24,25 @@ const ForecastList = ({ data, setView, view, setWeekday, }) => {
       dateIndex = date.getUTCDay();
       date = days[dateIndex];
     } else {
+      // eslint-disable-next-line prefer-destructuring
       date = date.toString().split(' ')[4];
-    };
+    }
     return (
-      <WeatherPane {...item} key={item.dt} date={date} index={dateIndex} setView={setView} view={view} setWeekday={setWeekday} />
+      <WeatherPane
+        {...item}
+        key={item.dt}
+        date={date}
+        index={dateIndex}
+        setView={setView}
+        view={view}
+        setWeekday={setWeekday}
+      />
     );
   });
 
   return (
-    <View style={styles.container} >
-      <ScrollView style={styles.list} horizontal={true} >
+    <View style={styles.container}>
+      <ScrollView style={styles.list} horizontal>
         {panes}
       </ScrollView>
     </View>
@@ -39,11 +53,11 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     alignContent: 'center',
-    justifyContent: 'center', 
+    justifyContent: 'center',
   },
   list: {
     flexDirection: 'row',
-  }
+  },
 });
 
 export default ForecastList;

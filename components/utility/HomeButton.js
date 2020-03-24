@@ -1,22 +1,24 @@
 import React from 'react';
-import { View, TouchableOpacity, StyleSheet, } from 'react-native';
+import {
+  View, TouchableOpacity, StyleSheet,
+} from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
-import { useDispatch, } from 'react-redux';
+import { useDispatch } from 'react-redux';
 import { setScreen } from '../../store/actions/screenActions';
-import { setSelectedActivity, updateActivityArr, } from '../../store/actions/activityActions';
+import { setSelectedActivity, updateActivityArr } from '../../store/actions/activityActions';
 
-import { colors } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
 const HomeButton = () => {
   const dispatch = useDispatch();
 
   return (
-    <View style={styles.container} >
-      <TouchableOpacity 
+    <View style={styles.container}>
+      <TouchableOpacity
         onPress={() => {
-          dispatch(setScreen('welcomeView')); 
-          dispatch(setSelectedActivity(null)); 
+          dispatch(setScreen('welcomeView'));
+          dispatch(setSelectedActivity(null));
           dispatch(updateActivityArr([]));
         }}
         style={styles.button}
@@ -27,7 +29,7 @@ const HomeButton = () => {
   );
 };
 
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
   container: {
     padding: 5,
     margin: 5,

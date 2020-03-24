@@ -1,35 +1,47 @@
+/* eslint-disable react/jsx-one-expression-per-line */
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { View, Text, TouchableOpacity, StyleSheet } from 'react-native';
+import {
+  View, Text, TouchableOpacity, StyleSheet,
+} from 'react-native';
 import { Linking } from 'expo';
 
 import DifficultyIcon from './DifficultyIcon';
-import { colors } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
-const NormalItem = ({ setWeatherDisplay, url, name, difficulty, length, location, summary }) => {
-  return (
-    <View 
-      style={styles.card}
+const NormalItem = ({
+  setWeatherDisplay,
+  url,
+  name,
+  difficulty,
+  length,
+  location,
+  summary,
+}) => (
+  <View
+    style={styles.card}
+  >
+    <TouchableOpacity
+      onPress={() => setWeatherDisplay(true)}
     >
-      <TouchableOpacity 
-        onPress={() => setWeatherDisplay(true)}
-      >
-        <View style={styles.header} >
-          <TouchableOpacity onPress={()=> Linking.openURL(url)}>
-           <Text style={styles.name}> {name} </Text>
-         </TouchableOpacity>
-       </View>
-       <View style={styles.dlContainer} >
-          <DifficultyIcon difficulty={difficulty} />
-          <Text style={styles.length} >{length} mi</Text>
-        </View>
-        <View style={styles.location}>
-          <Text style={styles.locationText} >{location}</Text>
-        </View>
-        <Text>{summary}</Text>
-      </TouchableOpacity>
-    </View>
-  );
-};
+      <View style={styles.header}>
+        <TouchableOpacity onPress={() => Linking.openURL(url)}>
+          <Text style={styles.name}> {name} </Text>
+        </TouchableOpacity>
+      </View>
+      <View style={styles.dlContainer}>
+        <DifficultyIcon difficulty={difficulty} />
+        <Text style={styles.length}>
+          {length} mi
+        </Text>
+      </View>
+      <View style={styles.location}>
+        <Text style={styles.locationText}>{location}</Text>
+      </View>
+      <Text>{summary}</Text>
+    </TouchableOpacity>
+  </View>
+);
 
 
 const styles = StyleSheet.create({
@@ -39,7 +51,7 @@ const styles = StyleSheet.create({
     padding: 10,
     margin: 5,
     borderRadius: 10,
-    justifyContent:'space-evenly',
+    justifyContent: 'space-evenly',
   },
   name: {
     alignContent: 'center',
@@ -53,7 +65,7 @@ const styles = StyleSheet.create({
   difficulty: {
     alignItems: 'center',
     fontSize: 14,
-    paddingRight: 10,    
+    paddingRight: 10,
   },
   header: {
     flex: 1,
@@ -68,7 +80,6 @@ const styles = StyleSheet.create({
   dlContainer: {
     padding: 10,
     flexDirection: 'row',
-    alignContent: 'center',
     justifyContent: 'center',
     alignContent: 'space-between',
   },
@@ -78,7 +89,6 @@ const styles = StyleSheet.create({
     fontWeight: 'bold',
     textAlign: 'center',
     maxWidth: '75%',
-
   },
   image: {
     width: '20%',

@@ -1,4 +1,6 @@
-import React, { useState, useEffect, } from 'react';
+/* eslint-disable react/prop-types */
+/* eslint-disable no-console */
+import React, { useState, useEffect } from 'react';
 import axios from 'axios';
 
 import { openWeather } from '../../Keys';
@@ -8,7 +10,7 @@ import ExpandedItem from './ExpandedItem';
 
 // TODO: show weather expands with motion
 
-const ActivityItem = ({ 
+const ActivityItem = ({
   index, name, summary, difficulty, imgSmallMed, stars, location, url, length, latitude, longitude,
 }) => {
   const [weatherDisplay, setWeatherDisplay] = useState(false);
@@ -16,11 +18,11 @@ const ActivityItem = ({
 
   const getWeather = async () => {
     try {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=Imperial&appid=${openWeather}`;
+      const string = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=Imperial&appid=${openWeather}`;
 
       const result = await axios({
         method: 'get',
-        url,
+        url: string,
         responseType: 'stream',
       });
       const forecastObj = JSON.parse(result.request.responseText);
@@ -38,11 +40,11 @@ const ActivityItem = ({
 
   if (weatherDisplay) {
     return (
-      <ExpandedItem 
-        index={index} 
-        name={name} 
-        summary={summary} 
-        difficulty={difficulty} 
+      <ExpandedItem
+        index={index}
+        name={name}
+        summary={summary}
+        difficulty={difficulty}
         imgSmallMed={imgSmallMed}
         stars={stars}
         location={location}
@@ -54,24 +56,23 @@ const ActivityItem = ({
         weather={weatherData}
       />
     );
-  } else {
-    return (
-      <NormalItem 
-        index={index} 
-        name={name} 
-        summary={summary} 
-        difficulty={difficulty} 
-        imgSmallMed={imgSmallMed}
-        stars={stars}
-        location={location}
-        url={url}
-        length={length}
-        latitude={latitude}
-        longitude={longitude}
-        setWeatherDisplay={() => setWeatherDisplay(true)}
-      />
-    );
-  } 
+  }
+  return (
+    <NormalItem
+      index={index}
+      name={name}
+      summary={summary}
+      difficulty={difficulty}
+      imgSmallMed={imgSmallMed}
+      stars={stars}
+      location={location}
+      url={url}
+      length={length}
+      latitude={latitude}
+      longitude={longitude}
+      setWeatherDisplay={() => setWeatherDisplay(true)}
+    />
+  );
 };
 
 export default ActivityItem;

@@ -1,7 +1,6 @@
-import { useState, useEffect, } from 'react';
-import { useDispatch, } from 'react-redux';
-import { setScreen, } from '../store/actions/screenActions';
-import { setSelectedActivity, updateActivityArr, } from '../store/actions/activityActions';
+import { useDispatch } from 'react-redux';
+import { setScreen } from '../store/actions/screenActions';
+import { setSelectedActivity, updateActivityArr } from '../store/actions/activityActions';
 
 export const useHomeButton = () => {
   const dispatch = useDispatch();

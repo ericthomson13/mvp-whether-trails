@@ -1,17 +1,25 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { View, StyleSheet, Text, TouchableOpacity, } from 'react-native';
-import { useDispatch, } from 'react-redux';
+import {
+  View, StyleSheet, Text, TouchableOpacity,
+} from 'react-native';
+import { useDispatch } from 'react-redux';
 
-import { setLocation, } from '../../store/actions/locationActions';
-import { colors } from '../../Constants/Colors';
+import { setLocation } from '../../store/actions/locationActions';
+import colors from '../../Constants/Colors';
 
-const LocationItem = ({ name, latitude, longitude, setShowList }) => {
+const LocationItem = ({
+  name,
+  latitude,
+  longitude,
+  setShowList,
+}) => {
   const dispatch = useDispatch();
-  const location = { latitude, longitude}
+  const location = { latitude, longitude };
   return (
     <View style={styles.locationItemView}>
-      <TouchableOpacity 
-        onPress={() => {dispatch(setLocation(location)); setShowList(false);}}
+      <TouchableOpacity
+        onPress={() => { dispatch(setLocation(location)); setShowList(false); }}
         style={styles.locationItemButton}
       >
         <Text style={styles.locationItemText}>

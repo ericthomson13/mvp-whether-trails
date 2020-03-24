@@ -1,22 +1,25 @@
+/* eslint-disable react/prop-types */
 import React from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
+import {
+  View, TouchableOpacity, Text, StyleSheet,
+} from 'react-native';
 
-import { colors, } from '../../Constants/Colors';
+import colors from '../../Constants/Colors';
 
-const LocationListButton = ({ setShowList, showList, }) => {
+const LocationListButton = ({ setShowList, showList }) => {
   const text = showList ? 'Close List' : 'See Popular Destinations';
   return (
-    <View style={styles.buttonView} >
+    <View style={styles.buttonView}>
       <TouchableOpacity style={styles.button} onPress={() => setShowList(!showList)}>
         <Text style={styles.text}>
           {text}
         </Text>
       </TouchableOpacity>
     </View>
-  )
+  );
 };
 
-const styles = StyleSheet.create({ 
+const styles = StyleSheet.create({
   buttonView: {
     alignItems: 'center',
     justifyContent: 'center',

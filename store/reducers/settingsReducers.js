@@ -1,4 +1,6 @@
-import { SET_UNITS, SET_TRAILHEAD_RANGE, SET_NUM_TRAILS, SET_ALL_SETTINGS, } from '../actions/settingsActions';
+import {
+  SET_UNITS, SET_TRAILHEAD_RANGE, SET_NUM_TRAILS, SET_ALL_SETTINGS,
+} from '../actions/settingsActions';
 
 const initialState = {
   units: 'imperial',
@@ -12,8 +14,8 @@ const settingsReducers = (state = initialState, { type, payload }) => {
   switch (type) {
     case SET_UNITS:
       return ({
-          ...state,
-          units: payload,
+        ...state,
+        units: payload,
       });
     case SET_TRAILHEAD_RANGE:
       return ({
@@ -23,7 +25,7 @@ const settingsReducers = (state = initialState, { type, payload }) => {
     case SET_NUM_TRAILS:
       return ({
         ...state,
-        numberTrails: payload
+        numberTrails: payload,
       });
     case SET_ALL_SETTINGS:
       return ({

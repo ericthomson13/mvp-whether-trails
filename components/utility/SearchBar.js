@@ -1,15 +1,21 @@
 import React, { useState } from 'react';
-import { View, Text, TouchableOpacity, TextInput, StyleSheet, } from 'react-native';
-import { useDispatch, } from 'react-redux';
+import {
+  View,
+  Text,
+  TouchableOpacity,
+  TextInput,
+  StyleSheet,
+} from 'react-native';
+import { useDispatch } from 'react-redux';
 
 import { MaterialCommunityIcons } from '@expo/vector-icons';
-import { colors, } from '../../Constants/Colors';
-import { setSearchLocation, } from '../../store/actions/locationActions';
+import colors from '../../Constants/Colors';
+import { setSearchLocation } from '../../store/actions/locationActions';
 
-
+// TODO: deal with setSearchLocation issue
 // TODO: figure out to convert city, state to latlong for get activities
 // TODO: implement searchbar option in WelcomeView
- 
+
 const SearchBar = () => {
   const [latInput, setLatInput] = useState('');
   const [longInput, setLongInput] = useState('');
@@ -20,38 +26,38 @@ const SearchBar = () => {
   const checkValidLatLong = (latitude, longitude) => {
     if (latitude > 90 || latitude < -90) return;
     if (longitude > 180 || longitude < -180) return;
-    dispatch(setSearchLocation({latitude, longitude}));
+    dispatch(setSearchLocation({ latitude, longitude }));
   };
 
   const bar = (
     <View style={styles.searchBar}>
       <View style={styles.searchBarView}>
-        <TextInput 
-          style={styles.searchBarInput} 
-          onChangeText={(text) => setLatInput(text)} 
-          value={latInput} 
-          blurOnSubmit={true} 
-          placeholder='Latitude'
-          keyboardType='number-pad'
-          keyboardAppearance='dark'
+        <TextInput
+          style={styles.searchBarInput}
+          onChangeText={(text) => setLatInput(text)}
+          value={latInput}
+          blurOnSubmit
+          placeholder="Latitude"
+          keyboardType="number-pad"
+          keyboardAppearance="dark"
           placeholderTextColor={colors.buttonTextColor}
         />
       </View>
       <View style={styles.searchBarView}>
-        <TextInput 
-          style={styles.searchBarInput} 
-          onChangeText={(text) => setLongInput(text)} 
-          value={longInput} 
-          blurOnSubmit={true} 
-          placeholder='Longitude'
-          keyboardType='number-pad'
-          keyboardAppearance='dark'
+        <TextInput
+          style={styles.searchBarInput}
+          onChangeText={(text) => setLongInput(text)}
+          value={longInput}
+          blurOnSubmit
+          placeholder="Longitude"
+          keyboardType="number-pad"
+          keyboardAppearance="dark"
           placeholderTextColor={colors.buttonTextColor}
         />
       </View>
-      <View style={styles.searchButton} >
-        <TouchableOpacity onPress={() => {checkValidLatLong(latInput, longInput)}} >
-          <MaterialCommunityIcons name='search-web' size={20} color='black'/>
+      <View style={styles.searchButton}>
+        <TouchableOpacity onPress={() => { checkValidLatLong(latInput, longInput); }}>
+          <MaterialCommunityIcons name="search-web" size={20} color="black" />
         </TouchableOpacity>
         <TouchableOpacity onPress={() => setDisplayBar(!displayBar)} style={styles.closeButton}>
           <Text style={styles.closeText}>
@@ -70,7 +76,7 @@ const SearchBar = () => {
       </TouchableOpacity>
     </View>
   );
-  return displayBar ? bar : button
+  return displayBar ? bar : button;
 };
 
 const styles = StyleSheet.create({
@@ -117,7 +123,7 @@ const styles = StyleSheet.create({
   closeText: {
     color: colors.buttonTextColor,
     padding: 2,
-  }
+  },
 });
 
 export default SearchBar;

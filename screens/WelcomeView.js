@@ -1,30 +1,34 @@
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-one-expression-per-line */
 import React from 'react';
-import { View, Text, StyleSheet, ScrollView } from 'react-native';
-import { useSelector, useDispatch, } from 'react-redux';
+import {
+  View, Text, StyleSheet, ScrollView,
+} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
 
 import TextButton from '../components/utility/TextButton';
 
 import PopularLocations from '../components/locations/PopularLocations';
-import { colors } from '../Constants/Colors';
-import { setSelectedActivity, } from '../store/actions/activityActions';
-import { setScreen, } from '../store/actions/screenActions';
+import colors from '../Constants/Colors';
+import { setSelectedActivity } from '../store/actions/activityActions';
+import { setScreen } from '../store/actions/screenActions';
 
 const WelcomeView = () => {
   const children = useSelector((state) => state.activity.activityOptions);
   const location = useSelector((state) => state.location.location);
   const dispatch = useDispatch();
-  const activitySelector = (name) => {dispatch(setSelectedActivity(name)); dispatch(setScreen('activityView'));};
-  
+  const activitySelector = (name) => { dispatch(setSelectedActivity(name)); dispatch(setScreen('activityView')); };
+
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <View style={styles.nav}>
-        <Text style={styles.navText} >Whether Trails</Text>
+        <Text style={styles.navText}>Whether Trails</Text>
         <Text style={styles.subtitle}>How to Find Trails and Their Weather Forecasts</Text>
       </View>
-      <View style={styles.currentLocation} >
+      <View style={styles.currentLocation}>
         <Text style={styles.currentTitle}>Current Location</Text>
         <View style={styles.latLongView}>
-          <Text style={styles.latLongText} >Latitude:  {location.latitude}  Longitude:  {location.longitude}</Text>
+          <Text style={styles.latLongText}>Latitude:  {location.latitude}  Longitude:  {location.longitude}</Text>
         </View>
       </View>
       <View style={styles.welcomeView}>
@@ -32,18 +36,15 @@ const WelcomeView = () => {
           Select an Activity
         </Text>
         <View style={styles.optionsList}>
-          <ScrollView  >
-            {children.map((option, i) => {
-              return (
-                <TextButton 
-                  press={() => activitySelector(option.name)} 
-                  name={option.name} 
-                  style={[null, null, null]} 
-                  key={i} 
-                  style={buttonStyle}
-                />
-              );
-            })}
+          <ScrollView>
+            {children.map((option, i) => (
+              <TextButton
+                press={() => activitySelector(option.name)}
+                name={option.name}
+                key={i}
+                style={buttonStyle}
+              />
+            ))}
           </ScrollView>
           <View style={styles.popularLocations}>
             <PopularLocations />
@@ -51,8 +52,7 @@ const WelcomeView = () => {
         </View>
       </View>
     </View>
-    
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -61,7 +61,7 @@ const styles = StyleSheet.create({
     maxWidth: '80%',
     alignItems: 'center',
     justifyContent: 'center',
-  },  
+  },
   welcomeView: {
     padding: 10,
     margin: 5,
@@ -132,29 +132,30 @@ const styles = StyleSheet.create({
     alignItems: 'center',
     justifyContent: 'center',
     padding: 5,
-  }
+  },
 });
 
 const buttonStyle = StyleSheet.create({
-    container: {
-      alignContent: 'center',
-      justifyContent: 'center',
-      padding: 5,
-      margin: 5,
-      maxWidth: 200,
-    },
-    button: {
-      backgroundColor: colors.buttonBackground,
-      alignItems: 'center',
-      justifyContent: 'center',
-      borderRadius: 10,
-    },
-    text: {
-      borderColor: colors.normalItem,
-      color: colors.buttonTextColor,
-      fontSize: 18,
-      padding: 5,
-      margin: 5,
-    },
-})
+  container: {
+    alignContent: 'center',
+    justifyContent: 'center',
+    padding: 5,
+    margin: 5,
+    maxWidth: 200,
+  },
+  button: {
+    backgroundColor: colors.buttonBackground,
+    alignItems: 'center',
+    justifyContent: 'center',
+    borderRadius: 10,
+  },
+  text: {
+    borderColor: colors.normalItem,
+    color: colors.buttonTextColor,
+    fontSize: 18,
+    padding: 5,
+    margin: 5,
+  },
+});
+
 export default WelcomeView;
