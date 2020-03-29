@@ -1,51 +1,88 @@
-import React, { useState } from 'react';
-import { View, Text, StyleSheet, FlatList } from 'react-native';
-import { hikingProject } from '../keys';
+import React, { useEffect } from 'react';
+import {
+  View,
+  Text,
+  StyleSheet,
+} from 'react-native';
+import { useSelector, useDispatch } from 'react-redux';
+import axios from 'axios';
+import {
+  hikingProject,
+  mountainBikeProject,
+  trailRunProject,
+} from '../Keys';
+import { updateActivityArr } from '../store/actions/activityActions';
 
-import ActivityList from '../components/Activity/ActivityList';
+import ActivityList from '../components/activity/ActivityList';
+import HomeButton from '../components/utility/HomeButton';
 
-const ActivityView = (props) => {
-  const [activityArray, setActivityArray] = useState([]);
-  const [activityCall, setActivityCall] = useState(0);
-  const { location } = props;
+// TODO: update getList to be in apiCalls
+// attempted but issues with unresolved promises and object returning not expected array
+// create custom hook so can have dispatches and selectors inside
 
-  // eventually allow user to set search radius
-  const getList = async (location) => {
-    const result = await fetch(`https://www.hikingproject.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${hikingProject}`)
-    const trails = await result.json()
-    setActivityArray(trails.trails);
+const ActivityView = () => {
+  const activityArray = useSelector((state) => state.activity.activityItems);
+  const location = useSelector((state) => state.location.location);
+  const activity = useSelector((state) => state.activity.activity);
+
+  const dispatch = useDispatch();
+
+  const getList = async () => {
+    let key; let base;
+    switch (activity) {
+      case 'hiking':
+        key = hikingProject;
+        base = 'hikingproject';
+        break;
+      case 'mountain biking':
+        key = mountainBikeProject;
+        base = 'mtbproject';
+        break;
+      case 'trail running':
+        key = trailRunProject;
+        base = 'trailrunproject';
+        break;
+      default:
+        key = hikingProject;
+        base = 'hikingproject';
+        return;
+    }
+
+    const url = `https://www.${base}.com/data/get-trails?lat=${location.latitude}&lon=${location.longitude}&key=${key}`;
+    const result = await axios({
+      method: 'get',
+      url,
+      responseType: 'stream',
+    });
+    dispatch(updateActivityArr(result.data.trails));
   };
 
-  if (activityArray.length === 0 && activityCall === 0) {
-    getList(location);
-    setActivityCall(1);
-  };
+  useEffect(() => {
+    getList();
+  }, [activity]);
 
   let list = null;
   if (activityArray.length > 0) {
-    list = <ActivityList list={activityArray} />
+    list = <ActivityList />;
   }
-  
+
   return (
-    <View style={styles.activityView}>
-      <Text></Text>
-      {/* <MapWindow /> */}
-      {list}
+    <View>
+      <View style={styles.activityView}>
+        <Text />
+        {list}
+      </View>
+      <HomeButton />
     </View>
-  )
+  );
 };
 
 const styles = StyleSheet.create({
   activityView: {
     flex: 1,
     padding: 10,
-    maxHeight: '90%',
-
+    height: '100%',
   },
-  list: {
-
-  },
-
 });
 
 export default ActivityView;

@@ -1,45 +1,38 @@
-import React, { useState, useEffect } from 'react';
-import { View, Text, StyleSheet, FlatList, Platform, SafeAreaView, ScrollView } from 'react-native';
+/* eslint-disable no-constant-condition */
+/* eslint-disable react/no-array-index-key */
+/* eslint-disable react/jsx-props-no-spreading */
+import React from 'react';
+import {
+  View, Text, StyleSheet, Platform, SafeAreaView, ScrollView,
+} from 'react-native';
+import { useSelector } from 'react-redux';
 
-import ActivityItem from './ActivityItem';
-import SelectedItem from './SelectedItem';
+import ActivityItem from './ActivityItemView';
+import colors from '../../Constants/Colors';
 
-// TODO: refactor to not render selected in list
+// TODO: refactor to flatlist
 
-const ActivityList = (props) => {
-  const [selectedItem, setSelectedItem] = useState(null);
-  // FlatList would be better
-  let list =  props.list.map((item, i) => {
-    if (selectedItem !== null && selectedItem.id === item.id) {
-      return;
-    };
+const ActivityList = () => {
+  const listItems = useSelector((state) => state.activity.activityItems);
 
-    return (
-      <ActivityItem 
-        key={item.id}
-        index={i}
-        {...item}
-        select={setSelectedItem}
-      />
-    )
-  });
-  
-  let selected = null;
-  if (selectedItem !== null) {
-    selected = <SelectedItem {...selectedItem} key={selectedItem.id} select={setSelectedItem} selected={true} />
-  };
+  let list = listItems.map((item, i) => (
+    <ActivityItem
+      key={i}
+      index={i}
+      {...item}
+    />
+  ));
 
-  if (Platform.OS = 'ios') {
+  if (Platform.OS === 'ios') {
     list = (
       <SafeAreaView>
         {list}
       </SafeAreaView>
-    )
-  };
+    );
+  }
 
   return (
-    <View style={styles.trailList} >
-      {selected}
+    <View style={styles.trailList}>
       <Text style={styles.header}>Trails Near You:</Text>
       <ScrollView styles={styles.scrollList}>
         {list}
@@ -60,7 +53,7 @@ const styles = StyleSheet.create({
   header: {
     fontWeight: 'bold',
     fontSize: 24,
-    color: '#9D3A48',
+    color: colors.titleFont,
   },
 });
 

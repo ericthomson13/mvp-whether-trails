@@ -4,9 +4,10 @@ import { StyleSheet } from 'react-native';
 import { MaterialCommunityIcons } from '@expo/vector-icons';
 
 // TODO: update to allow for 45 degree granularity in direction
+
 const WindDirection = (props) => {
   let direction;
-  switch(true) {
+  switch (true) {
     case (props < 45 || props > 315):
       direction = 'arrow-up';
       break;
@@ -20,9 +21,9 @@ const WindDirection = (props) => {
       direction = 'arrow-left';
       break;
     default:
-      direction =  'minus';
+      direction = 'minus';
   }
-  return <MaterialCommunityIcons name={direction} size={12} color="#BFD1E5" style={styles.arrow} />
+  return <MaterialCommunityIcons name={direction} size={12} color="#BFD1E5" style={styles.arrow} />;
 };
 
 const styles = StyleSheet.create({
@@ -30,8 +31,7 @@ const styles = StyleSheet.create({
     alignContent: 'center',
     justifyContent: 'center',
     paddingTop: 3,
-    
-  }
+  },
 });
 
 export default WindDirection;

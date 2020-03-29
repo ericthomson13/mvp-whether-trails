@@ -1,64 +1,52 @@
-import React, { useState, useEffect } from 'react';
-import { View, TouchableOpacity, Text, StyleSheet, } from 'react-native';
-import axios from 'axios';
+/* eslint-disable no-plusplus */
+/* eslint-disable react/prop-types */
+import React, { useState } from 'react';
+import {
+  View, Text, StyleSheet,
+} from 'react-native';
 
-import { openWeather } from '../../keys';
-import WeeklyForecast from './WeeklyForecast';
-import DailyForecast from './DailyForecast';
+import ForecastList from './ForecastList';
+import colors from '../../Constants/Colors';
 
-// TODO: add subcomponents and view to change allowing for different levels of forecasts to be used
-// TODO: add onPress to forecast for 3h view of that day
-// TODO: allow user to set their units metric/standard
+const WeatherForecast = ({ weather }) => {
+  const [view, setView] = useState(true);
+  const [weekday, setWeekday] = useState(null);
 
-const WeatherForecast = ({ latitude, longitude }) => {
-  const [weather, setWeather] = useState(null);
-  const [weatherView, setWeatherView] = useState('weekly');
-
-  const getWeather = async () => {
-    try {
-      const url = `https://api.openweathermap.org/data/2.5/forecast?lat=${latitude}&lon=${longitude}&units=Imperial&appid=${openWeather}`;
-      const result = await axios({
-        method: 'get',
-        url,
-        responseType: 'stream'
-      })
-      const forecast = JSON.parse(result.request.responseText);
-      setWeather(forecast.list);
-    } catch {
-      console.log('error in getting weather');
-    }
-  };
-
-  useEffect(() => {
-    if (weather !== null) {
-      return;
-    }
-    getWeather();
-  });
-
-  let weeklyData = [];
-  if (weather !== null) {
-    for (let i = 0; i < weather.length; i++) { 
+  const weeklyData = [];
+  if (weather !== null && view) {
+    for (let i = 0; i < weather.length; i++) {
       if (i === 0 || i % 8 === 0) {
         weeklyData.push(weather[i]);
       }
-    };
-  };
+    }
+  }
+
+  let dailyData;
+  if (!view && weekday !== null && weather !== null) {
+    dailyData = weather.filter((item) => {
+      const date = new Date(item.dt * 1000);
+      return weekday === date.getUTCDay();
+    });
+  }
 
   return (
-    <View style={styles.container} >
+    <View style={styles.container}>
       <View style={styles.title}>
         <Text>
           Forecast
         </Text>
       </View>
-      
-      <View style={styles.weekly} >
-        <WeeklyForecast data={weeklyData} />
+      <View style={styles.weekly}>
+        <ForecastList
+          data={view ? weeklyData : dailyData}
+          setWeekday={setWeekday}
+          weekday={weekday || null}
+          setView={setView}
+          view={view}
+        />
       </View>
     </View>
-
-  )
+  );
 };
 
 const styles = StyleSheet.create({
@@ -71,13 +59,13 @@ const styles = StyleSheet.create({
     padding: 2,
     margin: 2,
     borderBottomWidth: 1,
-    borderBottomColor: '#542344',
+    borderBottomColor: colors.other,
   },
   weekly: {
     alignContent: 'space-between',
     justifyContent: 'center',
     alignItems: 'center',
-  }
+  },
 });
 
 export default WeatherForecast;
